@@ -8,7 +8,10 @@ apis:
       - url: properties/openapi.yml
         name: Weather.gov OpenAPI
         type: OpenAPI
-      - name: 'OpenAPI '
+      - url: properties/openapi.yml
+        name: 'OpenAPI '
+        type: OpenAPI
+      - name: No Name
         url: properties/openapi.yml
         type: OpenAPI
     description: The weather.gov API.
