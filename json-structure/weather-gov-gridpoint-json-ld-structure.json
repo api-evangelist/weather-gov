@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-gridpoint-json-ld-structure.json",
+  "name": "GridpointJsonLd",
+  "description": "GridpointJsonLd schema from weather.gov API"
+}

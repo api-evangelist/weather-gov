@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-geo-json-line-string-structure.json",
+  "name": "GeoJsonLineString",
+  "description": "A GeoJSON line string. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/GeoJsonCoordinate"
+  }
+}

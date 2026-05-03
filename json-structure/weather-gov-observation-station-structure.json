@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-observation-station-structure.json",
+  "name": "ObservationStation",
+  "description": "ObservationStation schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:ObservationStation"
+      ],
+      "type": "string"
+    },
+    "elevation": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "stationIdentifier": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "timeZone": {
+      "type": "string",
+      "format": "iana-time-zone-identifier"
+    },
+    "provider": {
+      "type": "string",
+      "description": "The data provider for this station. E.g., \"ASOS,\" \"MesoWest,\" etc."
+    },
+    "subProvider": {
+      "type": "string",
+      "description": "The sub-provider of for this station. E.g., \"FAA,\" \"DOT,\" etc."
+    },
+    "forecast": {
+      "type": "uri",
+      "description": "A link to the NWS public forecast zone containing this station."
+    },
+    "county": {
+      "type": "uri",
+      "description": "A link to the NWS county zone containing this station."
+    },
+    "fireWeatherZone": {
+      "type": "uri",
+      "description": "A link to the NWS fire weather forecast zone containing this station."
+    },
+    "distance": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "bearing": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    }
+  },
+  "additionalProperties": false
+}

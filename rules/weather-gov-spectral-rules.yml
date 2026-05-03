@@ -1,0 +1,236 @@
+rules:
+
+  # INFO / METADATA
+  info-title-required:
+    description: Info must have a title
+    message: OpenAPI spec must have a title in info
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  info-description-required:
+    description: Info must have a description
+    message: OpenAPI spec must have a description in info
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: Info must have a version
+    message: OpenAPI spec must have a version
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3:
+    description: Must use OpenAPI 3.x
+    message: Spec must use OpenAPI 3.0.x
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.0\\."
+
+  # SERVERS
+  servers-required:
+    description: Servers array must be defined
+    message: Spec must define servers
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: All server URLs must use HTTPS
+    message: Server URL must use HTTPS
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # PATHS — NAMING CONVENTIONS
+  paths-kebab-case:
+    description: Path segments must use kebab-case
+    message: "Path segments must be kebab-case: {{value}}"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\\/[a-z0-9{}_,\\-\\/]*)*$"
+
+  paths-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    message: "Path must not end with a trailing slash: {{value}}"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\/$"
+
+  # OPERATIONS
+  operation-operationId-required:
+    description: Every operation must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationId-snake-case:
+    description: OperationId must use snake_case
+    message: "OperationId must use snake_case: {{value}}"
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  operation-description-required:
+    description: Every operation must have a description
+    message: Operation must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: description
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation must have tags
+    message: Operation must have at least one tag
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: Every parameter must have a description
+    message: Parameter must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  parameter-schema-required:
+    description: Every parameter must have a schema
+    message: Parameter must have a schema
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].parameters[*]
+    then:
+      field: schema
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Every operation must have a 2xx success response
+    message: Operation must define at least one 2xx success response
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          minProperties: 1
+
+  response-description-required:
+    description: Every response must have a description
+    message: Response must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # SCHEMAS
+  schema-type-required:
+    description: Schema properties must define a type
+    message: Schema must have a type defined
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  schema-description-recommended:
+    description: Schemas should have descriptions
+    message: Schema should have a description
+    severity: info
+    given: $.components.schemas[*]
+    then:
+      field: description
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes must be defined in components
+    message: API must define security schemes
+    severity: warn
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations must not have a request body
+    message: GET operation must not have a requestBody
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  delete-no-request-body:
+    description: DELETE operations should not have a request body
+    message: DELETE operation should not have a requestBody
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+
+  # GENERAL QUALITY
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings
+    message: Description must not be empty
+    severity: warn
+    given: $..description
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  contact-info-recommended:
+    description: Info should have contact details
+    message: Info should include contact information
+    severity: info
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  external-docs-recommended:
+    description: Spec should have external documentation link
+    message: Spec should include externalDocs
+    severity: info
+    given: $
+    then:
+      field: externalDocs
+      function: truthy

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-geo-json-polygon-schema.json",
+  "title": "GeoJsonPolygon",
+  "description": "A GeoJSON polygon. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "array",
+  "items": {
+    "minItems": 4,
+    "type": "array",
+    "items": {
+      "$ref": "#/components/schemas/GeoJsonCoordinate"
+    }
+  }
+}

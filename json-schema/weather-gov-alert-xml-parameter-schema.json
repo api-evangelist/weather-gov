@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-xml-parameter-schema.json",
+  "title": "AlertXMLParameter",
+  "description": "AlertXMLParameter schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "valueName": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

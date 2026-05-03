@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-office-briefing-structure.json",
+  "name": "OfficeBriefing",
+  "description": "OfficeBriefing schema from weather.gov API"
+}

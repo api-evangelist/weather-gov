@@ -1,0 +1,806 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "weather": {
+      "@id": "weather:weather",
+      "@type": "@id"
+    },
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AlertAtomEntry": "weather:AlertAtomEntry",
+    "AlertAtomFeed": "weather:AlertAtomFeed",
+    "AlertCap": "weather:AlertCap",
+    "AlertCollection": "weather:AlertCollection",
+    "AlertJsonLd": "weather:AlertJsonLd",
+    "Alert": "weather:Alert",
+    "AlertXMLParameter": "weather:AlertXMLParameter",
+    "AstronomicalData": "weather:AstronomicalData",
+    "CenterWeatherAdvisory": "weather:CenterWeatherAdvisory",
+    "GeoJsonFeatureCollection": "weather:GeoJsonFeatureCollection",
+    "GeoJsonFeature": "weather:GeoJsonFeature",
+    "GridpointHourlyForecastPeriod": "weather:GridpointHourlyForecastPeriod",
+    "GridpointHourlyForecast": "weather:GridpointHourlyForecast",
+    "GridpointQuantitativeValueLayer": "weather:GridpointQuantitativeValueLayer",
+    "Gridpoint": "weather:Gridpoint",
+    "Gridpoint12hForecastPeriod": "weather:Gridpoint12hForecastPeriod",
+    "Gridpoint12hForecast": "weather:Gridpoint12hForecast",
+    "MetarPhenomenon": "weather:MetarPhenomenon",
+    "NWSConnectDocumentMetadata": "weather:NWSConnectDocumentMetadata",
+    "ObservationCollectionJsonLd": "weather:ObservationCollectionJsonLd",
+    "Observation": "weather:Observation",
+    "ObservationStationCollectionJsonLd": "weather:ObservationStationCollectionJsonLd",
+    "ObservationStation": "weather:ObservationStation",
+    "OfficeHeadlineCollection": "weather:OfficeHeadlineCollection",
+    "OfficeHeadline": "weather:OfficeHeadline",
+    "Office": "weather:Office",
+    "PaginationInfo": "weather:PaginationInfo",
+    "Point": "weather:Point",
+    "QuantitativeValue": "weather:QuantitativeValue",
+    "RelativeLocation": "weather:RelativeLocation",
+    "Sigmet": "weather:Sigmet",
+    "TextProductCollection": "weather:TextProductCollection",
+    "TextProductLocationCollection": "weather:TextProductLocationCollection",
+    "TextProduct": "weather:TextProduct",
+    "TextProductTypeCollection": "weather:TextProductTypeCollection",
+    "ZoneCollectionJsonLd": "weather:ZoneCollectionJsonLd",
+    "ZoneForecast": "weather:ZoneForecast",
+    "Zone": "weather:Zone",
+    "id": {
+      "@id": "weather:id",
+      "@type": "xsd:string"
+    },
+    "updated": {
+      "@id": "weather:updated",
+      "@type": "xsd:string"
+    },
+    "published": {
+      "@id": "weather:published",
+      "@type": "xsd:string"
+    },
+    "author": {
+      "@id": "weather:author",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "summary": {
+      "@id": "weather:summary",
+      "@type": "xsd:string"
+    },
+    "event": {
+      "@id": "weather:event",
+      "@type": "xsd:string"
+    },
+    "sent": {
+      "@id": "weather:sent",
+      "@type": "xsd:string"
+    },
+    "effective": {
+      "@id": "weather:effective",
+      "@type": "xsd:string"
+    },
+    "expires": {
+      "@id": "weather:expires",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "weather:status",
+      "@type": "xsd:string"
+    },
+    "msgType": {
+      "@id": "weather:msgType",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "weather:category",
+      "@type": "xsd:string"
+    },
+    "urgency": {
+      "@id": "weather:urgency",
+      "@type": "xsd:string"
+    },
+    "severity": {
+      "@id": "weather:severity",
+      "@type": "xsd:string"
+    },
+    "certainty": {
+      "@id": "weather:certainty",
+      "@type": "xsd:string"
+    },
+    "areaDesc": {
+      "@id": "weather:areaDesc",
+      "@type": "xsd:string"
+    },
+    "polygon": {
+      "@id": "weather:polygon",
+      "@type": "xsd:string"
+    },
+    "geocode": {
+      "@id": "weather:geocode",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "parameter": {
+      "@id": "weather:parameter",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "generator": {
+      "@id": "weather:generator",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "weather:title",
+      "@type": "xsd:string"
+    },
+    "entry": {
+      "@id": "weather:entry",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "pagination": {
+      "@id": "weather:pagination",
+      "@type": "xsd:string"
+    },
+    "@graph": {
+      "@id": "weather:@graph",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "affectedZones": {
+      "@id": "weather:affectedZones",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "references": {
+      "@id": "weather:references",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "@id": {
+      "@id": "weather:@id",
+      "@type": "@id"
+    },
+    "identifier": "dcterms:identifier",
+    "sender": {
+      "@id": "weather:sender",
+      "@type": "xsd:string"
+    },
+    "onset": {
+      "@id": "weather:onset",
+      "@type": "xsd:string"
+    },
+    "ends": {
+      "@id": "weather:ends",
+      "@type": "xsd:string"
+    },
+    "messageType": {
+      "@id": "weather:messageType",
+      "@type": "xsd:string"
+    },
+    "senderName": {
+      "@id": "weather:senderName",
+      "@type": "xsd:string"
+    },
+    "headline": {
+      "@id": "weather:headline",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "instruction": {
+      "@id": "weather:instruction",
+      "@type": "xsd:string"
+    },
+    "note": {
+      "@id": "weather:note",
+      "@type": "xsd:string"
+    },
+    "response": {
+      "@id": "weather:response",
+      "@type": "xsd:string"
+    },
+    "parameters": {
+      "@id": "weather:parameters",
+      "@type": "@id"
+    },
+    "scope": {
+      "@id": "weather:scope",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "weather:code",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "weather:language",
+      "@type": "xsd:string"
+    },
+    "web": {
+      "@id": "weather:web",
+      "@type": "xsd:string"
+    },
+    "eventCode": {
+      "@id": "weather:eventCode",
+      "@type": "@id"
+    },
+    "valueName": {
+      "@id": "weather:valueName",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "weather:value",
+      "@type": "xsd:string"
+    },
+    "sunrise": {
+      "@id": "weather:sunrise",
+      "@type": "xsd:dateTime"
+    },
+    "sunset": {
+      "@id": "weather:sunset",
+      "@type": "xsd:dateTime"
+    },
+    "transit": {
+      "@id": "weather:transit",
+      "@type": "xsd:dateTime"
+    },
+    "civilTwilightBegin": {
+      "@id": "weather:civilTwilightBegin",
+      "@type": "xsd:dateTime"
+    },
+    "civilTwilightEnd": {
+      "@id": "weather:civilTwilightEnd",
+      "@type": "xsd:dateTime"
+    },
+    "nauticalTwilightBegin": {
+      "@id": "weather:nauticalTwilightBegin",
+      "@type": "xsd:dateTime"
+    },
+    "nauticalTwilightEnd": {
+      "@id": "weather:nauticalTwilightEnd",
+      "@type": "xsd:dateTime"
+    },
+    "astronomicalTwilightBegin": {
+      "@id": "weather:astronomicalTwilightBegin",
+      "@type": "xsd:dateTime"
+    },
+    "astronomicalTwilightEnd": {
+      "@id": "weather:astronomicalTwilightEnd",
+      "@type": "xsd:dateTime"
+    },
+    "issueTime": {
+      "@id": "weather:issueTime",
+      "@type": "xsd:dateTime"
+    },
+    "cwsu": {
+      "@id": "weather:cwsu",
+      "@type": "xsd:string"
+    },
+    "sequence": {
+      "@id": "weather:sequence",
+      "@type": "xsd:integer"
+    },
+    "start": {
+      "@id": "weather:start",
+      "@type": "xsd:dateTime"
+    },
+    "end": {
+      "@id": "weather:end",
+      "@type": "xsd:dateTime"
+    },
+    "observedProperty": {
+      "@id": "weather:observedProperty",
+      "@type": "xsd:string"
+    },
+    "text": {
+      "@id": "weather:text",
+      "@type": "xsd:string"
+    },
+    "@context": {
+      "@id": "weather:@context",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "weather:type",
+      "@type": "xsd:string"
+    },
+    "features": {
+      "@id": "weather:features",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "geometry": {
+      "@id": "weather:geometry",
+      "@type": "xsd:string"
+    },
+    "properties": {
+      "@id": "weather:properties",
+      "@type": "@id"
+    },
+    "number": {
+      "@id": "weather:number",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "weather:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "weather:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "isDaytime": {
+      "@id": "weather:isDaytime",
+      "@type": "xsd:boolean"
+    },
+    "temperature": {
+      "@id": "weather:temperature",
+      "@type": "xsd:string"
+    },
+    "temperatureUnit": {
+      "@id": "weather:temperatureUnit",
+      "@type": "xsd:string"
+    },
+    "temperatureTrend": {
+      "@id": "weather:temperatureTrend",
+      "@type": "xsd:string"
+    },
+    "probabilityOfPrecipitation": {
+      "@id": "weather:probabilityOfPrecipitation",
+      "@type": "xsd:string"
+    },
+    "dewpoint": {
+      "@id": "weather:dewpoint",
+      "@type": "xsd:string"
+    },
+    "relativeHumidity": {
+      "@id": "weather:relativeHumidity",
+      "@type": "xsd:string"
+    },
+    "windSpeed": {
+      "@id": "weather:windSpeed",
+      "@type": "xsd:string"
+    },
+    "windGust": {
+      "@id": "weather:windGust",
+      "@type": "xsd:string"
+    },
+    "windDirection": {
+      "@id": "weather:windDirection",
+      "@type": "xsd:string"
+    },
+    "icon": {
+      "@id": "weather:icon",
+      "@type": "@id"
+    },
+    "shortForecast": {
+      "@id": "weather:shortForecast",
+      "@type": "xsd:string"
+    },
+    "detailedForecast": {
+      "@id": "weather:detailedForecast",
+      "@type": "xsd:string"
+    },
+    "units": {
+      "@id": "weather:units",
+      "@type": "xsd:string"
+    },
+    "forecastGenerator": {
+      "@id": "weather:forecastGenerator",
+      "@type": "xsd:string"
+    },
+    "generatedAt": {
+      "@id": "weather:generatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "updateTime": {
+      "@id": "weather:updateTime",
+      "@type": "xsd:dateTime"
+    },
+    "validTimes": {
+      "@id": "weather:validTimes",
+      "@type": "xsd:string"
+    },
+    "elevation": {
+      "@id": "weather:elevation",
+      "@type": "xsd:string"
+    },
+    "periods": {
+      "@id": "weather:periods",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "uom": {
+      "@id": "weather:uom",
+      "@type": "xsd:string"
+    },
+    "values": {
+      "@id": "weather:values",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "validTime": {
+      "@id": "weather:validTime",
+      "@type": "xsd:string"
+    },
+    "@type": {
+      "@id": "weather:@type",
+      "@type": "xsd:string"
+    },
+    "forecastOffice": {
+      "@id": "weather:forecastOffice",
+      "@type": "@id"
+    },
+    "gridId": {
+      "@id": "weather:gridId",
+      "@type": "xsd:string"
+    },
+    "gridX": {
+      "@id": "weather:gridX",
+      "@type": "xsd:integer"
+    },
+    "gridY": {
+      "@id": "weather:gridY",
+      "@type": "xsd:integer"
+    },
+    "hazards": {
+      "@id": "weather:hazards",
+      "@type": "@id"
+    },
+    "intensity": {
+      "@id": "weather:intensity",
+      "@type": "xsd:string"
+    },
+    "modifier": {
+      "@id": "weather:modifier",
+      "@type": "xsd:string"
+    },
+    "rawString": {
+      "@id": "weather:rawString",
+      "@type": "xsd:string"
+    },
+    "inVicinity": {
+      "@id": "weather:inVicinity",
+      "@type": "xsd:boolean"
+    },
+    "priority": {
+      "@id": "weather:priority",
+      "@type": "xsd:boolean"
+    },
+    "download": {
+      "@id": "weather:download",
+      "@type": "@id"
+    },
+    "station": {
+      "@id": "weather:station",
+      "@type": "@id"
+    },
+    "stationId": {
+      "@id": "weather:stationId",
+      "@type": "xsd:string"
+    },
+    "stationName": {
+      "@id": "weather:stationName",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "weather:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "rawMessage": {
+      "@id": "weather:rawMessage",
+      "@type": "xsd:string"
+    },
+    "textDescription": {
+      "@id": "weather:textDescription",
+      "@type": "xsd:string"
+    },
+    "presentWeather": {
+      "@id": "weather:presentWeather",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "barometricPressure": {
+      "@id": "weather:barometricPressure",
+      "@type": "xsd:string"
+    },
+    "seaLevelPressure": {
+      "@id": "weather:seaLevelPressure",
+      "@type": "xsd:string"
+    },
+    "visibility": {
+      "@id": "weather:visibility",
+      "@type": "xsd:string"
+    },
+    "maxTemperatureLast24Hours": {
+      "@id": "weather:maxTemperatureLast24Hours",
+      "@type": "xsd:string"
+    },
+    "minTemperatureLast24Hours": {
+      "@id": "weather:minTemperatureLast24Hours",
+      "@type": "xsd:string"
+    },
+    "precipitationLastHour": {
+      "@id": "weather:precipitationLastHour",
+      "@type": "xsd:string"
+    },
+    "precipitationLast3Hours": {
+      "@id": "weather:precipitationLast3Hours",
+      "@type": "xsd:string"
+    },
+    "precipitationLast6Hours": {
+      "@id": "weather:precipitationLast6Hours",
+      "@type": "xsd:string"
+    },
+    "windChill": {
+      "@id": "weather:windChill",
+      "@type": "xsd:string"
+    },
+    "heatIndex": {
+      "@id": "weather:heatIndex",
+      "@type": "xsd:string"
+    },
+    "cloudLayers": {
+      "@id": "weather:cloudLayers",
+      "@type": "xsd:string"
+    },
+    "observationStations": {
+      "@id": "weather:observationStations",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "stationIdentifier": {
+      "@id": "weather:stationIdentifier",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "weather:timeZone",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "weather:provider",
+      "@type": "xsd:string"
+    },
+    "subProvider": {
+      "@id": "weather:subProvider",
+      "@type": "xsd:string"
+    },
+    "forecast": {
+      "@id": "weather:forecast",
+      "@type": "@id"
+    },
+    "county": {
+      "@id": "weather:county",
+      "@type": "@id"
+    },
+    "fireWeatherZone": {
+      "@id": "weather:fireWeatherZone",
+      "@type": "@id"
+    },
+    "distance": {
+      "@id": "weather:distance",
+      "@type": "xsd:string"
+    },
+    "bearing": {
+      "@id": "weather:bearing",
+      "@type": "xsd:string"
+    },
+    "office": {
+      "@id": "weather:office",
+      "@type": "@id"
+    },
+    "important": {
+      "@id": "weather:important",
+      "@type": "xsd:boolean"
+    },
+    "issuanceTime": {
+      "@id": "weather:issuanceTime",
+      "@type": "xsd:dateTime"
+    },
+    "link": {
+      "@id": "weather:link",
+      "@type": "@id"
+    },
+    "content": {
+      "@id": "weather:content",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "weather:address",
+      "@type": "@id"
+    },
+    "streetAddress": {
+      "@id": "weather:streetAddress",
+      "@type": "xsd:string"
+    },
+    "addressLocality": {
+      "@id": "weather:addressLocality",
+      "@type": "xsd:string"
+    },
+    "addressRegion": {
+      "@id": "weather:addressRegion",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "weather:postalCode",
+      "@type": "xsd:string"
+    },
+    "telephone": {
+      "@id": "weather:telephone",
+      "@type": "xsd:string"
+    },
+    "faxNumber": {
+      "@id": "weather:faxNumber",
+      "@type": "xsd:string"
+    },
+    "email": "schema:email",
+    "sameAs": {
+      "@id": "weather:sameAs",
+      "@type": "@id"
+    },
+    "nwsRegion": {
+      "@id": "weather:nwsRegion",
+      "@type": "xsd:string"
+    },
+    "parentOrganization": {
+      "@id": "weather:parentOrganization",
+      "@type": "@id"
+    },
+    "responsibleCounties": {
+      "@id": "weather:responsibleCounties",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "responsibleForecastZones": {
+      "@id": "weather:responsibleForecastZones",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "responsibleFireZones": {
+      "@id": "weather:responsibleFireZones",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "approvedObservationStations": {
+      "@id": "weather:approvedObservationStations",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "next": {
+      "@id": "weather:next",
+      "@type": "@id"
+    },
+    "cwa": {
+      "@id": "weather:cwa",
+      "@type": "xsd:string"
+    },
+    "forecastHourly": {
+      "@id": "weather:forecastHourly",
+      "@type": "@id"
+    },
+    "forecastGridData": {
+      "@id": "weather:forecastGridData",
+      "@type": "@id"
+    },
+    "relativeLocation": {
+      "@id": "weather:relativeLocation",
+      "@type": "xsd:string"
+    },
+    "forecastZone": {
+      "@id": "weather:forecastZone",
+      "@type": "@id"
+    },
+    "radarStation": {
+      "@id": "weather:radarStation",
+      "@type": "xsd:string"
+    },
+    "astronomicalData": {
+      "@id": "weather:astronomicalData",
+      "@type": "xsd:string"
+    },
+    "nwr": {
+      "@id": "weather:nwr",
+      "@type": "@id"
+    },
+    "transmitter": {
+      "@id": "weather:transmitter",
+      "@type": "xsd:string"
+    },
+    "sameCode": {
+      "@id": "weather:sameCode",
+      "@type": "xsd:string"
+    },
+    "areaBroadcast": {
+      "@id": "weather:areaBroadcast",
+      "@type": "xsd:string"
+    },
+    "pointBroadcast": {
+      "@id": "weather:pointBroadcast",
+      "@type": "xsd:string"
+    },
+    "maxValue": {
+      "@id": "weather:maxValue",
+      "@type": "xsd:decimal"
+    },
+    "minValue": {
+      "@id": "weather:minValue",
+      "@type": "xsd:decimal"
+    },
+    "unitCode": {
+      "@id": "weather:unitCode",
+      "@type": "xsd:string"
+    },
+    "qualityControl": {
+      "@id": "weather:qualityControl",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "weather:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "weather:state",
+      "@type": "xsd:string"
+    },
+    "fir": {
+      "@id": "weather:fir",
+      "@type": "xsd:string"
+    },
+    "atsu": {
+      "@id": "weather:atsu",
+      "@type": "xsd:string"
+    },
+    "phenomenon": {
+      "@id": "weather:phenomenon",
+      "@type": "xsd:string"
+    },
+    "locations": {
+      "@id": "weather:locations",
+      "@type": "@id"
+    },
+    "wmoCollectiveId": {
+      "@id": "weather:wmoCollectiveId",
+      "@type": "xsd:string"
+    },
+    "issuingOffice": {
+      "@id": "weather:issuingOffice",
+      "@type": "xsd:string"
+    },
+    "productCode": {
+      "@id": "weather:productCode",
+      "@type": "xsd:string"
+    },
+    "productName": {
+      "@id": "weather:productName",
+      "@type": "xsd:string"
+    },
+    "productText": {
+      "@id": "weather:productText",
+      "@type": "xsd:string"
+    },
+    "zone": {
+      "@id": "weather:zone",
+      "@type": "@id"
+    },
+    "effectiveDate": {
+      "@id": "weather:effectiveDate",
+      "@type": "xsd:dateTime"
+    },
+    "expirationDate": {
+      "@id": "weather:expirationDate",
+      "@type": "xsd:dateTime"
+    },
+    "gridIdentifier": {
+      "@id": "weather:gridIdentifier",
+      "@type": "xsd:string"
+    },
+    "awipsLocationIdentifier": {
+      "@id": "weather:awipsLocationIdentifier",
+      "@type": "xsd:string"
+    },
+    "forecastOffices": {
+      "@id": "weather:forecastOffices",
+      "@container": "@set",
+      "@type": "@id"
+    }
+  }
+}

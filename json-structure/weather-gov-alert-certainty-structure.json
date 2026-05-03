@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-certainty-structure.json",
+  "name": "AlertCertainty",
+  "description": "AlertCertainty schema from weather.gov API",
+  "type": "string",
+  "enum": [
+    "Observed",
+    "Likely",
+    "Possible",
+    "Unlikely",
+    "Unknown"
+  ]
+}

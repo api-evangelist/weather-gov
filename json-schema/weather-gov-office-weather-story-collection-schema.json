@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-office-weather-story-collection-schema.json",
+  "title": "OfficeWeatherStoryCollection",
+  "description": "OfficeWeatherStoryCollection schema from weather.gov API",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/OfficeWeatherStory"
+  }
+}

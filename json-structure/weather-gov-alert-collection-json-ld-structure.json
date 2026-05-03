@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-collection-json-ld-structure.json",
+  "name": "AlertCollectionJsonLd",
+  "description": "AlertCollectionJsonLd schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/AlertCollection"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "@context": {
+          "$ref": "#/components/schemas/JsonLdContext"
+        },
+        "@graph": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Alert"
+          }
+        }
+      }
+    }
+  ]
+}

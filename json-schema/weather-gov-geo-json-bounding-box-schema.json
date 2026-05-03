@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-geo-json-bounding-box-schema.json",
+  "title": "GeoJsonBoundingBox",
+  "description": "A GeoJSON bounding box. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "array",
+  "items": {
+    "type": "number"
+  },
+  "minItems": 4
+}

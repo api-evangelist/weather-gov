@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-zone-schema.json",
+  "title": "Zone",
+  "description": "Zone schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:Zone"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/components/schemas/NWSZoneID"
+    },
+    "type": {
+      "$ref": "#/components/schemas/NWSZoneType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StateTerritoryCode"
+        },
+        {
+          "enum": [
+            ""
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "forecastOffice": {
+      "type": "string",
+      "format": "uri"
+    },
+    "gridIdentifier": {
+      "type": "string"
+    },
+    "awipsLocationIdentifier": {
+      "type": "string"
+    },
+    "cwa": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NWSForecastOfficeId"
+      },
+      "deprecated": true
+    },
+    "forecastOffices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "deprecated": true
+    },
+    "timeZone": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "iana-time-zone-identifier"
+      }
+    },
+    "observationStations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "radarStation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-gridpoint-structure.json",
+  "name": "Gridpoint",
+  "description": "Raw forecast data for a 2.5km grid square.\nThis is a list of all potential data layers that may appear. Some layers may not be present in all areas.\n* temperature\n* dewpoint\n* maxTemperature\n* minTemperature\n* relativeHumidity\n* apparentTemperature\n* heatIndex\n* windChill\n* wetBulbGlobeTemperature\n* skyCover\n* windDirection\n* windSpeed\n* windGust\n* weather\n* hazards: Watch and advisory products in effect\n* heatRisk\n* probabilityOfPrecipitation\n* quantitativePrecipitation\n* iceAccumulation\n* snowfallAmount\n* snowLevel\n* ceilingHeight\n* visibility\n* transportWindSpeed\n* transportWindDirection\n* mixingHeight\n* hainesIndex\n* lightningActivityLevel\n* twentyFootWindSpeed\n* twentyFootWindDirection\n* waveHeight\n* wavePeriod\n* waveDirection\n* primarySwellHeight\n* primarySwellDirection\n* secondarySwellHeight\n* secondarySwellDirection\n* wavePeriod2\n* windWaveHeight\n* dispersionIndex\n* pressure: Barometric pressure\n* probabilityOfTropicalStormWinds\n* probabilityOfHurricaneWinds\n* potentialOf15mphWinds\n* potentialOf25mphWinds\n* potentialOf35mphWinds\n* potentialOf45mphWinds\n* potentialOf20mphWindGusts\n* potentialOf30mphWindGusts\n* potentialOf40mphWindGusts\n* potentialOf50mphWindGusts\n* potentialOf60mphWindGusts\n* grasslandFireDangerIndex\n* probabilityOfThunder\n* davisStabilityIndex\n* atmosphericDispersionIndex\n* lowVisibilityOccurrenceRiskIndex\n* stability\n* redFlagThreatIndex\n",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:Gridpoint"
+      ],
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "datetime"
+    },
+    "validTimes": {
+      "$ref": "#/components/schemas/ISO8601Interval"
+    },
+    "elevation": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "forecastOffice": {
+      "type": "uri"
+    },
+    "gridId": {
+      "type": "string"
+    },
+    "gridX": {
+      "minimum": 0,
+      "type": "int32"
+    },
+    "gridY": {
+      "minimum": 0,
+      "type": "int32"
+    },
+    "weather": {
+      "required": [
+        "values"
+      ],
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "required": [
+              "validTime",
+              "value"
+            ],
+            "type": "object",
+            "properties": {
+              "validTime": {
+                "$ref": "#/components/schemas/ISO8601Interval"
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "coverage",
+                    "weather",
+                    "intensity",
+                    "visibility",
+                    "attributes"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "coverage": {
+                      "enum": [
+                        "areas",
+                        "brief",
+                        "chance",
+                        "definite",
+                        "few",
+                        "frequent",
+                        "intermittent",
+                        "isolated",
+                        "likely",
+                        "numerous",
+                        "occasional",
+                        "patchy",
+                        "periods",
+                        "scattered",
+                        "slight_chance",
+                        "widespread"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "weather": {
+                      "enum": [
+                        "blowing_dust",
+                        "blowing_sand",
+                        "blowing_snow",
+                        "drizzle",
+                        "fog",
+                        "freezing_fog",
+                        "freezing_drizzle",
+                        "freezing_rain",
+                        "freezing_spray",
+                        "frost",
+                        "hail",
+                        "haze",
+                        "ice_crystals",
+                        "ice_fog",
+                        "rain",
+                        "rain_showers",
+                        "sleet",
+                        "smoke",
+                        "snow",
+                        "snow_showers",
+                        "thunderstorms",
+                        "volcanic_ash",
+                        "water_spouts"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "intensity": {
+                      "enum": [
+                        "very_light",
+                        "light",
+                        "moderate",
+                        "heavy"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visibility": {
+                      "$ref": "#/components/schemas/QuantitativeValue"
+                    },
+                    "attributes": {
+                      "type": "array",
+                      "items": {
+                        "enum": [
+                          "damaging_wind",
+                          "dry_thunderstorms",
+                          "flooding",
+                          "gusty_wind",
+                          "heavy_rain",
+                          "large_hail",
+                          "small_hail",
+                          "tornadoes"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "A value object representing expected weather phenomena.",
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "hazards": {
+      "required": [
+        "values"
+      ],
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "required": [
+              "validTime",
+              "value"
+            ],
+            "type": "object",
+            "properties": {
+              "validTime": {
+                "$ref": "#/components/schemas/ISO8601Interval"
+              },
+              "value": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "phenomenon",
+                    "significance",
+                    "event_number"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "phenomenon": {
+                      "pattern": "^\\w{2}$",
+                      "type": "string",
+                      "description": "Hazard code. This value will correspond to a P-VTEC phenomenon code as defined in NWS Directive 10-1703.\n"
+                    },
+                    "significance": {
+                      "pattern": "^\\w$",
+                      "type": "string",
+                      "description": "Significance code. This value will correspond to a P-VTEC significance code as defined in NWS Directive 10-1703.\nThis will most frequently be \"A\" for a watch or \"Y\" for an advisory.\n"
+                    },
+                    "event_number": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "description": "Event number. If this hazard refers to a national or regional center product (such as a Storm Prediction Center convective watch), this value will be the sequence number of that product.\n"
+                    }
+                  },
+                  "description": "A value object representing an expected hazard."
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": {
+    "$ref": "#/components/schemas/GridpointQuantitativeValueLayer"
+  }
+}

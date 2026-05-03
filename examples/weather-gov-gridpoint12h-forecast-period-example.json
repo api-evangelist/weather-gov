@@ -1,0 +1,13 @@
+{
+  "number": 77,
+  "name": "Example Name",
+  "startTime": "2026-05-03T14:30:00Z",
+  "endTime": "2026-05-03T14:30:00Z",
+  "isDaytime": true,
+  "temperatureUnit": "C",
+  "temperatureTrend": "falling",
+  "windDirection": "WNW",
+  "icon": "https://api.weather.gov/resource/example",
+  "shortForecast": "example-value",
+  "detailedForecast": "example-value"
+}

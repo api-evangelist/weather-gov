@@ -1,0 +1,42 @@
+{
+  "areaDesc": "example-value",
+  "geocode": {
+    "UGC": [
+      null
+    ],
+    "SAME": [
+      "example-value",
+      "example-value"
+    ]
+  },
+  "affectedZones": [
+    "https://api.weather.gov/resource/example"
+  ],
+  "references": [
+    {
+      "@id": "https://api.weather.gov/resource/example",
+      "sender": "example-value",
+      "sent": "2026-05-03T14:30:00Z"
+    },
+    {
+      "@id": "https://api.weather.gov/resource/example",
+      "sender": "example-value",
+      "sent": "2026-05-03T14:30:00Z"
+    }
+  ],
+  "sent": "2026-05-03T14:30:00Z",
+  "effective": "2026-05-03T14:30:00Z",
+  "expires": "2026-05-03T14:30:00Z",
+  "category": "Met",
+  "event": "Winter Storm Warning",
+  "sender": "example-value",
+  "senderName": "Example Name",
+  "description": "Example weather description text.",
+  "response": "Evacuate",
+  "parameters": {},
+  "scope": "Private",
+  "code": "example-value",
+  "language": "example-value",
+  "web": "example-value",
+  "eventCode": {}
+}

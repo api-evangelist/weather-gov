@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-sigmet-schema.json",
+  "title": "Sigmet",
+  "description": "Sigmet schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "issueTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "fir": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "atsu": {
+      "$ref": "#/components/schemas/ATSUIdentifier"
+    },
+    "sequence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "phenomenon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

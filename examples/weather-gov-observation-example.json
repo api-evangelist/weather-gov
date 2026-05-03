@@ -1,0 +1,13 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "@type": "wx:ObservationStation",
+  "station": "https://api.weather.gov/resource/example",
+  "stationId": "KTOP",
+  "stationName": "KTOP",
+  "timestamp": "2026-05-03T14:30:00Z",
+  "rawMessage": "Example weather description text.",
+  "textDescription": "Example weather description text.",
+  "presentWeather": [
+    null
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-id-structure.json",
+  "name": "AlertId",
+  "description": "The identifier of the alert message.",
+  "type": "string"
+}

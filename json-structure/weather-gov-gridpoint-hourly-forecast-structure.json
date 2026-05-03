@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-gridpoint-hourly-forecast-structure.json",
+  "name": "GridpointHourlyForecast",
+  "description": "An hourly forecast for a 2.5km grid square.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "units": {
+      "$ref": "#/components/schemas/GridpointForecastUnits"
+    },
+    "forecastGenerator": {
+      "type": "string",
+      "description": "The internal generator class used to create the forecast text (used for NWS debugging)."
+    },
+    "generatedAt": {
+      "type": "datetime",
+      "description": "The time this forecast data was generated."
+    },
+    "updateTime": {
+      "type": "datetime",
+      "description": "The last update time of the data this forecast was generated from."
+    },
+    "validTimes": {
+      "$ref": "#/components/schemas/ISO8601Interval"
+    },
+    "elevation": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GridpointHourlyForecastPeriod"
+      },
+      "description": "An array of forecast periods."
+    }
+  },
+  "additionalProperties": false
+}

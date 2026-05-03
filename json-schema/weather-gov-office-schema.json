@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-office-schema.json",
+  "title": "Office",
+  "description": "Office schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@type": {
+      "enum": [
+        "GovernmentOrganization"
+      ],
+      "type": "string"
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "enum": [
+            "PostalAddress"
+          ],
+          "type": "string"
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "addressLocality": {
+          "type": "string"
+        },
+        "addressRegion": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "faxNumber": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "sameAs": {
+      "type": "string",
+      "format": "uri"
+    },
+    "nwsRegion": {
+      "type": "string"
+    },
+    "parentOrganization": {
+      "type": "string",
+      "format": "uri"
+    },
+    "responsibleCounties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "responsibleForecastZones": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "responsibleFireZones": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "approvedObservationStations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "additionalProperties": false
+}

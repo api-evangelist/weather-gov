@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-geo-json-line-string-schema.json",
+  "title": "GeoJsonLineString",
+  "description": "A GeoJSON line string. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/GeoJsonCoordinate"
+  },
+  "minItems": 2
+}

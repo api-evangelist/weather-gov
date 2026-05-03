@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-zone-structure.json",
+  "name": "Zone",
+  "description": "Zone schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:Zone"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/components/schemas/NWSZoneID"
+    },
+    "type": {
+      "$ref": "#/components/schemas/NWSZoneType"
+    },
+    "name": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "datetime"
+    },
+    "expirationDate": {
+      "type": "datetime"
+    },
+    "state": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/StateTerritoryCode"
+        },
+        {
+          "enum": [
+            ""
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "forecastOffice": {
+      "type": "uri"
+    },
+    "gridIdentifier": {
+      "type": "string"
+    },
+    "awipsLocationIdentifier": {
+      "type": "string"
+    },
+    "cwa": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NWSForecastOfficeId"
+      },
+      "deprecated": true
+    },
+    "forecastOffices": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      },
+      "deprecated": true
+    },
+    "timeZone": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "iana-time-zone-identifier"
+      }
+    },
+    "observationStations": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "radarStation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

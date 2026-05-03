@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-text-product-type-collection-structure.json",
+  "name": "TextProductTypeCollection",
+  "description": "TextProductTypeCollection schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@graph": {
+      "type": "array",
+      "items": {
+        "required": [
+          "productCode",
+          "productName"
+        ],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

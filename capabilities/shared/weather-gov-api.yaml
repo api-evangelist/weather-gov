@@ -1,0 +1,789 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Weather.gov API"
+  description: "The National Weather Service API providing forecasts, alerts, observations, radar, and aviation weather data for the United States."
+  tags:
+    - Weather
+    - Government
+    - Forecasting
+    - Alerts
+    - United States
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WEATHER_GOV_USER_AGENT: WEATHER_GOV_USER_AGENT
+
+capability:
+  consumes:
+    - type: http
+      namespace: weather-gov
+      baseUri: https://api.weather.gov
+      description: "National Weather Service REST API providing open weather data for the United States."
+      authentication:
+        type: apikey
+        key: User-Agent
+        value: "{{WEATHER_GOV_USER_AGENT}}"
+        placement: header
+      resources:
+        - name: alerts
+          path: /alerts
+          description: "Weather alerts and warnings issued by NWS"
+          operations:
+            - name: alerts-query
+              method: GET
+              description: "Returns all alerts"
+              inputParameters:
+                - name: active
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "List only active alerts"
+                - name: start
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start time for alerts"
+                - name: end
+                  in: query
+                  type: string
+                  required: false
+                  description: "End time for alerts"
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Alert status filter"
+                - name: message_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Alert message type filter"
+                - name: area
+                  in: query
+                  type: string
+                  required: false
+                  description: "State or marine area code"
+                - name: region
+                  in: query
+                  type: string
+                  required: false
+                  description: "Marine region code"
+                - name: zone
+                  in: query
+                  type: string
+                  required: false
+                  description: "Zone ID filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-active
+              method: GET
+              description: "Returns all currently active alerts"
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Alert status"
+                - name: message_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Message type"
+                - name: event
+                  in: query
+                  type: string
+                  required: false
+                  description: "Event type"
+                - name: area
+                  in: query
+                  type: string
+                  required: false
+                  description: "Area code"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-active-count
+              method: GET
+              description: "Returns info on the number of active alerts"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-active-zone
+              method: GET
+              description: "Returns active alerts for the given NWS public zone or county"
+              inputParameters:
+                - name: zoneId
+                  in: path
+                  type: string
+                  required: true
+                  description: "NWS zone ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-active-area
+              method: GET
+              description: "Returns active alerts for the given area"
+              inputParameters:
+                - name: area
+                  in: path
+                  type: string
+                  required: true
+                  description: "State or marine area code"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-types
+              method: GET
+              description: "Returns a list of alert types"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: alerts-single
+              method: GET
+              description: "Returns a specific alert"
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Alert ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: forecasts
+          path: /gridpoints
+          description: "Gridpoint forecast data"
+          operations:
+            - name: gridpoint
+              method: GET
+              description: "Returns raw numerical forecast data for a 2.5km grid area"
+              inputParameters:
+                - name: wfo
+                  in: path
+                  type: string
+                  required: true
+                  description: "Weather Forecast Office ID"
+                - name: x
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid X coordinate"
+                - name: y
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid Y coordinate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: gridpoint-forecast
+              method: GET
+              description: "Returns a textual forecast for a 2.5km grid area"
+              inputParameters:
+                - name: wfo
+                  in: path
+                  type: string
+                  required: true
+                  description: "Weather Forecast Office ID"
+                - name: x
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid X coordinate"
+                - name: y
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid Y coordinate"
+                - name: units
+                  in: query
+                  type: string
+                  required: false
+                  description: "Units (us or si)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: gridpoint-forecast-hourly
+              method: GET
+              description: "Returns a textual hourly forecast for a 2.5km grid area"
+              inputParameters:
+                - name: wfo
+                  in: path
+                  type: string
+                  required: true
+                  description: "Weather Forecast Office ID"
+                - name: x
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid X coordinate"
+                - name: y
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Forecast grid Y coordinate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: gridpoint-stations
+              method: GET
+              description: "Returns a list of observation stations usable for a given grid area"
+              inputParameters:
+                - name: wfo
+                  in: path
+                  type: string
+                  required: true
+                  description: "Weather Forecast Office ID"
+                - name: x
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Grid X coordinate"
+                - name: y
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Grid Y coordinate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: points
+          path: /points
+          description: "Location metadata and lookup"
+          operations:
+            - name: point
+              method: GET
+              description: "Returns metadata about a given latitude/longitude point"
+              inputParameters:
+                - name: point
+                  in: path
+                  type: string
+                  required: true
+                  description: "Latitude,Longitude coordinates"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: point-stations
+              method: GET
+              description: "Returns a list of observation stations for a given point"
+              inputParameters:
+                - name: point
+                  in: path
+                  type: string
+                  required: true
+                  description: "Latitude,Longitude coordinates"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: stations
+          path: /stations
+          description: "Observation stations and their readings"
+          operations:
+            - name: obs-stations
+              method: GET
+              description: "Returns a list of observation stations"
+              inputParameters:
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: "State code filter"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of results"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: obs-station
+              method: GET
+              description: "Returns metadata about a given observation station"
+              inputParameters:
+                - name: stationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Observation station ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: station-observation-list
+              method: GET
+              description: "Returns a list of observations for a given station"
+              inputParameters:
+                - name: stationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Observation station ID"
+                - name: start
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start time"
+                - name: end
+                  in: query
+                  type: string
+                  required: false
+                  description: "End time"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Result limit"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: station-observation-latest
+              method: GET
+              description: "Returns the latest observation for a station"
+              inputParameters:
+                - name: stationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Observation station ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: zones
+          path: /zones
+          description: "NWS forecast zones"
+          operations:
+            - name: zone-list
+              method: GET
+              description: "Returns a list of zones"
+              inputParameters:
+                - name: area
+                  in: query
+                  type: string
+                  required: false
+                  description: "State or territory code"
+                - name: region
+                  in: query
+                  type: string
+                  required: false
+                  description: "Marine region"
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Zone type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: zone
+              method: GET
+              description: "Returns metadata about a given zone"
+              inputParameters:
+                - name: type
+                  in: path
+                  type: string
+                  required: true
+                  description: "Zone type"
+                - name: zoneId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Zone ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: zone-forecast
+              method: GET
+              description: "Returns the current zone forecast for a given zone"
+              inputParameters:
+                - name: type
+                  in: path
+                  type: string
+                  required: true
+                  description: "Zone type"
+                - name: zoneId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Zone ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: radar
+          path: /radar
+          description: "Radar stations and data"
+          operations:
+            - name: radar-stations
+              method: GET
+              description: "Returns a list of radar stations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: radar-station
+              method: GET
+              description: "Returns metadata about a given radar station"
+              inputParameters:
+                - name: stationId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Radar station ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: aviation
+          path: /aviation
+          description: "Aviation weather products"
+          operations:
+            - name: sigmet-query
+              method: GET
+              description: "Returns a list of SIGMET/AIRMETs"
+              inputParameters:
+                - name: date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Date filter"
+                - name: atsu
+                  in: query
+                  type: string
+                  required: false
+                  description: "ATSU filter"
+                - name: sequence
+                  in: query
+                  type: string
+                  required: false
+                  description: "Sequence filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: cwsu
+              method: GET
+              description: "Returns metadata about a Center Weather Service Unit"
+              inputParameters:
+                - name: cwsuId
+                  in: path
+                  type: string
+                  required: true
+                  description: "CWSU identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: products
+          path: /products
+          description: "Text weather products"
+          operations:
+            - name: products-query
+              method: GET
+              description: "Returns a list of text products"
+              inputParameters:
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Product type"
+                - name: location
+                  in: query
+                  type: string
+                  required: false
+                  description: "Location"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: product
+              method: GET
+              description: "Returns a specific text product"
+              inputParameters:
+                - name: productId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Product ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: offices
+          path: /offices
+          description: "NWS forecast offices"
+          operations:
+            - name: office
+              method: GET
+              description: "Returns metadata about a NWS forecast office"
+              inputParameters:
+                - name: officeId
+                  in: path
+                  type: string
+                  required: true
+                  description: "NWS office ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: office-headlines
+              method: GET
+              description: "Returns a list of news headlines for a given NWS office"
+              inputParameters:
+                - name: officeId
+                  in: path
+                  type: string
+                  required: true
+                  description: "NWS office ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: weather-gov-rest
+      resources:
+        - path: /v1/alerts
+          name: alerts
+          description: "Weather alerts and warnings"
+          operations:
+            - method: GET
+              name: list-alerts
+              description: "List weather alerts"
+              call: "weather-gov.alerts-query"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/alerts/active
+          name: active-alerts
+          description: "Currently active weather alerts"
+          operations:
+            - method: GET
+              name: list-active-alerts
+              description: "List active weather alerts"
+              call: "weather-gov.alerts-active"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/forecasts
+          name: forecasts
+          description: "Weather forecasts"
+          operations:
+            - method: GET
+              name: get-gridpoint-forecast
+              description: "Get gridpoint forecast"
+              call: "weather-gov.gridpoint-forecast"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/observations
+          name: observations
+          description: "Station observations"
+          operations:
+            - method: GET
+              name: get-latest-observation
+              description: "Get latest observation for a station"
+              call: "weather-gov.station-observation-latest"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/radar-stations
+          name: radar-stations
+          description: "Radar stations"
+          operations:
+            - method: GET
+              name: list-radar-stations
+              description: "List radar stations"
+              call: "weather-gov.radar-stations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: weather-gov-mcp
+      transport: http
+      tools:
+        - name: list-alerts
+          description: "List weather alerts from NWS"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.alerts-query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-active-alerts
+          description: "List currently active weather alerts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.alerts-active"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-gridpoint-forecast
+          description: "Get weather forecast for a grid point"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.gridpoint-forecast"
+          with:
+            wfo: "tools.wfo"
+            x: "tools.x"
+            y: "tools.y"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-hourly-forecast
+          description: "Get hourly weather forecast for a grid point"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.gridpoint-forecast-hourly"
+          with:
+            wfo: "tools.wfo"
+            x: "tools.x"
+            y: "tools.y"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-point-metadata
+          description: "Get forecast metadata for a lat/lon point"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.point"
+          with:
+            point: "tools.point"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-observation-stations
+          description: "List weather observation stations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.obs-stations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-latest-observation
+          description: "Get latest observation from a weather station"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.station-observation-latest"
+          with:
+            stationId: "tools.stationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-radar-stations
+          description: "List NWS radar stations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.radar-stations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-zone-forecast
+          description: "Get forecast for a NWS zone"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.zone-forecast"
+          with:
+            type: "tools.type"
+            zoneId: "tools.zoneId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-zones
+          description: "List NWS forecast zones"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.zone-list"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-text-products
+          description: "Query NWS text weather products"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.products-query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: query-sigmets
+          description: "Query SIGMET/AIRMET aviation weather advisories"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "weather-gov.sigmet-query"
+          outputParameters:
+            - type: object
+              mapping: "$."

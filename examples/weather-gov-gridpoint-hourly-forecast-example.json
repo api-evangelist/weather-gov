@@ -1,0 +1,8 @@
+{
+  "forecastGenerator": "example-value",
+  "generatedAt": "2026-05-03T14:30:00Z",
+  "updateTime": "2026-05-03T14:30:00Z",
+  "periods": [
+    null
+  ]
+}

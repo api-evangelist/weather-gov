@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-office-headline-schema.json",
+  "title": "OfficeHeadline",
+  "description": "OfficeHeadline schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "id": {
+      "type": "string"
+    },
+    "office": {
+      "type": "string",
+      "format": "uri"
+    },
+    "important": {
+      "type": "boolean"
+    },
+    "issuanceTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "link": {
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content": {
+      "type": "string"
+    }
+  }
+}

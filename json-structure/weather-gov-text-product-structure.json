@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-text-product-structure.json",
+  "name": "TextProduct",
+  "description": "TextProduct schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "id": {
+      "type": "string"
+    },
+    "wmoCollectiveId": {
+      "type": "string"
+    },
+    "issuingOffice": {
+      "type": "string"
+    },
+    "issuanceTime": {
+      "type": "datetime"
+    },
+    "productCode": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productText": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

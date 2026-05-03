@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-quantitative-value-structure.json",
+  "name": "QuantitativeValue",
+  "description": "A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue\n",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "A measured value"
+    },
+    "maxValue": {
+      "type": "double",
+      "description": "The maximum value of a range of measured values"
+    },
+    "minValue": {
+      "type": "double",
+      "description": "The minimum value of a range of measured values"
+    },
+    "unitCode": {
+      "$ref": "#/components/schemas/UnitOfMeasure"
+    },
+    "qualityControl": {
+      "enum": [
+        "Z",
+        "C",
+        "S",
+        "V",
+        "X",
+        "Q",
+        "G",
+        "B",
+        "T"
+      ],
+      "type": "string",
+      "description": "For values in observation records, the quality control flag from the MADIS system. The definitions of these flags can be found at https://madis.ncep.noaa.gov/madis_sfc_qc_notes.shtml\n"
+    }
+  },
+  "additionalProperties": false
+}

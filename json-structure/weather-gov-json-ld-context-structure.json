@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-json-ld-context-structure.json",
+  "name": "JsonLdContext",
+  "description": "JsonLdContext schema from weather.gov API",
+  "anyOf": [
+    {
+      "type": "array",
+      "items": {}
+    },
+    {
+      "type": "object"
+    }
+  ]
+}

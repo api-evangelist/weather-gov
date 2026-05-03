@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-point-structure.json",
+  "name": "Point",
+  "description": "Point schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:Point"
+      ],
+      "type": "string"
+    },
+    "cwa": {
+      "$ref": "#/components/schemas/NWSForecastOfficeId"
+    },
+    "type": {
+      "enum": [
+        "land",
+        "marine"
+      ],
+      "type": "string",
+      "description": "Whether the specific point is on land or marine"
+    },
+    "forecastOffice": {
+      "type": "uri"
+    },
+    "gridId": {
+      "$ref": "#/components/schemas/NWSForecastOfficeId"
+    },
+    "gridX": {
+      "minimum": 0,
+      "type": "int32"
+    },
+    "gridY": {
+      "minimum": 0,
+      "type": "int32"
+    },
+    "forecast": {
+      "type": "uri"
+    },
+    "forecastHourly": {
+      "type": "uri"
+    },
+    "forecastGridData": {
+      "type": "uri"
+    },
+    "observationStations": {
+      "type": "uri"
+    },
+    "relativeLocation": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/RelativeLocationGeoJson"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeLocationJsonLd"
+        }
+      ]
+    },
+    "forecastZone": {
+      "type": "uri"
+    },
+    "county": {
+      "type": "uri"
+    },
+    "fireWeatherZone": {
+      "type": "uri"
+    },
+    "timeZone": {
+      "type": "string"
+    },
+    "radarStation": {
+      "type": "string"
+    },
+    "astronomicalData": {
+      "$ref": "#/components/schemas/AstronomicalData"
+    },
+    "nwr": {
+      "type": "object",
+      "properties": {
+        "transmitter": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Transmitter callsign"
+        },
+        "sameCode": {
+          "type": "string",
+          "description": "The SAME code of this point's county"
+        },
+        "areaBroadcast": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A link to the area NWR broadcast from this transmitter",
+          "format": "uri"
+        },
+        "pointBroadcast": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A link to the local NWR broadcast for this point",
+          "format": "uri"
+        }
+      },
+      "description": "NOAA Weather Radio metadata for this point"
+    }
+  }
+}

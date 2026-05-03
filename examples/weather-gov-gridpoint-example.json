@@ -1,0 +1,28 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "@type": "wx:Gridpoint",
+  "updateTime": "2026-05-03T14:30:00Z",
+  "forecastOffice": "https://api.weather.gov/resource/example",
+  "gridId": "example-value",
+  "gridX": 86,
+  "gridY": 72,
+  "weather": {
+    "values": [
+      {
+        "value": [
+          null,
+          null
+        ]
+      }
+    ]
+  },
+  "hazards": {
+    "values": [
+      {
+        "value": [
+          null
+        ]
+      }
+    ]
+  }
+}

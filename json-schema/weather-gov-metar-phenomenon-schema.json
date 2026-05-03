@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-metar-phenomenon-schema.json",
+  "title": "MetarPhenomenon",
+  "description": "An object representing a decoded METAR phenomenon string.",
+  "type": "object",
+  "properties": {
+    "intensity": {
+      "enum": [
+        "light",
+        "heavy"
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "modifier": {
+      "enum": [
+        "patches",
+        "blowing",
+        "low_drifting",
+        "freezing",
+        "shallow",
+        "partial",
+        "showers"
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "weather": {
+      "enum": [
+        "fog_mist",
+        "dust_storm",
+        "dust",
+        "drizzle",
+        "funnel_cloud",
+        "fog",
+        "smoke",
+        "hail",
+        "snow_pellets",
+        "haze",
+        "ice_crystals",
+        "ice_pellets",
+        "dust_whirls",
+        "spray",
+        "rain",
+        "sand",
+        "snow_grains",
+        "snow",
+        "squalls",
+        "sand_storm",
+        "thunderstorms",
+        "unknown",
+        "volcanic_ash"
+      ],
+      "type": "string"
+    },
+    "rawString": {
+      "type": "string"
+    },
+    "inVicinity": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "intensity",
+    "modifier",
+    "weather",
+    "rawString"
+  ],
+  "additionalProperties": false
+}

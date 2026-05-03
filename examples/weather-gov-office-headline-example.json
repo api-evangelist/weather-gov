@@ -1,0 +1,11 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "id": "example-value",
+  "office": "https://api.weather.gov/resource/example",
+  "important": false,
+  "issuanceTime": "2026-05-03T14:30:00Z",
+  "link": "https://api.weather.gov/resource/example",
+  "name": "Example Name",
+  "title": "example-value",
+  "content": "example-value"
+}

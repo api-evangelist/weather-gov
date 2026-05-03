@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-iso8601-duration-schema.json",
+  "title": "ISO8601Duration",
+  "description": "A time duration in ISO 8601 format.",
+  "type": "string",
+  "pattern": "^P(\\d+Y)?(\\d+M)?(\\d+D)?(T(\\d+H)?(\\d+M)?(\\d+S)?)?$",
+  "examples": [
+    "P2DT12H"
+  ]
+}

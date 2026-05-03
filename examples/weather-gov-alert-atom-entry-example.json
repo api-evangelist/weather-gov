@@ -1,0 +1,27 @@
+{
+  "id": "example-value",
+  "updated": "example-value",
+  "published": "example-value",
+  "author": {
+    "name": "Example Name"
+  },
+  "summary": "example-value",
+  "event": "Winter Storm Warning",
+  "sent": "example-value",
+  "effective": "example-value",
+  "expires": "example-value",
+  "status": "active",
+  "msgType": "land",
+  "category": "example-value",
+  "urgency": "Expected",
+  "severity": "Moderate",
+  "certainty": "Likely",
+  "areaDesc": "example-value",
+  "polygon": "example-value",
+  "geocode": [
+    null
+  ],
+  "parameter": [
+    null
+  ]
+}

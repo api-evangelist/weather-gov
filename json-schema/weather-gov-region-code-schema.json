@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-region-code-schema.json",
+  "title": "RegionCode",
+  "description": "RegionCode schema from weather.gov API",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/LandRegionCode"
+    },
+    {
+      "$ref": "#/components/schemas/MarineRegionCode"
+    }
+  ]
+}

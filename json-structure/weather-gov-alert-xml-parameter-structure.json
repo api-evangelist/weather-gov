@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-xml-parameter-structure.json",
+  "name": "AlertXMLParameter",
+  "description": "AlertXMLParameter schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "valueName": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

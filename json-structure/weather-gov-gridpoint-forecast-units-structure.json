@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-gridpoint-forecast-units-structure.json",
+  "name": "GridpointForecastUnits",
+  "description": "Denotes the units used in the textual portions of the forecast.",
+  "type": "string",
+  "enum": [
+    "us",
+    "si"
+  ]
+}

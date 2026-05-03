@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-nws-zone-type-structure.json",
+  "name": "NWSZoneType",
+  "description": "NWSZoneType schema from weather.gov API",
+  "type": "string",
+  "enum": [
+    "land",
+    "marine",
+    "forecast",
+    "public",
+    "coastal",
+    "offshore",
+    "fire",
+    "county"
+  ]
+}

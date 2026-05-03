@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-office-structure.json",
+  "name": "Office",
+  "description": "Office schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@type": {
+      "enum": [
+        "GovernmentOrganization"
+      ],
+      "type": "string"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "enum": [
+            "PostalAddress"
+          ],
+          "type": "string"
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "addressLocality": {
+          "type": "string"
+        },
+        "addressRegion": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "faxNumber": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "sameAs": {
+      "type": "uri"
+    },
+    "nwsRegion": {
+      "type": "string"
+    },
+    "parentOrganization": {
+      "type": "uri"
+    },
+    "responsibleCounties": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "responsibleForecastZones": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "responsibleFireZones": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "approvedObservationStations": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    }
+  },
+  "additionalProperties": false
+}

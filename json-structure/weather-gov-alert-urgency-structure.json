@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-urgency-structure.json",
+  "name": "AlertUrgency",
+  "description": "AlertUrgency schema from weather.gov API",
+  "type": "string",
+  "enum": [
+    "Immediate",
+    "Expected",
+    "Future",
+    "Past",
+    "Unknown"
+  ]
+}

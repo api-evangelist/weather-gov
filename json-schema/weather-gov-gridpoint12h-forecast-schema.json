@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-gridpoint12h-forecast-schema.json",
+  "title": "Gridpoint12hForecast",
+  "description": "A multi-day forecast for a 2.5km grid square.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "units": {
+      "$ref": "#/components/schemas/GridpointForecastUnits"
+    },
+    "forecastGenerator": {
+      "type": "string",
+      "description": "The internal generator class used to create the forecast text (used for NWS debugging)."
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "The time this forecast data was generated.",
+      "format": "date-time"
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The last update time of the data this forecast was generated from.",
+      "format": "date-time"
+    },
+    "validTimes": {
+      "$ref": "#/components/schemas/ISO8601Interval"
+    },
+    "elevation": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Gridpoint12hForecastPeriod"
+      },
+      "description": "An array of forecast periods."
+    }
+  },
+  "additionalProperties": false
+}

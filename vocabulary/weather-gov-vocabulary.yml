@@ -1,0 +1,280 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Weather.gov"
+  description: "Complete vocabulary for the National Weather Service API covering weather data resources, forecast operations, alert management, and monitoring workflows."
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+operational:
+  apis:
+    - name: "Weather.gov API"
+      namespace: weather-gov
+      version: "3.8.1"
+      baseUrl: https://api.weather.gov
+      status: active
+
+  resources:
+    - name: alerts
+      api: weather-gov
+      description: "Weather alerts and warnings issued by NWS"
+      actions: [query, get, list-active, count-active]
+    - name: forecasts
+      api: weather-gov
+      description: "Grid-based weather forecasts (12-hour and hourly)"
+      actions: [get, get-hourly, get-raw]
+    - name: observations
+      api: weather-gov
+      description: "Weather station observations and measurements"
+      actions: [list, get-latest, get-by-time]
+    - name: stations
+      api: weather-gov
+      description: "Observation and radar weather stations"
+      actions: [list, get]
+    - name: points
+      api: weather-gov
+      description: "Location metadata and grid point lookup"
+      actions: [get, list-stations]
+    - name: zones
+      api: weather-gov
+      description: "NWS forecast zones (land and marine)"
+      actions: [list, get, get-forecast, get-observations, get-stations]
+    - name: offices
+      api: weather-gov
+      description: "NWS Weather Forecast Offices"
+      actions: [get, list-headlines, get-headline]
+    - name: radar
+      api: weather-gov
+      description: "Radar station metadata and data"
+      actions: [list-stations, get-station, get-alarms, get-queue]
+    - name: products
+      api: weather-gov
+      description: "NWS text weather products"
+      actions: [query, get, list-types, list-locations]
+    - name: aviation
+      api: weather-gov
+      description: "Aviation weather (SIGMETs, AIRMETs, TAFs)"
+      actions: [query-sigmets, get-sigmet, get-taf, query-cwas, get-cwsu]
+
+  actions:
+    - name: query
+      httpMethod: GET
+      pattern: read
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: get-latest
+      httpMethod: GET
+      pattern: read
+    - name: count
+      httpMethod: GET
+      pattern: read
+
+  schemas:
+    core:
+      - name: Alert
+        description: "Weather alert/warning with event type, severity, certainty, urgency"
+        keyProperties: [id, event, status, severity, certainty, urgency, onset, expires, description, instruction]
+      - name: AlertCollection
+        description: "Collection of weather alerts"
+        keyProperties: [features, pagination]
+      - name: Observation
+        description: "Weather observation from a station"
+        keyProperties: [station, timestamp, temperature, dewpoint, windDirection, windSpeed, visibility, barometricPressure, relativeHumidity]
+      - name: GridpointForecast
+        description: "Textual weather forecast for a grid point"
+        keyProperties: [office, gridX, gridY, periods, updated, generatedAt]
+      - name: GridpointForecastPeriod
+        description: "Single forecast period"
+        keyProperties: [number, name, startTime, endTime, isDaytime, temperature, temperatureUnit, windSpeed, windDirection, shortForecast, detailedForecast]
+      - name: Zone
+        description: "NWS forecast zone"
+        keyProperties: [id, name, type, state, forecastOffice, county]
+      - name: ObservationStation
+        description: "Weather observation station"
+        keyProperties: [stationIdentifier, name, timeZone, forecast, county, fireWeatherZone, elevation]
+      - name: NWSOffice
+        description: "NWS Weather Forecast Office"
+        keyProperties: [id, name, address, telephone, faxNumber, email, url]
+      - name: Point
+        description: "Geolocation point with forecast metadata"
+        keyProperties: [cwa, gridId, gridX, gridY, forecast, forecastHourly, observationStations, timeZone, county]
+
+  parameters:
+    pagination:
+      - name: limit
+        type: integer
+        description: "Maximum number of results to return"
+      - name: cursor
+        type: string
+        description: "Pagination cursor"
+    filters:
+      - name: area
+        type: string
+        description: "State or marine area code (e.g., KS, PZ)"
+      - name: region
+        type: string
+        description: "Marine region code"
+      - name: zone
+        type: string
+        description: "NWS zone ID"
+      - name: status
+        type: string
+        description: "Alert status (actual, exercise, system, test, draft)"
+      - name: message_type
+        type: string
+        description: "Alert message type (alert, update, cancel, ack, error)"
+      - name: event
+        type: string
+        description: "Alert event name"
+      - name: urgency
+        type: string
+        description: "Alert urgency level"
+      - name: severity
+        type: string
+        description: "Alert severity level"
+      - name: certainty
+        type: string
+        description: "Alert certainty level"
+      - name: start
+        type: string
+        description: "Start time filter (ISO 8601)"
+      - name: end
+        type: string
+        description: "End time filter (ISO 8601)"
+    identifiers:
+      - name: stationId
+        type: string
+        description: "Observation station identifier (e.g., KTOP)"
+      - name: officeId
+        type: string
+        description: "NWS office identifier (e.g., TOP)"
+      - name: wfo
+        type: string
+        description: "Weather Forecast Office identifier"
+      - name: zoneId
+        type: string
+        description: "NWS zone identifier (e.g., NWZ001)"
+
+  enums:
+    alert-status:
+      - actual
+      - exercise
+      - system
+      - test
+      - draft
+    alert-severity:
+      - Extreme
+      - Severe
+      - Moderate
+      - Minor
+      - Unknown
+    alert-certainty:
+      - Observed
+      - Likely
+      - Possible
+      - Unlikely
+      - Unknown
+    alert-urgency:
+      - Immediate
+      - Expected
+      - Future
+      - Past
+      - Unknown
+    zone-type:
+      - land
+      - marine
+      - forecast
+      - public
+      - coastal
+      - offshore
+      - fire
+      - county
+
+  authentication:
+    - scheme: apiKey
+      header: User-Agent
+      description: "Required User-Agent header identifying the application"
+    - scheme: apiKey
+      header: API-Key
+      description: "Optional API key header for expanded access"
+
+capability:
+  workflows:
+    - name: Weather Monitoring
+      file: capabilities/weather-monitoring.yaml
+      description: "Unified weather monitoring combining alerts, forecasts, observations, radar, and aviation weather"
+      apisUsed: [weather-gov]
+      toolCount: 17
+      personas: [Emergency Manager, Developer, Weather Enthusiast, Aviation Professional]
+      domains: [Weather Monitoring, Emergency Management, Aviation Safety]
+
+  personas:
+    - id: emergency-manager
+      name: Emergency Manager
+      description: "Uses weather alerts, zone forecasts, and radar to make emergency response decisions"
+      workflows: [Weather Monitoring]
+    - id: developer
+      name: Developer
+      description: "Integrates NWS weather data into applications and services"
+      workflows: [Weather Monitoring]
+    - id: weather-enthusiast
+      name: Weather Enthusiast
+      description: "Accesses forecasts, observations, and radar for personal weather monitoring"
+      workflows: [Weather Monitoring]
+    - id: aviation-professional
+      name: Aviation Professional
+      description: "Uses SIGMETs, AIRMETs, and TAFs for flight planning and safety"
+      workflows: [Weather Monitoring]
+
+  domains:
+    - name: Weather Monitoring
+      description: "Real-time and forecast weather data access"
+      resources: [alerts, forecasts, observations, radar]
+    - name: Emergency Management
+      description: "Weather alerts and warnings for emergency response"
+      resources: [alerts, zones]
+    - name: Aviation Safety
+      description: "Aviation weather products for flight safety"
+      resources: [aviation]
+
+  namespaces:
+    - name: weather-gov
+      type: consumed
+      baseUri: https://api.weather.gov
+    - name: weather-monitoring-api
+      type: rest-exposed
+      port: 8080
+    - name: weather-monitoring-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: WEATHER_GOV_USER_AGENT
+      description: "User-Agent header value identifying the application to NWS"
+      workflows: [Weather Monitoring]
+
+crossReference:
+  - resource: alerts
+    operations: [alerts-query, alerts-active, alerts-active-count, alerts-active-zone, alerts-active-area, alerts-active-region, alerts-types, alerts-single]
+    workflows: [Weather Monitoring]
+    personas: [Emergency Manager, Developer, Weather Enthusiast]
+  - resource: forecasts
+    operations: [gridpoint, gridpoint-forecast, gridpoint-forecast-hourly, gridpoint-stations]
+    workflows: [Weather Monitoring]
+    personas: [Developer, Weather Enthusiast]
+  - resource: observations
+    operations: [station-observation-list, station-observation-latest, station-observation-time]
+    workflows: [Weather Monitoring]
+    personas: [Developer, Weather Enthusiast]
+  - resource: aviation
+    operations: [sigmet-query, sigmetsByATSU, sigmetsByATSUByDate, sigmet, cwsu, cwas, cwa, tafs, taf]
+    workflows: [Weather Monitoring]
+    personas: [Aviation Professional, Developer]
+  - resource: zones
+    operations: [zone-list, zone-list-type, zone, zone-forecast, zone-obs, zone-stations]
+    workflows: [Weather Monitoring]
+    personas: [Emergency Manager, Developer]

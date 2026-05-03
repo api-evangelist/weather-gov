@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-schema.json",
+  "title": "Alert",
+  "description": "An object representing a public alert message.\nUnless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.\nhttp://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation\n",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/AlertId"
+    },
+    "areaDesc": {
+      "type": "string",
+      "description": "A textual description of the area affected by the alert."
+    },
+    "geocode": {
+      "type": "object",
+      "properties": {
+        "UGC": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/NWSZoneID"
+          },
+          "description": "A list of NWS public zone or county identifiers."
+        },
+        "SAME": {
+          "type": "array",
+          "items": {
+            "pattern": "^\\d{6}$",
+            "type": "string"
+          },
+          "description": "A list of SAME (Specific Area Message Encoding) codes for affected counties."
+        }
+      },
+      "description": "Lists of codes for NWS public zones and counties affected by the alert."
+    },
+    "affectedZones": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "An array of API links for zones affected by the alert. This is an API-specific extension field and is not part of the CAP specification.\n"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "@id": {
+            "type": "string",
+            "description": "An API link to the prior alert.",
+            "format": "uri"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/AlertId"
+          },
+          "sender": {
+            "type": "string",
+            "description": "The sender of the prior alert."
+          },
+          "sent": {
+            "type": "string",
+            "description": "The time the prior alert was sent.",
+            "format": "date-time"
+          }
+        }
+      },
+      "description": "A list of prior alerts that this alert updates or replaces."
+    },
+    "sent": {
+      "type": "string",
+      "description": "The time of the origination of the alert message.",
+      "format": "date-time"
+    },
+    "effective": {
+      "type": "string",
+      "description": "The effective time of the information of the alert message.",
+      "format": "date-time"
+    },
+    "onset": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The expected time of the beginning of the subject event of the alert message.",
+      "format": "date-time"
+    },
+    "expires": {
+      "type": "string",
+      "description": "The expiry time of the information of the alert message.",
+      "format": "date-time"
+    },
+    "ends": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The expected end time of the subject event of the alert message.",
+      "format": "date-time"
+    },
+    "status": {
+      "$ref": "#/components/schemas/AlertStatus"
+    },
+    "messageType": {
+      "$ref": "#/components/schemas/AlertMessageType"
+    },
+    "category": {
+      "enum": [
+        "Met",
+        "Geo",
+        "Safety",
+        "Security",
+        "Rescue",
+        "Fire",
+        "Health",
+        "Env",
+        "Transport",
+        "Infra",
+        "CBRNE",
+        "Other"
+      ],
+      "type": "string",
+      "description": "The code denoting the category of the subject event of the alert message."
+    },
+    "severity": {
+      "$ref": "#/components/schemas/AlertSeverity"
+    },
+    "certainty": {
+      "$ref": "#/components/schemas/AlertCertainty"
+    },
+    "urgency": {
+      "$ref": "#/components/schemas/AlertUrgency"
+    },
+    "event": {
+      "type": "string",
+      "description": "The text denoting the type of the subject event of the alert message."
+    },
+    "sender": {
+      "type": "string",
+      "description": "Email address of the NWS webmaster."
+    },
+    "senderName": {
+      "type": "string",
+      "description": "The text naming the originator of the alert message."
+    },
+    "headline": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The text headline of the alert message."
+    },
+    "description": {
+      "type": "string",
+      "description": "The text describing the subject event of the alert message."
+    },
+    "instruction": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The text describing the recommended action to be taken by recipients of the alert message.\n"
+    },
+    "note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The text note accompanying the alert message. Per CAP spec, this should accompany alerts with a status of \"Test\".\n"
+    },
+    "response": {
+      "enum": [
+        "Shelter",
+        "Evacuate",
+        "Prepare",
+        "Execute",
+        "Avoid",
+        "Monitor",
+        "Assess",
+        "AllClear",
+        "None"
+      ],
+      "type": "string",
+      "description": "The code denoting the type of action recommended for the target audience.\nThis corresponds to responseType in the CAP specification.\n"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "System-specific additional parameters associated with the alert message.\nThe keys in this object correspond to parameter definitions in the NWS CAP specification.\n",
+      "additionalProperties": {
+        "type": "array",
+        "items": {}
+      }
+    },
+    "scope": {
+      "enum": [
+        "Public",
+        "Restricted",
+        "Private"
+      ],
+      "type": "string",
+      "description": "The code denoting the intended distribution of the alert message."
+    },
+    "code": {
+      "type": "string",
+      "description": "The code denoting the special handling of the alert message."
+    },
+    "language": {
+      "type": "string",
+      "description": "The code denoting the language of the info sub-element of the alert message."
+    },
+    "web": {
+      "type": "string",
+      "description": "The identifier of the hyperlink associating additional information within the alert message."
+    },
+    "eventCode": {
+      "type": "object",
+      "description": "System-specific code identifiying the event type of the alert message The keys in this object correspond to eventCode definitions in the NWS CAP specification.\n",
+      "additionalProperties": {
+        "type": "array",
+        "items": {}
+      }
+    }
+  }
+}

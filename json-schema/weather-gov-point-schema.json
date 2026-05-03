@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-point-schema.json",
+  "title": "Point",
+  "description": "Point schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:Point"
+      ],
+      "type": "string"
+    },
+    "cwa": {
+      "$ref": "#/components/schemas/NWSForecastOfficeId"
+    },
+    "type": {
+      "enum": [
+        "land",
+        "marine"
+      ],
+      "type": "string",
+      "description": "Whether the specific point is on land or marine"
+    },
+    "forecastOffice": {
+      "type": "string",
+      "format": "uri"
+    },
+    "gridId": {
+      "$ref": "#/components/schemas/NWSForecastOfficeId"
+    },
+    "gridX": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "gridY": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "forecast": {
+      "type": "string",
+      "format": "uri"
+    },
+    "forecastHourly": {
+      "type": "string",
+      "format": "uri"
+    },
+    "forecastGridData": {
+      "type": "string",
+      "format": "uri"
+    },
+    "observationStations": {
+      "type": "string",
+      "format": "uri"
+    },
+    "relativeLocation": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/RelativeLocationGeoJson"
+        },
+        {
+          "$ref": "#/components/schemas/RelativeLocationJsonLd"
+        }
+      ]
+    },
+    "forecastZone": {
+      "type": "string",
+      "format": "uri"
+    },
+    "county": {
+      "type": "string",
+      "format": "uri"
+    },
+    "fireWeatherZone": {
+      "type": "string",
+      "format": "uri"
+    },
+    "timeZone": {
+      "type": "string"
+    },
+    "radarStation": {
+      "type": "string"
+    },
+    "astronomicalData": {
+      "$ref": "#/components/schemas/AstronomicalData"
+    },
+    "nwr": {
+      "type": "object",
+      "properties": {
+        "transmitter": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Transmitter callsign"
+        },
+        "sameCode": {
+          "type": "string",
+          "description": "The SAME code of this point's county"
+        },
+        "areaBroadcast": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A link to the area NWR broadcast from this transmitter",
+          "format": "uri"
+        },
+        "pointBroadcast": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "A link to the local NWR broadcast for this point",
+          "format": "uri"
+        }
+      },
+      "description": "NOAA Weather Radio metadata for this point"
+    }
+  }
+}

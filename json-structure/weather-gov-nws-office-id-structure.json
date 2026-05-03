@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-nws-office-id-structure.json",
+  "name": "NWSOfficeId",
+  "description": "NWSOfficeId schema from weather.gov API",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/NWSForecastOfficeId"
+    },
+    {
+      "$ref": "#/components/schemas/NWSRegionalHQId"
+    },
+    {
+      "$ref": "#/components/schemas/NWSNationalHQId"
+    }
+  ]
+}

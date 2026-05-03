@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-atom-feed-schema.json",
+  "title": "AlertAtomFeed",
+  "description": "An alert feed in Atom format",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "generator": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "updated": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "xml": {
+            "namespace": "http://www.w3.org/2005/Atom"
+          }
+        }
+      },
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "title": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AlertAtomEntry"
+      },
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    }
+  }
+}

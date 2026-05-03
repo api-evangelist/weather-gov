@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-nws-connect-document-metadata-structure.json",
+  "name": "NWSConnectDocumentMetadata",
+  "description": "Metadata for an NWS Connect document.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "uuid"
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "The time when the document becomes active. ISO8601 datetime."
+    },
+    "endTime": {
+      "type": "datetime",
+      "description": "The time when the document becomes inactive. ISO8601 datetime."
+    },
+    "updateTime": {
+      "type": "datetime",
+      "description": "When the document was last updated. ISO8601 datetime."
+    },
+    "title": {
+      "maxLength": 50,
+      "type": "string",
+      "description": "A short title."
+    },
+    "description": {
+      "type": "string",
+      "description": "A longer description and/or caption."
+    },
+    "priority": {
+      "type": "boolean",
+      "description": "An indicator that a weather story should be emphasized."
+    },
+    "download": {
+      "type": "uri",
+      "description": "The URL of the media content for the weather story."
+    }
+  }
+}

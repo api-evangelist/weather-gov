@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-atom-entry-schema.json",
+  "title": "AlertAtomEntry",
+  "description": "An alert entry in an Atom feed",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "updated": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "published": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "summary": {
+      "type": "string",
+      "xml": {
+        "namespace": "http://www.w3.org/2005/Atom"
+      }
+    },
+    "event": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "sent": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "effective": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "expires": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "status": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "msgType": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "category": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "urgency": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "severity": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "certainty": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "areaDesc": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "polygon": {
+      "type": "string",
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "geocode": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AlertXMLParameter"
+      },
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    },
+    "parameter": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AlertXMLParameter"
+      },
+      "xml": {
+        "namespace": "urn:oasis:names:tc:emergency:cap:1.2"
+      }
+    }
+  }
+}

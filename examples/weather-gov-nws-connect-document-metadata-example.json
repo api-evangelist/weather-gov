@@ -1,0 +1,10 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "startTime": "2026-05-03T14:30:00Z",
+  "endTime": "2026-05-03T14:30:00Z",
+  "updateTime": "2026-05-03T14:30:00Z",
+  "title": "example-value",
+  "description": "Example weather description text.",
+  "priority": false,
+  "download": "https://api.weather.gov/resource/example"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-geo-json-feature-collection-schema.json",
+  "title": "GeoJsonFeatureCollection",
+  "description": "A GeoJSON feature collection. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "type": {
+      "enum": [
+        "FeatureCollection"
+      ],
+      "type": "string"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GeoJsonFeature"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "features"
+  ]
+}

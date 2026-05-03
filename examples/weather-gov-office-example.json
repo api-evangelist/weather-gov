@@ -1,0 +1,32 @@
+{
+  "@type": "GovernmentOrganization",
+  "@id": "https://api.weather.gov/resource/example",
+  "id": "example-value",
+  "name": "Example Name",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "example-value",
+    "addressLocality": "example-value",
+    "addressRegion": "example-value",
+    "postalCode": "example-value"
+  },
+  "telephone": "example-value",
+  "faxNumber": "example-value",
+  "email": "example-value",
+  "sameAs": "https://api.weather.gov/resource/example",
+  "nwsRegion": "example-value",
+  "parentOrganization": "https://api.weather.gov/resource/example",
+  "responsibleCounties": [
+    "https://api.weather.gov/resource/example"
+  ],
+  "responsibleForecastZones": [
+    "https://api.weather.gov/resource/example",
+    "https://api.weather.gov/resource/example"
+  ],
+  "responsibleFireZones": [
+    "https://api.weather.gov/resource/example"
+  ],
+  "approvedObservationStations": [
+    "https://api.weather.gov/resource/example"
+  ]
+}

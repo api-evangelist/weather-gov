@@ -1,0 +1,9 @@
+{
+  "id": "example-value",
+  "issueTime": "2026-05-03T14:30:00Z",
+  "sequence": 106,
+  "start": "2026-05-03T14:30:00Z",
+  "end": "2026-05-03T14:30:00Z",
+  "observedProperty": "example-value",
+  "text": "Example weather description text."
+}

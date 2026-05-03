@@ -1,0 +1,10 @@
+{
+  "@graph": [
+    null,
+    null
+  ],
+  "observationStations": [
+    "https://api.weather.gov/resource/example",
+    "https://api.weather.gov/resource/example"
+  ]
+}

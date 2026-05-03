@@ -1,0 +1,10 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "id": "example-value",
+  "wmoCollectiveId": "example-value",
+  "issuingOffice": "TOP",
+  "issuanceTime": "2026-05-03T14:30:00Z",
+  "productCode": "example-value",
+  "productName": "Example Name",
+  "productText": "Example weather description text."
+}

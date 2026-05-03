@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-message-type-structure.json",
+  "name": "AlertMessageType",
+  "description": "AlertMessageType schema from weather.gov API",
+  "type": "string",
+  "enum": [
+    "Alert",
+    "Update",
+    "Cancel",
+    "Ack",
+    "Error"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-json-ld-context-schema.json",
+  "title": "JsonLdContext",
+  "description": "JsonLdContext schema from weather.gov API",
+  "anyOf": [
+    {
+      "type": "array",
+      "items": {}
+    },
+    {
+      "type": "object"
+    }
+  ]
+}

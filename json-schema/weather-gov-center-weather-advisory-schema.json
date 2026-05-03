@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-center-weather-advisory-schema.json",
+  "title": "CenterWeatherAdvisory",
+  "description": "CenterWeatherAdvisory schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "issueTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cwsu": {
+      "$ref": "#/components/schemas/NWSCenterWeatherServiceUnitId"
+    },
+    "sequence": {
+      "minimum": 101,
+      "type": "integer"
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "observedProperty": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

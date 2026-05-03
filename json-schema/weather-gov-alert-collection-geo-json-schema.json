@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-collection-geo-json-schema.json",
+  "title": "AlertCollectionGeoJson",
+  "description": "AlertCollectionGeoJson schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/GeoJsonFeatureCollection"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "$ref": "#/components/schemas/Alert"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$ref": "#/components/schemas/AlertCollection"
+    }
+  ]
+}

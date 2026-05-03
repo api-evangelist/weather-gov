@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-nws-center-weather-service-unit-id-schema.json",
+  "title": "NWSCenterWeatherServiceUnitId",
+  "description": "Three-letter identifier for a Center Weather Service Unit (CWSU).",
+  "type": "string",
+  "enum": [
+    "ZAB",
+    "ZAN",
+    "ZAU",
+    "ZBW",
+    "ZDC",
+    "ZDV",
+    "ZFA",
+    "ZFW",
+    "ZHU",
+    "ZID",
+    "ZJX",
+    "ZKC",
+    "ZLA",
+    "ZLC",
+    "ZMA",
+    "ZME",
+    "ZMP",
+    "ZNY",
+    "ZOA",
+    "ZOB",
+    "ZSE",
+    "ZTL"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "@type": "wx:Point",
+  "type": "marine",
+  "forecastOffice": "https://api.weather.gov/resource/example",
+  "gridX": 31,
+  "gridY": 70,
+  "forecast": "https://api.weather.gov/resource/example",
+  "forecastHourly": "https://api.weather.gov/resource/example",
+  "forecastGridData": "https://api.weather.gov/resource/example",
+  "observationStations": "https://api.weather.gov/resource/example",
+  "forecastZone": "https://api.weather.gov/resource/example",
+  "county": "https://api.weather.gov/resource/example",
+  "fireWeatherZone": "https://api.weather.gov/resource/example",
+  "timeZone": "NWZ001",
+  "radarStation": "KTOP",
+  "nwr": {
+    "sameCode": "example-value"
+  }
+}

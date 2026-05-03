@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-atsu-identifier-structure.json",
+  "name": "ATSUIdentifier",
+  "description": "ATSU Identifier",
+  "type": "string",
+  "pattern": "^[A-Z]{3,4}$"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-observation-station-collection-json-ld-structure.json",
+  "name": "ObservationStationCollectionJsonLd",
+  "description": "ObservationStationCollectionJsonLd schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@graph": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ObservationStation"
+      }
+    },
+    "observationStations": {
+      "type": "array",
+      "items": {
+        "type": "uri"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/PaginationInfo"
+    }
+  },
+  "additionalProperties": false
+}

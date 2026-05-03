@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-geo-json-geometry-structure.json",
+  "name": "GeoJsonGeometry",
+  "description": "A GeoJSON geometry object. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "oneOf": [
+    {
+      "title": "GeoJSON Point",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "Point"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/components/schemas/GeoJsonCoordinate"
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "title": "GeoJSON LineString",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "LineString"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/components/schemas/GeoJsonLineString"
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "title": "GeoJSON Polygon",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "Polygon"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "$ref": "#/components/schemas/GeoJsonPolygon"
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "title": "GeoJSON MultiPoint",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "MultiPoint"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/GeoJsonCoordinate"
+          }
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "title": "GeoJSON MultiLineString",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "MultiLineString"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/GeoJsonLineString"
+          }
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "title": "GeoJSON MultiPolygon",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "MultiPolygon"
+          ],
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/GeoJsonPolygon"
+          }
+        },
+        "bbox": {
+          "$ref": "#/components/schemas/GeoJsonBoundingBox"
+        }
+      }
+    },
+    {
+      "type": "null"
+    }
+  ]
+}

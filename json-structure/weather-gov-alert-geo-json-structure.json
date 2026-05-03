@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-alert-geo-json-structure.json",
+  "name": "AlertGeoJson",
+  "description": "AlertGeoJson schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/GeoJsonFeature"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "$ref": "#/components/schemas/Alert"
+        }
+      }
+    }
+  ]
+}

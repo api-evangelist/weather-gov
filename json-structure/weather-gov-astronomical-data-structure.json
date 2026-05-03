@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-astronomical-data-structure.json",
+  "name": "AstronomicalData",
+  "description": "An object representing sunrise, sunset, and twilight information for a location.\n",
+  "type": "object",
+  "properties": {
+    "sunrise": {
+      "type": "datetime",
+      "description": "The timestamp of sunrise, defined as when the sun angle is 90\u00b035' from vertical.\n"
+    },
+    "sunset": {
+      "type": "datetime",
+      "description": "The timestamp of sunset, defined as when the sun angle is 90\u00b035' from vertical.\n"
+    },
+    "transit": {
+      "type": "datetime",
+      "description": "The timestamp when the sun reaches its zenith.\n"
+    },
+    "civilTwilightBegin": {
+      "type": "datetime",
+      "description": "The timestamp of the onset of civil twilight, defined as when the sun angle is 96\u00b0 from vertical. This is the beginning of civil dawn and lasts until sunrise.\n"
+    },
+    "civilTwilightEnd": {
+      "type": "datetime",
+      "description": "The timestamp of the end of civil twilight, defined as when the sun angle is 96\u00b0 from vertical. This is the end of civil dusk, which begins at sunset.\n"
+    },
+    "nauticalTwilightBegin": {
+      "type": "datetime",
+      "description": "The timestamp of the onset of nautical twilight, defined as when the sun angle is 102\u00b0 from vertical. This is the beginning of nautical dawn and lasts until the civil dawn.\n"
+    },
+    "nauticalTwilightEnd": {
+      "type": "datetime",
+      "description": "The timestamp of the end of nautical twilight, defined as when the sun angle is 102\u00b0 from vertical. This is the end of nautical dusk, which begins at the end of civil twilight.\n"
+    },
+    "astronomicalTwilightBegin": {
+      "type": "datetime",
+      "description": "The timestamp of the onset of astronomical twilight, defined as when the sun angle is 108\u00b0 from vertical. This is the beginning of astronomical dawn and lasts until the nautical dawn.\n"
+    },
+    "astronomicalTwilightEnd": {
+      "type": "datetime",
+      "description": "The timestamp of the end of astronomical twilight, defined as when the sun angle is 108\u00b0 from vertical. This is the end of astronomical dusk, which begins at the end of nautical twilight.\n"
+    }
+  }
+}

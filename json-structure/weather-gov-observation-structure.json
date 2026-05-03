@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-observation-structure.json",
+  "name": "Observation",
+  "description": "Observation schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeometryString"
+    },
+    "@id": {
+      "type": "uri"
+    },
+    "@type": {
+      "enum": [
+        "wx:ObservationStation"
+      ],
+      "type": "string"
+    },
+    "elevation": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "station": {
+      "type": "uri"
+    },
+    "stationId": {
+      "type": "string"
+    },
+    "stationName": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "rawMessage": {
+      "type": "string"
+    },
+    "textDescription": {
+      "type": "string"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri",
+      "deprecated": true
+    },
+    "presentWeather": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MetarPhenomenon"
+      }
+    },
+    "temperature": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "dewpoint": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "windDirection": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "windSpeed": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "windGust": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "barometricPressure": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "seaLevelPressure": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "visibility": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "maxTemperatureLast24Hours": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "minTemperatureLast24Hours": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "precipitationLastHour": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "precipitationLast3Hours": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "precipitationLast6Hours": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "relativeHumidity": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "windChill": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "heatIndex": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "cloudLayers": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "required": [
+          "base",
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "base": {
+            "$ref": "#/components/schemas/QuantitativeValue"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/MetarSkyCoverage"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

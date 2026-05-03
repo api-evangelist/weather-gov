@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-office-weather-story-collection-structure.json",
+  "name": "OfficeWeatherStoryCollection",
+  "description": "OfficeWeatherStoryCollection schema from weather.gov API",
+  "type": "array",
+  "items": {
+    "$ref": "#/components/schemas/OfficeWeatherStory"
+  }
+}

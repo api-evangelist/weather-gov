@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-sigmet-collection-geo-json-structure.json",
+  "name": "SigmetCollectionGeoJson",
+  "description": "SigmetCollectionGeoJson schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/GeoJsonFeatureCollection"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/SigmetGeoJson"
+          }
+        }
+      }
+    }
+  ]
+}

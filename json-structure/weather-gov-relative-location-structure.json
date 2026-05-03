@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-relative-location-structure.json",
+  "name": "RelativeLocation",
+  "description": "RelativeLocation schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "distance": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    },
+    "bearing": {
+      "$ref": "#/components/schemas/QuantitativeValue"
+    }
+  }
+}

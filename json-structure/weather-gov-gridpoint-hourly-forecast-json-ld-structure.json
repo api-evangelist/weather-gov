@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-gridpoint-hourly-forecast-json-ld-structure.json",
+  "name": "GridpointHourlyForecastJsonLd",
+  "description": "GridpointHourlyForecastJsonLd schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/GridpointHourlyForecast"
+    },
+    {
+      "required": [
+        "@context",
+        "geometry"
+      ],
+      "type": "object",
+      "properties": {
+        "@context": {
+          "$ref": "#/components/schemas/JsonLdContext"
+        },
+        "geometry": {
+          "$ref": "#/components/schemas/GeometryString"
+        }
+      }
+    }
+  ]
+}

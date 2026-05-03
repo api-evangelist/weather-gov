@@ -1,0 +1,12 @@
+{
+  "@graph": [
+    {
+      "productCode": "example-value",
+      "productName": "Example Name"
+    },
+    {
+      "productCode": "example-value",
+      "productName": "Example Name"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "zone": "https://api.weather.gov/resource/example",
+  "updated": "2026-05-03T14:30:00Z",
+  "periods": [
+    {
+      "number": 25,
+      "name": "Example Name",
+      "detailedForecast": "example-value"
+    }
+  ]
+}

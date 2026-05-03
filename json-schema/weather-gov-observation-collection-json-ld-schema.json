@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-observation-collection-json-ld-schema.json",
+  "title": "ObservationCollectionJsonLd",
+  "description": "ObservationCollectionJsonLd schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "@graph": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Observation"
+      }
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/PaginationInfo"
+    }
+  },
+  "additionalProperties": false
+}

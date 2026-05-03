@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-zone-forecast-json-ld-structure.json",
+  "name": "ZoneForecastJsonLd",
+  "description": "ZoneForecastJsonLd schema from weather.gov API"
+}

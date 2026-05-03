@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-astronomical-data-schema.json",
+  "title": "AstronomicalData",
+  "description": "An object representing sunrise, sunset, and twilight information for a location.\n",
+  "type": "object",
+  "properties": {
+    "sunrise": {
+      "type": "string",
+      "description": "The timestamp of sunrise, defined as when the sun angle is 90\u00b035' from vertical.\n",
+      "format": "date-time"
+    },
+    "sunset": {
+      "type": "string",
+      "description": "The timestamp of sunset, defined as when the sun angle is 90\u00b035' from vertical.\n",
+      "format": "date-time"
+    },
+    "transit": {
+      "type": "string",
+      "description": "The timestamp when the sun reaches its zenith.\n",
+      "format": "date-time"
+    },
+    "civilTwilightBegin": {
+      "type": "string",
+      "description": "The timestamp of the onset of civil twilight, defined as when the sun angle is 96\u00b0 from vertical. This is the beginning of civil dawn and lasts until sunrise.\n",
+      "format": "date-time"
+    },
+    "civilTwilightEnd": {
+      "type": "string",
+      "description": "The timestamp of the end of civil twilight, defined as when the sun angle is 96\u00b0 from vertical. This is the end of civil dusk, which begins at sunset.\n",
+      "format": "date-time"
+    },
+    "nauticalTwilightBegin": {
+      "type": "string",
+      "description": "The timestamp of the onset of nautical twilight, defined as when the sun angle is 102\u00b0 from vertical. This is the beginning of nautical dawn and lasts until the civil dawn.\n",
+      "format": "date-time"
+    },
+    "nauticalTwilightEnd": {
+      "type": "string",
+      "description": "The timestamp of the end of nautical twilight, defined as when the sun angle is 102\u00b0 from vertical. This is the end of nautical dusk, which begins at the end of civil twilight.\n",
+      "format": "date-time"
+    },
+    "astronomicalTwilightBegin": {
+      "type": "string",
+      "description": "The timestamp of the onset of astronomical twilight, defined as when the sun angle is 108\u00b0 from vertical. This is the beginning of astronomical dawn and lasts until the nautical dawn.\n",
+      "format": "date-time"
+    },
+    "astronomicalTwilightEnd": {
+      "type": "string",
+      "description": "The timestamp of the end of astronomical twilight, defined as when the sun angle is 108\u00b0 from vertical. This is the end of astronomical dusk, which begins at the end of nautical twilight.\n",
+      "format": "date-time"
+    }
+  }
+}

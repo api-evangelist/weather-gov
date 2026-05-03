@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-center-weather-advisory-collection-geo-json-structure.json",
+  "name": "CenterWeatherAdvisoryCollectionGeoJson",
+  "description": "CenterWeatherAdvisoryCollectionGeoJson schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/GeoJsonFeatureCollection"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "properties": {
+                "$ref": "#/components/schemas/CenterWeatherAdvisory"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

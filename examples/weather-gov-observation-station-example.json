@@ -1,0 +1,12 @@
+{
+  "@id": "https://api.weather.gov/resource/example",
+  "@type": "wx:ObservationStation",
+  "stationIdentifier": "KTOP",
+  "name": "Example Name",
+  "timeZone": "NWZ001",
+  "provider": "example-value",
+  "subProvider": "example-value",
+  "forecast": "https://api.weather.gov/resource/example",
+  "county": "https://api.weather.gov/resource/example",
+  "fireWeatherZone": "https://api.weather.gov/resource/example"
+}

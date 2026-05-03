@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-alert-collection-schema.json",
+  "title": "AlertCollection",
+  "description": "AlertCollection schema from weather.gov API",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "A title describing the alert collection"
+    },
+    "updated": {
+      "type": "string",
+      "description": "The last time a change occurred to this collection",
+      "format": "date-time"
+    },
+    "pagination": {
+      "$ref": "#/components/schemas/PaginationInfo"
+    }
+  }
+}

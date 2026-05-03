@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-relative-location-json-ld-structure.json",
+  "name": "RelativeLocationJsonLd",
+  "description": "RelativeLocationJsonLd schema from weather.gov API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/RelativeLocation"
+    },
+    {
+      "required": [
+        "geometry"
+      ],
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "$ref": "#/components/schemas/GeometryString"
+        }
+      }
+    }
+  ]
+}

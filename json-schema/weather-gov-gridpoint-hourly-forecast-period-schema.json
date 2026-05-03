@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-gridpoint-hourly-forecast-period-schema.json",
+  "title": "GridpointHourlyForecastPeriod",
+  "description": "An object containing forecast information for a specific time period (generally 12-hour or 1-hour).\n",
+  "type": "object",
+  "properties": {
+    "number": {
+      "minimum": 1,
+      "type": "integer",
+      "description": "Sequential period number."
+    },
+    "name": {
+      "type": "string",
+      "description": "A textual identifier for the period. This value will not be present for hourly forecasts.\n",
+      "examples": [
+        "Tuesday Night"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "description": "The starting time that this forecast period is valid for.",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "The ending time that this forecast period is valid for.",
+      "format": "date-time"
+    },
+    "isDaytime": {
+      "type": "boolean",
+      "description": "Indicates whether this period is daytime or nighttime."
+    },
+    "temperature": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/QuantitativeValue"
+        },
+        {
+          "type": "integer"
+        }
+      ],
+      "description": "High/low temperature for the period, depending on whether the period is day or night.\nThis property as an integer value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the \"forecast_temperature_qv\" feature flag on the request.\n"
+    },
+    "temperatureUnit": {
+      "enum": [
+        "F",
+        "C"
+      ],
+      "type": "string",
+      "description": "The unit of the temperature value (Fahrenheit or Celsius).\nThis property is deprecated. Future versions will indicate the unit within the quantitative value object for the temperature property. To make use of the future standard format now, set the \"forecast_temperature_qv\" feature flag on the request.\n",
+      "deprecated": true
+    },
+    "temperatureTrend": {
+      "enum": [
+        "rising",
+        "falling"
+      ],
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day)\n"
+    },
+    "probabilityOfPrecipitation": {
+      "$ref": "#/components/schemas/QuantitativeValue",
+      "description": "Probability of precipitation for the period."
+    },
+    "dewpoint": {
+      "$ref": "#/components/schemas/QuantitativeValue",
+      "description": "Dewpoint. Only provided in hourly forecasts.\n"
+    },
+    "relativeHumidity": {
+      "$ref": "#/components/schemas/QuantitativeValue",
+      "description": "Relative humidity. Only provided in hourly forecasts.\n"
+    },
+    "windSpeed": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/QuantitativeValue"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Wind speed for the period.\nThis property as an string value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the \"forecast_wind_speed_qv\" feature flag on the request.\n"
+    },
+    "windGust": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/QuantitativeValue"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Peak wind gust for the period.\nThis property as an string value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the \"forecast_wind_speed_qv\" feature flag on the request.\n"
+    },
+    "windDirection": {
+      "enum": [
+        "N",
+        "NNE",
+        "NE",
+        "ENE",
+        "E",
+        "ESE",
+        "SE",
+        "SSE",
+        "S",
+        "SSW",
+        "SW",
+        "WSW",
+        "W",
+        "WNW",
+        "NW",
+        "NNW"
+      ],
+      "type": "string",
+      "description": "The prevailing direction of the wind for the period, using a 16-point compass."
+    },
+    "icon": {
+      "type": "string",
+      "description": "A link to an icon representing the forecast summary.",
+      "format": "uri",
+      "deprecated": true
+    },
+    "shortForecast": {
+      "type": "string",
+      "description": "A brief textual forecast summary for the period."
+    },
+    "detailedForecast": {
+      "type": "string",
+      "description": "A detailed textual forecast for the period."
+    }
+  },
+  "additionalProperties": false
+}

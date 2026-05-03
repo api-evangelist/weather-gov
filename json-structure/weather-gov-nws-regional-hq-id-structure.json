@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-nws-regional-hq-id-structure.json",
+  "name": "NWSRegionalHQId",
+  "description": "Three-letter identifier for a NWS Regional HQ.",
+  "type": "string",
+  "enum": [
+    "ARH",
+    "CRH",
+    "ERH",
+    "PRH",
+    "SRH",
+    "WRH"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-office-weather-story-schema.json",
+  "title": "OfficeWeatherStory",
+  "description": "OfficeWeatherStory schema from weather.gov API",
+  "required": [
+    "startTime",
+    "endTime",
+    "updateTime",
+    "title",
+    "description",
+    "altText",
+    "priority",
+    "order",
+    "download"
+  ],
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/NWSConnectDocumentMetadata"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "altText": {
+          "type": "string",
+          "description": "Alternative text description of the content of the image for assistive technology."
+        },
+        "order": {
+          "maximum": 7,
+          "minimum": 1,
+          "type": "integer",
+          "description": "The order in which a weather story should be displayed. Unique for each object."
+        }
+      }
+    }
+  ]
+}

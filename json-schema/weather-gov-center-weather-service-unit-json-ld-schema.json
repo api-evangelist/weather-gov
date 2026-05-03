@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-center-weather-service-unit-json-ld-schema.json",
+  "title": "CenterWeatherServiceUnitJsonLd",
+  "description": "CenterWeatherServiceUnitJsonLd schema from weather.gov API"
+}

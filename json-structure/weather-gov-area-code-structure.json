@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-area-code-structure.json",
+  "name": "AreaCode",
+  "description": "State/territory codes and marine area codes",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/StateTerritoryCode"
+    },
+    {
+      "$ref": "#/components/schemas/MarineAreaCode"
+    }
+  ]
+}

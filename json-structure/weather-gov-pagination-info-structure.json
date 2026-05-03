@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-pagination-info-structure.json",
+  "name": "PaginationInfo",
+  "description": "Links for retrieving more data from paged data sets",
+  "type": "object",
+  "properties": {
+    "next": {
+      "type": "uri",
+      "description": "A link to the next page of records"
+    }
+  },
+  "required": [
+    "next"
+  ],
+  "additionalProperties": false
+}

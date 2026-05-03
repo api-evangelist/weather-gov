@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-structure/weather-gov-geo-json-feature-structure.json",
+  "name": "GeoJsonFeature",
+  "description": "A GeoJSON feature. Please refer to IETF RFC 7946 for information on the GeoJSON format.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "$ref": "#/components/schemas/JsonLdContext"
+    },
+    "id": {
+      "type": "uri"
+    },
+    "type": {
+      "enum": [
+        "Feature"
+      ],
+      "type": "string"
+    },
+    "geometry": {
+      "$ref": "#/components/schemas/GeoJsonGeometry"
+    },
+    "properties": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "type",
+    "geometry",
+    "properties"
+  ],
+  "additionalProperties": false
+}

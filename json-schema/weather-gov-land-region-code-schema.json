@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/json-schema/weather-gov-land-region-code-schema.json",
+  "title": "LandRegionCode",
+  "description": "Land region code. These correspond to the six NWS regional headquarters:\n* AR: Alaska Region\n* CR: Central Region\n* ER: Eastern Region\n* PR: Pacific Region\n* SR: Southern Region\n* WR: Western Region\n",
+  "type": "string",
+  "enum": [
+    "AR",
+    "CR",
+    "ER",
+    "PR",
+    "SR",
+    "WR"
+  ]
+}
