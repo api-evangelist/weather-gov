@@ -1,0 +1,2493 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: weather.gov API
+  description: 'weather.gov API. 65 operations. Lead operation: Weather.gov Returns All Alerts. Self-contained Naftiko capability
+    covering one Weather Gov business surface.'
+  tags:
+  - Weather Gov
+  - weather.gov API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WEATHER_GOV_API_KEY: WEATHER_GOV_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openapi
+    baseUri: https://api.weather.gov
+    description: weather.gov API business capability. Self-contained, no shared references.
+    resources:
+    - name: alerts
+      path: /alerts
+      operations:
+      - name: alertsquery
+        method: GET
+        description: Weather.gov Returns All Alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: active
+          in: query
+          type: boolean
+          description: List only active alerts (use /alerts/active endpoints instead)
+    - name: alerts-active
+      path: /alerts/active
+      operations:
+      - name: alertsactive
+        method: GET
+        description: Weather.gov Returns All Currently Active Alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-active-area-area
+      path: /alerts/active/area/{area}
+      operations:
+      - name: alertsactivearea
+        method: GET
+        description: Weather.gov Returns Active Alerts for the Given Area (state or Marine Area)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-active-count
+      path: /alerts/active/count
+      operations:
+      - name: alertsactivecount
+        method: GET
+        description: Weather.gov Returns Info on the Number of Active Alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-active-region-region
+      path: /alerts/active/region/{region}
+      operations:
+      - name: alertsactiveregion
+        method: GET
+        description: Weather.gov Returns Active Alerts for the Given Marine Region
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-active-zone-zoneId
+      path: /alerts/active/zone/{zoneId}
+      operations:
+      - name: alertsactivezone
+        method: GET
+        description: Weather.gov Returns Active Alerts for the Given NWS Public Zone or County
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-types
+      path: /alerts/types
+      operations:
+      - name: alertstypes
+        method: GET
+        description: Weather.gov Returns a List of Alert Types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alerts-id
+      path: /alerts/{id}
+      operations:
+      - name: alertssingle
+        method: GET
+        description: Weather.gov Returns a Specific Alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aviation-cwsus-cwsuId
+      path: /aviation/cwsus/{cwsuId}
+      operations:
+      - name: cwsu
+        method: GET
+        description: Weather.gov Returns Metadata About a Center Weather Service Unit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aviation-cwsus-cwsuId-cwas
+      path: /aviation/cwsus/{cwsuId}/cwas
+      operations:
+      - name: cwas
+        method: GET
+        description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aviation-cwsus-cwsuId-cwas-date-sequence
+      path: /aviation/cwsus/{cwsuId}/cwas/{date}/{sequence}
+      operations:
+      - name: cwa
+        method: GET
+        description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sequence
+          in: path
+          type: integer
+          description: Sequence number
+          required: true
+    - name: aviation-sigmets
+      path: /aviation/sigmets
+      operations:
+      - name: sigmetquery
+        method: GET
+        description: Weather.gov Returns a List of SIGMET/AIRMETs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: atsu
+          in: query
+          type: string
+          description: ATSU identifier
+        - name: sequence
+          in: query
+          type: string
+          description: SIGMET sequence number
+    - name: aviation-sigmets-atsu
+      path: /aviation/sigmets/{atsu}
+      operations:
+      - name: sigmetsbyatsu
+        method: GET
+        description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aviation-sigmets-atsu-date
+      path: /aviation/sigmets/{atsu}/{date}
+      operations:
+      - name: sigmetsbyatsubydate
+        method: GET
+        description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU for the Specified Date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: aviation-sigmets-atsu-date-time
+      path: /aviation/sigmets/{atsu}/{date}/{time}
+      operations:
+      - name: sigmet
+        method: GET
+        description: Weather.gov Returns a Specific SIGMET/AIRMET
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: glossary
+      path: /glossary
+      operations:
+      - name: glossary
+        method: GET
+        description: Weather.gov Returns Glossary Terms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gridpoints-wfo-x},{y
+      path: /gridpoints/{wfo}/{x},{y}
+      operations:
+      - name: gridpoint
+        method: GET
+        description: Weather.gov Returns Raw Numerical Forecast Data for a 2.5km Grid Area
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gridpoints-wfo-x},{y-forecast
+      path: /gridpoints/{wfo}/{x},{y}/forecast
+      operations:
+      - name: gridpointforecast
+        method: GET
+        description: Weather.gov Returns a Textual Forecast for a 2.5km Grid Area
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gridpoints-wfo-x},{y-forecast-hourly
+      path: /gridpoints/{wfo}/{x},{y}/forecast/hourly
+      operations:
+      - name: gridpointforecasthourly
+        method: GET
+        description: Weather.gov Returns a Textual Hourly Forecast for a 2.5km Grid Area
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gridpoints-wfo-x},{y-stations
+      path: /gridpoints/{wfo}/{x},{y}/stations
+      operations:
+      - name: gridpointstations
+        method: GET
+        description: Weather.gov Returns a List of Observation Stations Usable for a Given 2.5km Grid Area
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: icons
+      path: /icons
+      operations:
+      - name: iconssummary
+        method: GET
+        description: Weather.gov Returns a List of Icon Codes and Textual Descriptions. Icon Services in API Are Deprecated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: icons-set-timeOfDay-first
+      path: /icons/{set}/{timeOfDay}/{first}
+      operations:
+      - name: icons
+        method: GET
+        description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: icons-set-timeOfDay-first-second
+      path: /icons/{set}/{timeOfDay}/{first}/{second}
+      operations:
+      - name: iconsdualcondition
+        method: GET
+        description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId
+      path: /offices/{officeId}
+      operations:
+      - name: office
+        method: GET
+        description: Weather.gov Returns Metadata About a NWS Forecast Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-briefing
+      path: /offices/{officeId}/briefing
+      operations:
+      - name: officebriefing
+        method: GET
+        description: Weather.gov Returns Active Briefing for an NWS Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-briefing-download-latest
+      path: /offices/{officeId}/briefing/download/latest
+      operations:
+      - name: officebriefingdownloadlatest
+        method: GET
+        description: Weather.gov Returns the Latest Briefing for an Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-briefing-download-briefingId
+      path: /offices/{officeId}/briefing/download/{briefingId}
+      operations:
+      - name: officebriefingdownload
+        method: GET
+        description: Weather.gov Returns a Briefing for an Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-headlines
+      path: /offices/{officeId}/headlines
+      operations:
+      - name: officeheadlines
+        method: GET
+        description: Weather.gov Returns a List of News Headlines for a Given NWS Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-headlines-headlineId
+      path: /offices/{officeId}/headlines/{headlineId}
+      operations:
+      - name: officeheadline
+        method: GET
+        description: Weather.gov Returns a Specific News Headline for a Given NWS Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-weatherstories
+      path: /offices/{officeId}/weatherstories
+      operations:
+      - name: officeweatherstory
+        method: GET
+        description: Weather.gov Returns Active Weather Stories for an NWS Office
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: offices-officeId-weatherstories-download-imageId
+      path: /offices/{officeId}/weatherstories/download/{imageId}
+      operations:
+      - name: officeweatherstoryimage
+        method: GET
+        description: Weather.gov Returns the Image for a Weather Story
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: points-latitude},{longitude
+      path: /points/{latitude},{longitude}
+      operations:
+      - name: point
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Latitude/longitude Point
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: points-latitude},{longitude-radio
+      path: /points/{latitude},{longitude}/radio
+      operations:
+      - name: pointradio
+        method: GET
+        description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Latitude/longitude Point
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: points-latitude},{longitude-stations
+      path: /points/{latitude},{longitude}/stations
+      operations:
+      - name: pointstations
+        method: GET
+        description: Weather.gov Returns a List of Observation Stations for a Given Point
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products
+      path: /products
+      operations:
+      - name: productsquery
+        method: GET
+        description: Weather.gov Returns a List of Text Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location
+          in: query
+          type: array
+          description: Location id
+        - name: start
+          in: query
+          type: string
+          description: Start time
+        - name: end
+          in: query
+          type: string
+          description: End time
+        - name: office
+          in: query
+          type: array
+          description: Issuing office
+        - name: wmoid
+          in: query
+          type: array
+          description: WMO id code
+        - name: type
+          in: query
+          type: array
+          description: Product code
+        - name: limit
+          in: query
+          type: integer
+          description: Limit
+    - name: products-locations
+      path: /products/locations
+      operations:
+      - name: productlocations
+        method: GET
+        description: Weather.gov Returns a List of Valid Text Product Issuance Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-locations-locationId-types
+      path: /products/locations/{locationId}/types
+      operations:
+      - name: locationproducts
+        method: GET
+        description: Weather.gov Returns a List of Valid Text Product Types for a Given Issuance Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-types
+      path: /products/types
+      operations:
+      - name: producttypes
+        method: GET
+        description: Weather.gov Returns a List of Valid Text Product Types and Codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-types-typeId
+      path: /products/types/{typeId}
+      operations:
+      - name: productstype
+        method: GET
+        description: Weather.gov Returns a List of Text Products of a Given Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-types-typeId-locations
+      path: /products/types/{typeId}/locations
+      operations:
+      - name: productstypelocations
+        method: GET
+        description: Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given Product Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-types-typeId-locations-locationId
+      path: /products/types/{typeId}/locations/{locationId}
+      operations:
+      - name: productstypelocation
+        method: GET
+        description: Weather.gov Returns a List of Text Products of a Given Type for a Given Issuance Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-types-typeId-locations-locationId-latest
+      path: /products/types/{typeId}/locations/{locationId}/latest
+      operations:
+      - name: latestproducttypelocation
+        method: GET
+        description: Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance Location with Product Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: products-productId
+      path: /products/{productId}
+      operations:
+      - name: product
+        method: GET
+        description: Weather.gov Returns a Specific Text Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: radar-profilers-stationId
+      path: /radar/profilers/{stationId}
+      operations:
+      - name: radarprofiler
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Radar Wind Profiler
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: time
+          in: query
+          type: string
+          description: Time interval
+        - name: interval
+          in: query
+          type: string
+          description: Averaging interval
+    - name: radar-queues-host
+      path: /radar/queues/{host}
+      operations:
+      - name: radarqueue
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Radar Queue
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Record limit
+        - name: arrived
+          in: query
+          type: string
+          description: Range for arrival time
+        - name: created
+          in: query
+          type: string
+          description: Range for creation time
+        - name: published
+          in: query
+          type: string
+          description: Range for publish time
+        - name: station
+          in: query
+          type: string
+          description: Station identifier
+        - name: type
+          in: query
+          type: string
+          description: Record type
+        - name: feed
+          in: query
+          type: string
+          description: Originating product feed
+        - name: resolution
+          in: query
+          type: integer
+          description: Resolution version
+    - name: radar-servers
+      path: /radar/servers
+      operations:
+      - name: radarservers
+        method: GET
+        description: Weather.gov Returns a List of Radar Servers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportingHost
+          in: query
+          type: string
+          description: Show records from specific reporting host
+    - name: radar-servers-id
+      path: /radar/servers/{id}
+      operations:
+      - name: radarserver
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Radar Server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportingHost
+          in: query
+          type: string
+          description: Show records from specific reporting host
+    - name: radar-stations
+      path: /radar/stations
+      operations:
+      - name: radarstations
+        method: GET
+        description: Weather.gov Returns a List of Radar Stations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: stationType
+          in: query
+          type: array
+          description: Limit results to a specific station type or types
+        - name: reportingHost
+          in: query
+          type: string
+          description: Show RDA and latency info from specific reporting host
+        - name: host
+          in: query
+          type: string
+          description: Show latency info from specific LDM host
+    - name: radar-stations-stationId
+      path: /radar/stations/{stationId}
+      operations:
+      - name: radarstation
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Radar Station
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportingHost
+          in: query
+          type: string
+          description: Show RDA and latency info from specific reporting host
+        - name: host
+          in: query
+          type: string
+          description: Show latency info from specific LDM host
+    - name: radar-stations-stationId-alarms
+      path: /radar/stations/{stationId}/alarms
+      operations:
+      - name: radarstationalarms
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Radar Station Alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: radio-callSign-broadcast
+      path: /radio/{callSign}/broadcast
+      operations:
+      - name: arearadio
+        method: GET
+        description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Transmitter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stations
+      path: /stations
+      operations:
+      - name: obsstations
+        method: GET
+        description: Weather.gov Returns a List of Observation Stations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: array
+          description: Filter by observation station ID
+        - name: state
+          in: query
+          type: array
+          description: Filter by state/marine area code
+    - name: stations-stationId
+      path: /stations/{stationId}
+      operations:
+      - name: obsstation
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Observation Station
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stations-stationId-observations
+      path: /stations/{stationId}/observations
+      operations:
+      - name: stationobservationlist
+        method: GET
+        description: Weather.gov Returns a List of Observations for a Given Station
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Limit
+    - name: stations-stationId-observations-latest
+      path: /stations/{stationId}/observations/latest
+      operations:
+      - name: stationobservationlatest
+        method: GET
+        description: Weather.gov Returns the Latest Observation for a Station
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: require_qc
+          in: query
+          type: boolean
+          description: Require QC
+    - name: stations-stationId-observations-time
+      path: /stations/{stationId}/observations/{time}
+      operations:
+      - name: stationobservationtime
+        method: GET
+        description: Weather.gov Returns a Single Observation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: time
+          in: path
+          type: string
+          description: Timestamp of requested observation
+          required: true
+    - name: stations-stationId-tafs
+      path: /stations/{stationId}/tafs
+      operations:
+      - name: tafs
+        method: GET
+        description: Weather.gov Returns Terminal Aerodrome Forecasts for the Specified Airport Station.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: stations-stationId-tafs-date-time
+      path: /stations/{stationId}/tafs/{date}/{time}
+      operations:
+      - name: taf
+        method: GET
+        description: Weather.gov Returns a Single Terminal Aerodrome Forecast.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: thumbnails-satellite-area
+      path: /thumbnails/satellite/{area}
+      operations:
+      - name: satellitethumbnails
+        method: GET
+        description: Weather.gov Returns a Thumbnail Image for a Satellite Region. Image Services in API Are Deprecated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: zones
+      path: /zones
+      operations:
+      - name: zonelist
+        method: GET
+        description: Weather.gov Returns a List of Zones
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: array
+          description: Zone ID (forecast or county)
+        - name: area
+          in: query
+          type: array
+          description: State/marine area code
+        - name: region
+          in: query
+          type: array
+          description: Region code
+        - name: type
+          in: query
+          type: array
+          description: Zone type
+        - name: point
+          in: query
+          type: string
+          description: Point (latitude,longitude)
+        - name: include_geometry
+          in: query
+          type: boolean
+          description: Include geometry in results (true/false)
+        - name: limit
+          in: query
+          type: integer
+          description: Limit
+        - name: effective
+          in: query
+          type: string
+          description: Effective date/time
+    - name: zones-forecast-zoneId-observations
+      path: /zones/forecast/{zoneId}/observations
+      operations:
+      - name: zoneobs
+        method: GET
+        description: Weather.gov Returns a List of Observations for a Given Zone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start
+          in: query
+          type: string
+          description: Start date/time
+        - name: end
+          in: query
+          type: string
+          description: End date/time
+        - name: limit
+          in: query
+          type: integer
+          description: Limit
+    - name: zones-forecast-zoneId-stations
+      path: /zones/forecast/{zoneId}/stations
+      operations:
+      - name: zonestations
+        method: GET
+        description: Weather.gov Returns a List of Observation Stations for a Given Zone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: zones-type
+      path: /zones/{type}
+      operations:
+      - name: zonelisttype
+        method: GET
+        description: Weather.gov Returns a List of Zones of a Given Type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: array
+          description: Zone ID (forecast or county)
+        - name: area
+          in: query
+          type: array
+          description: State/marine area code
+        - name: region
+          in: query
+          type: array
+          description: Region code
+        - name: type
+          in: query
+          type: array
+          description: Zone type
+        - name: point
+          in: query
+          type: string
+          description: Point (latitude,longitude)
+        - name: include_geometry
+          in: query
+          type: boolean
+          description: Include geometry in results (true/false)
+        - name: limit
+          in: query
+          type: integer
+          description: Limit
+        - name: effective
+          in: query
+          type: string
+          description: Effective date/time
+    - name: zones-type-zoneId
+      path: /zones/{type}/{zoneId}
+      operations:
+      - name: zone
+        method: GET
+        description: Weather.gov Returns Metadata About a Given Zone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: effective
+          in: query
+          type: string
+          description: Effective date/time
+    - name: zones-type-zoneId-forecast
+      path: /zones/{type}/{zoneId}/forecast
+      operations:
+      - name: zoneforecast
+        method: GET
+        description: Weather.gov Returns the Current Zone Forecast for a Given Zone
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: User-Agent
+      value: '{{env.WEATHER_GOV_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openapi-rest
+    port: 8080
+    description: REST adapter for weather.gov API. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/alerts
+      name: alerts
+      description: REST surface for alerts.
+      operations:
+      - method: GET
+        name: alertsquery
+        description: Weather.gov Returns All Alerts
+        call: openapi.alertsquery
+        with:
+          active: rest.active
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/active
+      name: alerts-active
+      description: REST surface for alerts-active.
+      operations:
+      - method: GET
+        name: alertsactive
+        description: Weather.gov Returns All Currently Active Alerts
+        call: openapi.alertsactive
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/active/area/{area}
+      name: alerts-active-area-area
+      description: REST surface for alerts-active-area-area.
+      operations:
+      - method: GET
+        name: alertsactivearea
+        description: Weather.gov Returns Active Alerts for the Given Area (state or Marine Area)
+        call: openapi.alertsactivearea
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/active/count
+      name: alerts-active-count
+      description: REST surface for alerts-active-count.
+      operations:
+      - method: GET
+        name: alertsactivecount
+        description: Weather.gov Returns Info on the Number of Active Alerts
+        call: openapi.alertsactivecount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/active/region/{region}
+      name: alerts-active-region-region
+      description: REST surface for alerts-active-region-region.
+      operations:
+      - method: GET
+        name: alertsactiveregion
+        description: Weather.gov Returns Active Alerts for the Given Marine Region
+        call: openapi.alertsactiveregion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/active/zone/{zoneid}
+      name: alerts-active-zone-zoneid
+      description: REST surface for alerts-active-zone-zoneId.
+      operations:
+      - method: GET
+        name: alertsactivezone
+        description: Weather.gov Returns Active Alerts for the Given NWS Public Zone or County
+        call: openapi.alertsactivezone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/types
+      name: alerts-types
+      description: REST surface for alerts-types.
+      operations:
+      - method: GET
+        name: alertstypes
+        description: Weather.gov Returns a List of Alert Types
+        call: openapi.alertstypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alerts/{id}
+      name: alerts-id
+      description: REST surface for alerts-id.
+      operations:
+      - method: GET
+        name: alertssingle
+        description: Weather.gov Returns a Specific Alert
+        call: openapi.alertssingle
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/cwsus/{cwsuid}
+      name: aviation-cwsus-cwsuid
+      description: REST surface for aviation-cwsus-cwsuId.
+      operations:
+      - method: GET
+        name: cwsu
+        description: Weather.gov Returns Metadata About a Center Weather Service Unit
+        call: openapi.cwsu
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/cwsus/{cwsuid}/cwas
+      name: aviation-cwsus-cwsuid-cwas
+      description: REST surface for aviation-cwsus-cwsuId-cwas.
+      operations:
+      - method: GET
+        name: cwas
+        description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+        call: openapi.cwas
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/cwsus/{cwsuid}/cwas/{date}/{sequence}
+      name: aviation-cwsus-cwsuid-cwas-date-sequence
+      description: REST surface for aviation-cwsus-cwsuId-cwas-date-sequence.
+      operations:
+      - method: GET
+        name: cwa
+        description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+        call: openapi.cwa
+        with:
+          sequence: rest.sequence
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/sigmets
+      name: aviation-sigmets
+      description: REST surface for aviation-sigmets.
+      operations:
+      - method: GET
+        name: sigmetquery
+        description: Weather.gov Returns a List of SIGMET/AIRMETs
+        call: openapi.sigmetquery
+        with:
+          atsu: rest.atsu
+          sequence: rest.sequence
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/sigmets/{atsu}
+      name: aviation-sigmets-atsu
+      description: REST surface for aviation-sigmets-atsu.
+      operations:
+      - method: GET
+        name: sigmetsbyatsu
+        description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU
+        call: openapi.sigmetsbyatsu
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/sigmets/{atsu}/{date}
+      name: aviation-sigmets-atsu-date
+      description: REST surface for aviation-sigmets-atsu-date.
+      operations:
+      - method: GET
+        name: sigmetsbyatsubydate
+        description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU for the Specified Date
+        call: openapi.sigmetsbyatsubydate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aviation/sigmets/{atsu}/{date}/{time}
+      name: aviation-sigmets-atsu-date-time
+      description: REST surface for aviation-sigmets-atsu-date-time.
+      operations:
+      - method: GET
+        name: sigmet
+        description: Weather.gov Returns a Specific SIGMET/AIRMET
+        call: openapi.sigmet
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/glossary
+      name: glossary
+      description: REST surface for glossary.
+      operations:
+      - method: GET
+        name: glossary
+        description: Weather.gov Returns Glossary Terms
+        call: openapi.glossary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gridpoints/{wfo}/{x-y}
+      name: gridpoints-wfo-x-y
+      description: REST surface for gridpoints-wfo-x},{y.
+      operations:
+      - method: GET
+        name: gridpoint
+        description: Weather.gov Returns Raw Numerical Forecast Data for a 2.5km Grid Area
+        call: openapi.gridpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gridpoints/{wfo}/{x-y}/forecast
+      name: gridpoints-wfo-x-y-forecast
+      description: REST surface for gridpoints-wfo-x},{y-forecast.
+      operations:
+      - method: GET
+        name: gridpointforecast
+        description: Weather.gov Returns a Textual Forecast for a 2.5km Grid Area
+        call: openapi.gridpointforecast
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gridpoints/{wfo}/{x-y}/forecast/hourly
+      name: gridpoints-wfo-x-y-forecast-hourly
+      description: REST surface for gridpoints-wfo-x},{y-forecast-hourly.
+      operations:
+      - method: GET
+        name: gridpointforecasthourly
+        description: Weather.gov Returns a Textual Hourly Forecast for a 2.5km Grid Area
+        call: openapi.gridpointforecasthourly
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gridpoints/{wfo}/{x-y}/stations
+      name: gridpoints-wfo-x-y-stations
+      description: REST surface for gridpoints-wfo-x},{y-stations.
+      operations:
+      - method: GET
+        name: gridpointstations
+        description: Weather.gov Returns a List of Observation Stations Usable for a Given 2.5km Grid Area
+        call: openapi.gridpointstations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/icons
+      name: icons
+      description: REST surface for icons.
+      operations:
+      - method: GET
+        name: iconssummary
+        description: Weather.gov Returns a List of Icon Codes and Textual Descriptions. Icon Services in API Are Deprecated.
+        call: openapi.iconssummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/icons/{set}/{timeofday}/{first}
+      name: icons-set-timeofday-first
+      description: REST surface for icons-set-timeOfDay-first.
+      operations:
+      - method: GET
+        name: icons
+        description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+        call: openapi.icons
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/icons/{set}/{timeofday}/{first}/{second}
+      name: icons-set-timeofday-first-second
+      description: REST surface for icons-set-timeOfDay-first-second.
+      operations:
+      - method: GET
+        name: iconsdualcondition
+        description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+        call: openapi.iconsdualcondition
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}
+      name: offices-officeid
+      description: REST surface for offices-officeId.
+      operations:
+      - method: GET
+        name: office
+        description: Weather.gov Returns Metadata About a NWS Forecast Office
+        call: openapi.office
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/briefing
+      name: offices-officeid-briefing
+      description: REST surface for offices-officeId-briefing.
+      operations:
+      - method: GET
+        name: officebriefing
+        description: Weather.gov Returns Active Briefing for an NWS Office
+        call: openapi.officebriefing
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/briefing/download/latest
+      name: offices-officeid-briefing-download-latest
+      description: REST surface for offices-officeId-briefing-download-latest.
+      operations:
+      - method: GET
+        name: officebriefingdownloadlatest
+        description: Weather.gov Returns the Latest Briefing for an Office
+        call: openapi.officebriefingdownloadlatest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/briefing/download/{briefingid}
+      name: offices-officeid-briefing-download-briefingid
+      description: REST surface for offices-officeId-briefing-download-briefingId.
+      operations:
+      - method: GET
+        name: officebriefingdownload
+        description: Weather.gov Returns a Briefing for an Office
+        call: openapi.officebriefingdownload
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/headlines
+      name: offices-officeid-headlines
+      description: REST surface for offices-officeId-headlines.
+      operations:
+      - method: GET
+        name: officeheadlines
+        description: Weather.gov Returns a List of News Headlines for a Given NWS Office
+        call: openapi.officeheadlines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/headlines/{headlineid}
+      name: offices-officeid-headlines-headlineid
+      description: REST surface for offices-officeId-headlines-headlineId.
+      operations:
+      - method: GET
+        name: officeheadline
+        description: Weather.gov Returns a Specific News Headline for a Given NWS Office
+        call: openapi.officeheadline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/weatherstories
+      name: offices-officeid-weatherstories
+      description: REST surface for offices-officeId-weatherstories.
+      operations:
+      - method: GET
+        name: officeweatherstory
+        description: Weather.gov Returns Active Weather Stories for an NWS Office
+        call: openapi.officeweatherstory
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/offices/{officeid}/weatherstories/download/{imageid}
+      name: offices-officeid-weatherstories-download-imageid
+      description: REST surface for offices-officeId-weatherstories-download-imageId.
+      operations:
+      - method: GET
+        name: officeweatherstoryimage
+        description: Weather.gov Returns the Image for a Weather Story
+        call: openapi.officeweatherstoryimage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/points/{latitude-longitude}
+      name: points-latitude-longitude
+      description: REST surface for points-latitude},{longitude.
+      operations:
+      - method: GET
+        name: point
+        description: Weather.gov Returns Metadata About a Given Latitude/longitude Point
+        call: openapi.point
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/points/{latitude-longitude}/radio
+      name: points-latitude-longitude-radio
+      description: REST surface for points-latitude},{longitude-radio.
+      operations:
+      - method: GET
+        name: pointradio
+        description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Latitude/longitude Point
+        call: openapi.pointradio
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/points/{latitude-longitude}/stations
+      name: points-latitude-longitude-stations
+      description: REST surface for points-latitude},{longitude-stations.
+      operations:
+      - method: GET
+        name: pointstations
+        description: Weather.gov Returns a List of Observation Stations for a Given Point
+        call: openapi.pointstations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products
+      name: products
+      description: REST surface for products.
+      operations:
+      - method: GET
+        name: productsquery
+        description: Weather.gov Returns a List of Text Products
+        call: openapi.productsquery
+        with:
+          location: rest.location
+          start: rest.start
+          end: rest.end
+          office: rest.office
+          wmoid: rest.wmoid
+          type: rest.type
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/locations
+      name: products-locations
+      description: REST surface for products-locations.
+      operations:
+      - method: GET
+        name: productlocations
+        description: Weather.gov Returns a List of Valid Text Product Issuance Locations
+        call: openapi.productlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/locations/{locationid}/types
+      name: products-locations-locationid-types
+      description: REST surface for products-locations-locationId-types.
+      operations:
+      - method: GET
+        name: locationproducts
+        description: Weather.gov Returns a List of Valid Text Product Types for a Given Issuance Location
+        call: openapi.locationproducts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/types
+      name: products-types
+      description: REST surface for products-types.
+      operations:
+      - method: GET
+        name: producttypes
+        description: Weather.gov Returns a List of Valid Text Product Types and Codes
+        call: openapi.producttypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/types/{typeid}
+      name: products-types-typeid
+      description: REST surface for products-types-typeId.
+      operations:
+      - method: GET
+        name: productstype
+        description: Weather.gov Returns a List of Text Products of a Given Type
+        call: openapi.productstype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/types/{typeid}/locations
+      name: products-types-typeid-locations
+      description: REST surface for products-types-typeId-locations.
+      operations:
+      - method: GET
+        name: productstypelocations
+        description: Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given Product Type
+        call: openapi.productstypelocations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/types/{typeid}/locations/{locationid}
+      name: products-types-typeid-locations-locationid
+      description: REST surface for products-types-typeId-locations-locationId.
+      operations:
+      - method: GET
+        name: productstypelocation
+        description: Weather.gov Returns a List of Text Products of a Given Type for a Given Issuance Location
+        call: openapi.productstypelocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/types/{typeid}/locations/{locationid}/latest
+      name: products-types-typeid-locations-locationid-latest
+      description: REST surface for products-types-typeId-locations-locationId-latest.
+      operations:
+      - method: GET
+        name: latestproducttypelocation
+        description: Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance Location with Product Text
+        call: openapi.latestproducttypelocation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/{productid}
+      name: products-productid
+      description: REST surface for products-productId.
+      operations:
+      - method: GET
+        name: product
+        description: Weather.gov Returns a Specific Text Product
+        call: openapi.product
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/profilers/{stationid}
+      name: radar-profilers-stationid
+      description: REST surface for radar-profilers-stationId.
+      operations:
+      - method: GET
+        name: radarprofiler
+        description: Weather.gov Returns Metadata About a Given Radar Wind Profiler
+        call: openapi.radarprofiler
+        with:
+          time: rest.time
+          interval: rest.interval
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/queues/{host}
+      name: radar-queues-host
+      description: REST surface for radar-queues-host.
+      operations:
+      - method: GET
+        name: radarqueue
+        description: Weather.gov Returns Metadata About a Given Radar Queue
+        call: openapi.radarqueue
+        with:
+          limit: rest.limit
+          arrived: rest.arrived
+          created: rest.created
+          published: rest.published
+          station: rest.station
+          type: rest.type
+          feed: rest.feed
+          resolution: rest.resolution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/servers
+      name: radar-servers
+      description: REST surface for radar-servers.
+      operations:
+      - method: GET
+        name: radarservers
+        description: Weather.gov Returns a List of Radar Servers
+        call: openapi.radarservers
+        with:
+          reportingHost: rest.reportingHost
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/servers/{id}
+      name: radar-servers-id
+      description: REST surface for radar-servers-id.
+      operations:
+      - method: GET
+        name: radarserver
+        description: Weather.gov Returns Metadata About a Given Radar Server
+        call: openapi.radarserver
+        with:
+          reportingHost: rest.reportingHost
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/stations
+      name: radar-stations
+      description: REST surface for radar-stations.
+      operations:
+      - method: GET
+        name: radarstations
+        description: Weather.gov Returns a List of Radar Stations
+        call: openapi.radarstations
+        with:
+          stationType: rest.stationType
+          reportingHost: rest.reportingHost
+          host: rest.host
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/stations/{stationid}
+      name: radar-stations-stationid
+      description: REST surface for radar-stations-stationId.
+      operations:
+      - method: GET
+        name: radarstation
+        description: Weather.gov Returns Metadata About a Given Radar Station
+        call: openapi.radarstation
+        with:
+          reportingHost: rest.reportingHost
+          host: rest.host
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radar/stations/{stationid}/alarms
+      name: radar-stations-stationid-alarms
+      description: REST surface for radar-stations-stationId-alarms.
+      operations:
+      - method: GET
+        name: radarstationalarms
+        description: Weather.gov Returns Metadata About a Given Radar Station Alarms
+        call: openapi.radarstationalarms
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/radio/{callsign}/broadcast
+      name: radio-callsign-broadcast
+      description: REST surface for radio-callSign-broadcast.
+      operations:
+      - method: GET
+        name: arearadio
+        description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Transmitter
+        call: openapi.arearadio
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations
+      name: stations
+      description: REST surface for stations.
+      operations:
+      - method: GET
+        name: obsstations
+        description: Weather.gov Returns a List of Observation Stations.
+        call: openapi.obsstations
+        with:
+          id: rest.id
+          state: rest.state
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}
+      name: stations-stationid
+      description: REST surface for stations-stationId.
+      operations:
+      - method: GET
+        name: obsstation
+        description: Weather.gov Returns Metadata About a Given Observation Station
+        call: openapi.obsstation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}/observations
+      name: stations-stationid-observations
+      description: REST surface for stations-stationId-observations.
+      operations:
+      - method: GET
+        name: stationobservationlist
+        description: Weather.gov Returns a List of Observations for a Given Station
+        call: openapi.stationobservationlist
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}/observations/latest
+      name: stations-stationid-observations-latest
+      description: REST surface for stations-stationId-observations-latest.
+      operations:
+      - method: GET
+        name: stationobservationlatest
+        description: Weather.gov Returns the Latest Observation for a Station
+        call: openapi.stationobservationlatest
+        with:
+          require_qc: rest.require_qc
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}/observations/{time}
+      name: stations-stationid-observations-time
+      description: REST surface for stations-stationId-observations-time.
+      operations:
+      - method: GET
+        name: stationobservationtime
+        description: Weather.gov Returns a Single Observation.
+        call: openapi.stationobservationtime
+        with:
+          time: rest.time
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}/tafs
+      name: stations-stationid-tafs
+      description: REST surface for stations-stationId-tafs.
+      operations:
+      - method: GET
+        name: tafs
+        description: Weather.gov Returns Terminal Aerodrome Forecasts for the Specified Airport Station.
+        call: openapi.tafs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stations/{stationid}/tafs/{date}/{time}
+      name: stations-stationid-tafs-date-time
+      description: REST surface for stations-stationId-tafs-date-time.
+      operations:
+      - method: GET
+        name: taf
+        description: Weather.gov Returns a Single Terminal Aerodrome Forecast.
+        call: openapi.taf
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/thumbnails/satellite/{area}
+      name: thumbnails-satellite-area
+      description: REST surface for thumbnails-satellite-area.
+      operations:
+      - method: GET
+        name: satellitethumbnails
+        description: Weather.gov Returns a Thumbnail Image for a Satellite Region. Image Services in API Are Deprecated.
+        call: openapi.satellitethumbnails
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones
+      name: zones
+      description: REST surface for zones.
+      operations:
+      - method: GET
+        name: zonelist
+        description: Weather.gov Returns a List of Zones
+        call: openapi.zonelist
+        with:
+          id: rest.id
+          area: rest.area
+          region: rest.region
+          type: rest.type
+          point: rest.point
+          include_geometry: rest.include_geometry
+          limit: rest.limit
+          effective: rest.effective
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones/forecast/{zoneid}/observations
+      name: zones-forecast-zoneid-observations
+      description: REST surface for zones-forecast-zoneId-observations.
+      operations:
+      - method: GET
+        name: zoneobs
+        description: Weather.gov Returns a List of Observations for a Given Zone
+        call: openapi.zoneobs
+        with:
+          start: rest.start
+          end: rest.end
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones/forecast/{zoneid}/stations
+      name: zones-forecast-zoneid-stations
+      description: REST surface for zones-forecast-zoneId-stations.
+      operations:
+      - method: GET
+        name: zonestations
+        description: Weather.gov Returns a List of Observation Stations for a Given Zone
+        call: openapi.zonestations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones/{type}
+      name: zones-type
+      description: REST surface for zones-type.
+      operations:
+      - method: GET
+        name: zonelisttype
+        description: Weather.gov Returns a List of Zones of a Given Type
+        call: openapi.zonelisttype
+        with:
+          id: rest.id
+          area: rest.area
+          region: rest.region
+          type: rest.type
+          point: rest.point
+          include_geometry: rest.include_geometry
+          limit: rest.limit
+          effective: rest.effective
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones/{type}/{zoneid}
+      name: zones-type-zoneid
+      description: REST surface for zones-type-zoneId.
+      operations:
+      - method: GET
+        name: zone
+        description: Weather.gov Returns Metadata About a Given Zone
+        call: openapi.zone
+        with:
+          effective: rest.effective
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/zones/{type}/{zoneid}/forecast
+      name: zones-type-zoneid-forecast
+      description: REST surface for zones-type-zoneId-forecast.
+      operations:
+      - method: GET
+        name: zoneforecast
+        description: Weather.gov Returns the Current Zone Forecast for a Given Zone
+        call: openapi.zoneforecast
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openapi-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for weather.gov API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: weather-gov-returns-all-alerts
+      description: Weather.gov Returns All Alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsquery
+      with:
+        active: tools.active
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-all-currently-active
+      description: Weather.gov Returns All Currently Active Alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsactive
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-active-alerts-given
+      description: Weather.gov Returns Active Alerts for the Given Area (state or Marine Area)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsactivearea
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-info-number-active
+      description: Weather.gov Returns Info on the Number of Active Alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsactivecount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-active-alerts-given-2
+      description: Weather.gov Returns Active Alerts for the Given Marine Region
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsactiveregion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-active-alerts-given-3
+      description: Weather.gov Returns Active Alerts for the Given NWS Public Zone or County
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertsactivezone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-alert-types
+      description: Weather.gov Returns a List of Alert Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertstypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-specific-alert
+      description: Weather.gov Returns a Specific Alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.alertssingle
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-center
+      description: Weather.gov Returns Metadata About a Center Weather Service Unit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.cwsu
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-center-weather
+      description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.cwas
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-center-weather-2
+      description: Weather.gov Returns a List of Center Weather Advisories from a CWSU
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.cwa
+      with:
+        sequence: tools.sequence
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-sigmet-airmets
+      description: Weather.gov Returns a List of SIGMET/AIRMETs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.sigmetquery
+      with:
+        atsu: tools.atsu
+        sequence: tools.sequence
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-sigmet-airmets-2
+      description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.sigmetsbyatsu
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-sigmet-airmets-3
+      description: Weather.gov Returns a List of SIGMET/AIRMETs for the Specified ATSU for the Specified Date
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.sigmetsbyatsubydate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-specific-sigmet-airmet
+      description: Weather.gov Returns a Specific SIGMET/AIRMET
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.sigmet
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-glossary-terms
+      description: Weather.gov Returns Glossary Terms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.glossary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-raw-numerical-forecast
+      description: Weather.gov Returns Raw Numerical Forecast Data for a 2.5km Grid Area
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.gridpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-textual-forecast-2-5km
+      description: Weather.gov Returns a Textual Forecast for a 2.5km Grid Area
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.gridpointforecast
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-textual-hourly-forecast
+      description: Weather.gov Returns a Textual Hourly Forecast for a 2.5km Grid Area
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.gridpointforecasthourly
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observation-stations
+      description: Weather.gov Returns a List of Observation Stations Usable for a Given 2.5km Grid Area
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.gridpointstations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-icon-codes
+      description: Weather.gov Returns a List of Icon Codes and Textual Descriptions. Icon Services in API Are Deprecated.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.iconssummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-forecast-icon-icon
+      description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.icons
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-forecast-icon-icon-2
+      description: Weather.gov Returns a Forecast Icon. Icon Services in API Are Deprecated.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.iconsdualcondition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-nws
+      description: Weather.gov Returns Metadata About a NWS Forecast Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.office
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-active-briefing-nws
+      description: Weather.gov Returns Active Briefing for an NWS Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officebriefing
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-latest-briefing-office
+      description: Weather.gov Returns the Latest Briefing for an Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officebriefingdownloadlatest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-briefing-office
+      description: Weather.gov Returns a Briefing for an Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officebriefingdownload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-news-headlines
+      description: Weather.gov Returns a List of News Headlines for a Given NWS Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officeheadlines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-specific-news-headline
+      description: Weather.gov Returns a Specific News Headline for a Given NWS Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officeheadline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-active-weather-stories
+      description: Weather.gov Returns Active Weather Stories for an NWS Office
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officeweatherstory
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-image-weather-story
+      description: Weather.gov Returns the Image for a Weather Story
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.officeweatherstoryimage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given
+      description: Weather.gov Returns Metadata About a Given Latitude/longitude Point
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.point
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-noaa-weather-radio
+      description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Latitude/longitude Point
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.pointradio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observation-stations-2
+      description: Weather.gov Returns a List of Observation Stations for a Given Point
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.pointstations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-text-products
+      description: Weather.gov Returns a List of Text Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.productsquery
+      with:
+        location: tools.location
+        start: tools.start
+        end: tools.end
+        office: tools.office
+        wmoid: tools.wmoid
+        type: tools.type
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-valid-text
+      description: Weather.gov Returns a List of Valid Text Product Issuance Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.productlocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-valid-text-2
+      description: Weather.gov Returns a List of Valid Text Product Types for a Given Issuance Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.locationproducts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-valid-text-3
+      description: Weather.gov Returns a List of Valid Text Product Types and Codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.producttypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-text-products-2
+      description: Weather.gov Returns a List of Text Products of a Given Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.productstype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-valid-text-4
+      description: Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given Product Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.productstypelocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-text-products-3
+      description: Weather.gov Returns a List of Text Products of a Given Type for a Given Issuance Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.productstypelocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-latest-text-products
+      description: Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance Location with Product Text
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.latestproducttypelocation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-specific-text-product
+      description: Weather.gov Returns a Specific Text Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.product
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-2
+      description: Weather.gov Returns Metadata About a Given Radar Wind Profiler
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarprofiler
+      with:
+        time: tools.time
+        interval: tools.interval
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-3
+      description: Weather.gov Returns Metadata About a Given Radar Queue
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarqueue
+      with:
+        limit: tools.limit
+        arrived: tools.arrived
+        created: tools.created
+        published: tools.published
+        station: tools.station
+        type: tools.type
+        feed: tools.feed
+        resolution: tools.resolution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-radar-servers
+      description: Weather.gov Returns a List of Radar Servers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarservers
+      with:
+        reportingHost: tools.reportingHost
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-4
+      description: Weather.gov Returns Metadata About a Given Radar Server
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarserver
+      with:
+        reportingHost: tools.reportingHost
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-radar-stations
+      description: Weather.gov Returns a List of Radar Stations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarstations
+      with:
+        stationType: tools.stationType
+        reportingHost: tools.reportingHost
+        host: tools.host
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-5
+      description: Weather.gov Returns Metadata About a Given Radar Station
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarstation
+      with:
+        reportingHost: tools.reportingHost
+        host: tools.host
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-6
+      description: Weather.gov Returns Metadata About a Given Radar Station Alarms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.radarstationalarms
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-noaa-weather-radio-2
+      description: Weather.gov Returns NOAA Weather Radio Broadcast Script for a Transmitter
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.arearadio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observation-stations-3
+      description: Weather.gov Returns a List of Observation Stations.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.obsstations
+      with:
+        id: tools.id
+        state: tools.state
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-7
+      description: Weather.gov Returns Metadata About a Given Observation Station
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.obsstation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observations-given
+      description: Weather.gov Returns a List of Observations for a Given Station
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.stationobservationlist
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-latest-observation-station
+      description: Weather.gov Returns the Latest Observation for a Station
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.stationobservationlatest
+      with:
+        require_qc: tools.require_qc
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-single-observation
+      description: Weather.gov Returns a Single Observation.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.stationobservationtime
+      with:
+        time: tools.time
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-terminal-aerodrome-forecasts
+      description: Weather.gov Returns Terminal Aerodrome Forecasts for the Specified Airport Station.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.tafs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-single-terminal-aerodrome
+      description: Weather.gov Returns a Single Terminal Aerodrome Forecast.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.taf
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-thumbnail-image-satellite
+      description: Weather.gov Returns a Thumbnail Image for a Satellite Region. Image Services in API Are Deprecated.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.satellitethumbnails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-zones
+      description: Weather.gov Returns a List of Zones
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zonelist
+      with:
+        id: tools.id
+        area: tools.area
+        region: tools.region
+        type: tools.type
+        point: tools.point
+        include_geometry: tools.include_geometry
+        limit: tools.limit
+        effective: tools.effective
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observations-given-2
+      description: Weather.gov Returns a List of Observations for a Given Zone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zoneobs
+      with:
+        start: tools.start
+        end: tools.end
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-observation-stations-4
+      description: Weather.gov Returns a List of Observation Stations for a Given Zone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zonestations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-list-zones-given
+      description: Weather.gov Returns a List of Zones of a Given Type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zonelisttype
+      with:
+        id: tools.id
+        area: tools.area
+        region: tools.region
+        type: tools.type
+        point: tools.point
+        include_geometry: tools.include_geometry
+        limit: tools.limit
+        effective: tools.effective
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-metadata-about-given-8
+      description: Weather.gov Returns Metadata About a Given Zone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zone
+      with:
+        effective: tools.effective
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: weather-gov-returns-current-zone-forecast
+      description: Weather.gov Returns the Current Zone Forecast for a Given Zone
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi.zoneforecast
+      outputParameters:
+      - type: object
+        mapping: $.
