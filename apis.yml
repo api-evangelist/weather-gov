@@ -2,7 +2,7 @@ aid: weather-gov
 url: https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/apis.yml
 apis:
   - name: Weather.gov API Web Service
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.weather.gov/documentation/services-web-api
     baseURL: https://api.weather.gov
     properties:
