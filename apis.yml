@@ -36,6 +36,10 @@ tags:
   - Open Data
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
+  - type: DomainSecurity
+    url: security/weather-gov-domain-security.yml
+  - type: Authentication
+    url: authentication/weather-gov-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/noaa-nws
   - url: https://www.weather.gov/documentation/services-web-api
