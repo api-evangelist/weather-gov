@@ -1,6 +1,23 @@
+# weather-gov — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on weather.gov
+#   - path-params-casing: snake @ 52% (n=82)
+#   - query-params-casing: snake @ 94% (n=89)
+#   - operationid-casing: snake @ 94% (n=65)
+#   - schema-names-casing: pascal @ 100% (n=108)
+#   - schema-properties-casing: snake @ 47% (n=421)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - pagination params observed: ['cursor', 'limit']
+#   - merge: kept 24 existing, added 5 measured, upgraded 0
+#   - added: servers-expected-domain, path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing
+extends:
+  - spectral:oas
 rules:
-
-  # INFO / METADATA
   info-title-required:
     description: Info must have a title
     message: OpenAPI spec must have a title in info
@@ -9,7 +26,6 @@ rules:
     then:
       field: title
       function: truthy
-
   info-description-required:
     description: Info must have a description
     message: OpenAPI spec must have a description in info
@@ -18,7 +34,6 @@ rules:
     then:
       field: description
       function: truthy
-
   info-version-required:
     description: Info must have a version
     message: OpenAPI spec must have a version
@@ -27,8 +42,6 @@ rules:
     then:
       field: version
       function: truthy
-
-  # OPENAPI VERSION
   openapi-version-3:
     description: Must use OpenAPI 3.x
     message: Spec must use OpenAPI 3.0.x
@@ -38,9 +51,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\.0\\."
-
-  # SERVERS
+        match: ^3\.0\.
   servers-required:
     description: Servers array must be defined
     message: Spec must define servers
@@ -49,7 +60,6 @@ rules:
     then:
       field: servers
       function: truthy
-
   servers-https-only:
     description: All server URLs must use HTTPS
     message: Server URL must use HTTPS
@@ -58,30 +68,25 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
-  # PATHS — NAMING CONVENTIONS
+        match: ^https://
   paths-kebab-case:
     description: Path segments must use kebab-case
-    message: "Path segments must be kebab-case: {{value}}"
+    message: 'Path segments must be kebab-case: {{value}}'
     severity: warn
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        match: "^(\\/[a-z0-9{}_,\\-\\/]*)*$"
-
+        match: ^(\/[a-z0-9{}_,\-\/]*)*$
   paths-no-trailing-slash:
     description: Paths must not have trailing slashes
-    message: "Path must not end with a trailing slash: {{value}}"
+    message: 'Path must not end with a trailing slash: {{value}}'
     severity: warn
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        notMatch: "\\/$"
-
-  # OPERATIONS
+        notMatch: \/$
   operation-operationId-required:
     description: Every operation must have an operationId
     message: Operation must have an operationId
@@ -90,17 +95,15 @@ rules:
     then:
       field: operationId
       function: truthy
-
   operation-operationId-snake-case:
     description: OperationId must use snake_case
-    message: "OperationId must use snake_case: {{value}}"
+    message: 'OperationId must use snake_case: {{value}}'
     severity: warn
     given: $.paths[*][get,post,put,delete,patch].operationId
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
-
+        match: ^[a-z][a-z0-9_]*$
   operation-description-required:
     description: Every operation must have a description
     message: Operation must have a description
@@ -109,7 +112,6 @@ rules:
     then:
       field: description
       function: truthy
-
   operation-tags-required:
     description: Every operation must have tags
     message: Operation must have at least one tag
@@ -118,8 +120,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # PARAMETERS
   parameter-description-required:
     description: Every parameter must have a description
     message: Parameter must have a description
@@ -128,7 +128,6 @@ rules:
     then:
       field: description
       function: truthy
-
   parameter-schema-required:
     description: Every parameter must have a schema
     message: Parameter must have a schema
@@ -137,8 +136,6 @@ rules:
     then:
       field: schema
       function: truthy
-
-  # RESPONSES
   response-success-required:
     description: Every operation must have a 2xx success response
     message: Operation must define at least one 2xx success response
@@ -149,7 +146,6 @@ rules:
       functionOptions:
         schema:
           minProperties: 1
-
   response-description-required:
     description: Every response must have a description
     message: Response must have a description
@@ -158,8 +154,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # SCHEMAS
   schema-type-required:
     description: Schema properties must define a type
     message: Schema must have a type defined
@@ -168,7 +162,6 @@ rules:
     then:
       field: type
       function: truthy
-
   schema-description-recommended:
     description: Schemas should have descriptions
     message: Schema should have a description
@@ -177,8 +170,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # SECURITY
   security-schemes-defined:
     description: Security schemes must be defined in components
     message: API must define security schemes
@@ -186,8 +177,6 @@ rules:
     given: $.components.securitySchemes
     then:
       function: truthy
-
-  # HTTP METHOD CONVENTIONS
   get-no-request-body:
     description: GET operations must not have a request body
     message: GET operation must not have a requestBody
@@ -196,7 +185,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
   delete-no-request-body:
     description: DELETE operations should not have a request body
     message: DELETE operation should not have a requestBody
@@ -205,8 +193,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # GENERAL QUALITY
   no-empty-descriptions:
     description: Descriptions must not be empty strings
     message: Description must not be empty
@@ -215,8 +201,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: ".+"
-
+        match: .+
   contact-info-recommended:
     description: Info should have contact details
     message: Info should include contact information
@@ -225,7 +210,6 @@ rules:
     then:
       field: contact
       function: truthy
-
   external-docs-recommended:
     description: Spec should have external documentation link
     message: Spec should include externalDocs
@@ -234,3 +218,46 @@ rules:
     then:
       field: externalDocs
       function: truthy
+  servers-expected-domain:
+    description: Server URLs should be on the weather.gov domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: weather\.gov
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
