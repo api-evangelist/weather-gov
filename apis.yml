@@ -36,6 +36,8 @@ tags:
   - Open Data
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
+  - type: AgenticAccess
+    url: agentic-access/weather-gov-agentic-access.yml
   - type: DomainSecurity
     url: security/weather-gov-domain-security.yml
   - type: Authentication
