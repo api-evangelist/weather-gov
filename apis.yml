@@ -1,31 +1,188 @@
 aid: weather-gov
 url: https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/apis.yml
 apis:
-  - name: Weather.gov API Web Service
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.weather.gov/documentation/services-web-api
-    baseURL: https://api.weather.gov
-    properties:
-      - url: openapi/openapi.yml
-        name: Weather.gov OpenAPI
-        type: OpenAPI
-      - url: https://www.weather.gov/documentation/services-web-api
-        type: Documentation
-      - url: https://api.weather.gov/openapi.json
-        type: APIReference
-    description: >-
-      The National Weather Service API provides access to real-time weather data including forecasts, alerts,
-      observations, radar, aviation weather, and zone information for the United States. The API is free, open, and
-      requires only a User-Agent header for identification.
-    aid: weather-gov:weather-gov-api-web-service
-    tags:
-      - Weather
-      - Forecasting
-      - Alerts
-      - Observations
-      - Radar
-      - United States
-      - Government
+- aid: weather-gov:weather-gov-alerts-api
+  name: Weather.gov Alerts API
+  description: The Alerts API from Weather.gov — 8 operation(s) for alerts.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-aviation-api
+  name: Weather.gov Aviation API
+  description: The Aviation API from Weather.gov — 7 operation(s) for aviation.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Aviation
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-aviation-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-glossary-api
+  name: Weather.gov Glossary API
+  description: The Glossary API from Weather.gov — 1 operation(s) for glossary.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Glossary
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-glossary-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-gridpoints-api
+  name: Weather.gov Gridpoints API
+  description: The Gridpoints API from Weather.gov — 4 operation(s) for gridpoints.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Gridpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-gridpoints-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-icons-api
+  name: Weather.gov Icons API
+  description: The Icons API from Weather.gov — 3 operation(s) for icons.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Icons
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-icons-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-offices-api
+  name: Weather.gov Offices API
+  description: The Offices API from Weather.gov — 8 operation(s) for offices.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Offices
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-offices-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-points-api
+  name: Weather.gov Points API
+  description: The Points API from Weather.gov — 3 operation(s) for points.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Points
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-points-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-products-api
+  name: Weather.gov Products API
+  description: The Products API from Weather.gov — 9 operation(s) for products.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-radar-api
+  name: Weather.gov Radar API
+  description: The Radar API from Weather.gov — 7 operation(s) for radar.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Radar
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-radar-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-radio-api
+  name: Weather.gov Radio API
+  description: The Radio API from Weather.gov — 1 operation(s) for radio.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Radio
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-radio-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-stations-api
+  name: Weather.gov Stations API
+  description: The Stations API from Weather.gov — 7 operation(s) for stations.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Stations
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-stations-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-thumbnails-api
+  name: Weather.gov Thumbnails API
+  description: The Thumbnails API from Weather.gov — 1 operation(s) for thumbnails.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Thumbnails
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-thumbnails-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
+- aid: weather-gov:weather-gov-zones-api
+  name: Weather.gov Zones API
+  description: The Zones API from Weather.gov — 6 operation(s) for zones.
+  humanURL: https://www.weather.gov/documentation/services-web-api
+  baseURL: https://api.weather.gov
+  tags:
+  - Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/weather-gov-zones-api-openapi.yml
+  - type: Documentation
+    url: https://www.weather.gov/documentation/services-web-api
+  - type: APIReference
+    url: https://api.weather.gov/openapi.json
 name: Weather.gov
 tags:
   - Weather
@@ -34,6 +191,19 @@ tags:
   - Forecasting
   - Alerts
   - Open Data
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
   - type: AgenticAccess
