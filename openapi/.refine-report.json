@@ -1,0 +1,38 @@
+{
+  "provider": "weather-gov",
+  "sources": [
+    "weather-gov-alerts-api-openapi.yml",
+    "weather-gov-aviation-api-openapi.yml",
+    "weather-gov-glossary-api-openapi.yml",
+    "weather-gov-gridpoints-api-openapi.yml",
+    "weather-gov-icons-api-openapi.yml",
+    "weather-gov-offices-api-openapi.yml",
+    "weather-gov-points-api-openapi.yml",
+    "weather-gov-products-api-openapi.yml",
+    "weather-gov-radar-api-openapi.yml",
+    "weather-gov-radio-api-openapi.yml",
+    "weather-gov-stations-api-openapi.yml",
+    "weather-gov-thumbnails-api-openapi.yml",
+    "weather-gov-zones-api-openapi.yml"
+  ],
+  "outputs": [
+    "weather-gov-alerts-api-openapi.yml",
+    "weather-gov-aviation-api-openapi.yml",
+    "weather-gov-glossary-api-openapi.yml",
+    "weather-gov-gridpoints-api-openapi.yml",
+    "weather-gov-icons-api-openapi.yml",
+    "weather-gov-offices-api-openapi.yml",
+    "weather-gov-points-api-openapi.yml",
+    "weather-gov-products-api-openapi.yml",
+    "weather-gov-radar-api-openapi.yml",
+    "weather-gov-radio-api-openapi.yml",
+    "weather-gov-stations-api-openapi.yml",
+    "weather-gov-thumbnails-api-openapi.yml",
+    "weather-gov-zones-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
