@@ -1,0 +1,533 @@
+{
+  "item": [
+    {
+      "id": "1fa20d97-0b2c-46cb-86bf-c65c33f44e79",
+      "name": "Points",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9a0432b-e17d-40c8-9f5d-e2ad35c950cc",
+          "name": "Weather.gov Returns Metadata About a Given Latitude/longitude Point",
+          "request": {
+            "name": "Weather.gov Returns Metadata About a Given Latitude/longitude Point",
+            "description": {
+              "content": "Returns metadata about a given latitude/longitude point",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "points",
+                "{{latitude}},{{longitude}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/geo+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51f10312-2d48-466a-9c56-119d2473e6fe",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/geo+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Correlation-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Server-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/geo+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"geometry\": {\n    \"type\": \"Point\",\n    \"coordinates\": [\n      1956.4078933548078,\n      4312.323173805264\n    ],\n    \"bbox\": [\n      7997.402263387396,\n      353.2197935349568,\n      9047.885295118884,\n      5907.2383343727515\n    ]\n  },\n  \"properties\": {\n    \"geometry\": \"string\",\n    \"@id\": \"https://fxcNBToUXCUAAnCppKOAsXyJsKZIW.mmkhfUetFOwsNRnJJS0PdgpJww7skUjTWOK3pvWV6zNQhTy9sAPw\",\n    \"@type\": \"wx:Point\",\n    \"cwa\": \"AFG\",\n    \"type\": \"marine\",\n    \"forecastOffice\": \"http://hHJsrQ.nvjsWZ\",\n    \"gridId\": \"TAE\",\n    \"gridX\": 808,\n    \"gridY\": 5151,\n    \"forecast\": \"https://YcH.epclefuOIToa,sSjSNWyzj5eVeBlk\",\n    \"forecastHourly\": \"http://qNWJFrCvrYQt.movrlufs\",\n    \"forecastGridData\": \"http://EgmxyeJWPVLiCpWbO.jodwClp88KRMNgEIManSc\",\n    \"observationStations\": \"https://ycJthpmDqqGhcDqgxZfbPuIPWOtQjtK.tceCy6NWlGAt1O5\",\n    \"relativeLocation\": {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"properties\": {\n        \"city\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"distance\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"bearing\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"@context\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"id\": \"http://nCIsskwtYfMeUVqxPzojwlTLwSHXz.nkwwU9SPHhcOS\"\n    },\n    \"forecastZone\": \"https://HYGXAwFRovAI.lushXN-wg6Pt6qi4NAEfWadKzs\",\n    \"county\": \"https://HNsUzFZJyYLjLkMhtOsrFFjkd.keooRmTQVyCubMPyvnIbh14W7BRdbH1MM\",\n    \"fireWeatherZone\": \"http://X.xlzmNK94zSjc2RYnePyZvmOpCh.wMRghRNubQrDDevDPg-EUojzX\",\n    \"timeZone\": \"string\",\n    \"radarStation\": \"string\",\n    \"astronomicalData\": {\n      \"sunrise\": \"1967-04-24T21:39:56.562Z\",\n      \"sunset\": \"1970-05-09T18:02:18.667Z\",\n      \"transit\": \"1973-02-11T07:09:09.641Z\",\n      \"civilTwilightBegin\": \"1983-10-14T11:12:13.918Z\",\n      \"civilTwilightEnd\": \"1970-01-31T08:04:55.558Z\",\n      \"nauticalTwilightBegin\": \"2021-05-05T12:32:27.458Z\",\n      \"nauticalTwilightEnd\": \"1986-12-31T17:14:08.296Z\",\n      \"astronomicalTwilightBegin\": \"1996-09-20T21:21:59.775Z\",\n      \"astronomicalTwilightEnd\": \"1966-05-30T10:44:11.548Z\"\n    },\n    \"nwr\": {\n      \"transmitter\": \"string\",\n      \"sameCode\": \"string\",\n      \"areaBroadcast\": \"http://UKWLgmMRBiedOQD.nmabKonXwE3u0OeIAmuAS,TL9qxBry7f+c\",\n      \"pointBroadcast\": \"https://mLfcqlcMhHTVAVCyluLpdS.twzmssB,dIsHlYXdLiV5tziYA2tUiMBNSgbHXdsnJlYVSToiMOqQLRcN4USjbq2oAPxPnHQMku\"\n    }\n  },\n  \"id\": \"http://AlrPvaJCHNooaEWFz.reELZzJyzN8DydW6gSfiFphUc5-ONj+UilCMaIb\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b87075af-3dc2-416c-9a84-4119196344bc",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Correlation-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Server-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"urn:noaa:nws:api:UnexpectedProblem\",\n  \"title\": \"Unexpected Problem\",\n  \"status\": 500,\n  \"detail\": \"An unexpected problem has occurred.\",\n  \"instance\": \"urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n  \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "582aee60-f5e3-42fc-947d-4da004552171",
+          "name": "Weather.gov Returns NOAA Weather Radio Broadcast Script for a Latitude/longitude Point",
+          "request": {
+            "name": "Weather.gov Returns NOAA Weather Radio Broadcast Script for a Latitude/longitude Point",
+            "description": {
+              "content": "Returns NOAA Weather Radio broadcast script for a latitude/longitude point",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "points",
+                "{{latitude}},{{longitude}}",
+                "radio"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/ssml+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f266915e-7717-4dd4-b83a-6ba21c9de94b",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}",
+                    "radio"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/ssml+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Correlation-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Server-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/ssml+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "99730688-9e92-41d2-9d23-dd7e22ed45c4",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}",
+                    "radio"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Correlation-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Server-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"urn:noaa:nws:api:UnexpectedProblem\",\n  \"title\": \"Unexpected Problem\",\n  \"status\": 500,\n  \"detail\": \"An unexpected problem has occurred.\",\n  \"instance\": \"urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n  \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "878da1cb-e688-4541-83ef-4aa155c0841d",
+          "name": "Weather.gov Returns a List of Observation Stations for a Given Point",
+          "request": {
+            "name": "Weather.gov Returns a List of Observation Stations for a Given Point",
+            "description": {
+              "content": "Returns a list of observation stations for a given point",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "points",
+                "{{latitude}},{{longitude}}",
+                "stations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df58e3dc-60b7-47b2-904b-c79a3f9d53ab",
+              "name": "redirect to gridpoint stations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}",
+                    "stations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4bde27b-29ab-4266-896c-1ee2cc540f5e",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "points",
+                    "{{latitude}},{{longitude}}",
+                    "stations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "User-Agent",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Correlation-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Request-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.\n",
+                  "key": "X-Server-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"urn:noaa:nws:api:UnexpectedProblem\",\n  \"title\": \"Unexpected Problem\",\n  \"status\": 500,\n  \"detail\": \"An unexpected problem has occurred.\",\n  \"instance\": \"urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63\",\n  \"correlationId\": \"493c3a1d-f87e-407f-ae2c-24483f5aab63\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.weather.gov",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Latitude",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<number>",
+      "key": "latitude"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Longitude",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<number>",
+      "key": "longitude"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "User-Agent"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "de0c541f-9332-495a-9226-cef126c38072",
+    "name": "weather.gov Alerts Points API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "weather.gov API",
+      "type": "text/plain"
+    }
+  }
+}

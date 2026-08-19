@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weather.gov Alerts Zones API",
+    "version": "3.8.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "User-Agent",
+      "value": "{{User-Agent}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones",
+            "params": [
+              {
+                "name": "id",
+                "value": "example-value",
+                "type": "query",
+                "description": "Zone ID (forecast or county)"
+              },
+              {
+                "name": "area",
+                "value": "example-value",
+                "type": "query",
+                "description": "State/marine area code"
+              },
+              {
+                "name": "region",
+                "value": "example-value",
+                "type": "query",
+                "description": "Region code"
+              },
+              {
+                "name": "type",
+                "value": "land",
+                "type": "query",
+                "description": "Zone type"
+              },
+              {
+                "name": "point",
+                "value": "",
+                "type": "query",
+                "description": "Point (latitude,longitude)"
+              },
+              {
+                "name": "include_geometry",
+                "value": "true",
+                "type": "query",
+                "description": "Include geometry in results (true/false)"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "effective",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "Effective date/time"
+              }
+            ]
+          },
+          "docs": "Returns a list of zones"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Zones of a Given Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Zone type"
+              },
+              {
+                "name": "id",
+                "value": "example-value",
+                "type": "query",
+                "description": "Zone ID (forecast or county)"
+              },
+              {
+                "name": "area",
+                "value": "example-value",
+                "type": "query",
+                "description": "State/marine area code"
+              },
+              {
+                "name": "region",
+                "value": "example-value",
+                "type": "query",
+                "description": "Region code"
+              },
+              {
+                "name": "type",
+                "value": "land",
+                "type": "query",
+                "description": "Zone type"
+              },
+              {
+                "name": "point",
+                "value": "",
+                "type": "query",
+                "description": "Point (latitude,longitude)"
+              },
+              {
+                "name": "include_geometry",
+                "value": "true",
+                "type": "query",
+                "description": "Include geometry in results (true/false)"
+              },
+              {
+                "name": "limit",
+                "value": "80",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "effective",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "Effective date/time"
+              }
+            ]
+          },
+          "docs": "Returns a list of zones of a given type"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns Metadata About a Given Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones/:type/:zoneId",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Zone type"
+              },
+              {
+                "name": "zoneId",
+                "value": "",
+                "type": "path",
+                "description": "NWS public zone/county identifier"
+              },
+              {
+                "name": "effective",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "Effective date/time"
+              }
+            ]
+          },
+          "docs": "Returns metadata about a given zone"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns the Current Zone Forecast for a Given Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones/:type/:zoneId/forecast",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Zone type"
+              },
+              {
+                "name": "zoneId",
+                "value": "",
+                "type": "path",
+                "description": "NWS public zone/county identifier"
+              }
+            ]
+          },
+          "docs": "Returns the current zone forecast for a given zone"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Observations for a Given Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones/forecast/:zoneId/observations",
+            "params": [
+              {
+                "name": "zoneId",
+                "value": "",
+                "type": "path",
+                "description": "NWS public zone/county identifier"
+              },
+              {
+                "name": "start",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "Start date/time"
+              },
+              {
+                "name": "end",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "End date/time"
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Limit"
+              }
+            ]
+          },
+          "docs": "Returns a list of observations for a given zone"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Observation Stations for a Given Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/zones/forecast/:zoneId/stations",
+            "params": [
+              {
+                "name": "zoneId",
+                "value": "",
+                "type": "path",
+                "description": "NWS public zone/county identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Returns a list of observation stations for a given zone"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

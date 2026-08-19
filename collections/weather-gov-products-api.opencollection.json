@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weather.gov Alerts Products API",
+    "version": "3.8.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "User-Agent",
+      "value": "{{User-Agent}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Text Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products",
+            "params": [
+              {
+                "name": "location",
+                "value": "example-value",
+                "type": "query",
+                "description": "Location id"
+              },
+              {
+                "name": "start",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "Start time"
+              },
+              {
+                "name": "end",
+                "value": "2026-05-03T14:30:00Z",
+                "type": "query",
+                "description": "End time"
+              },
+              {
+                "name": "office",
+                "value": "TOP",
+                "type": "query",
+                "description": "Issuing office"
+              },
+              {
+                "name": "wmoid",
+                "value": "example-value",
+                "type": "query",
+                "description": "WMO id code"
+              },
+              {
+                "name": "type",
+                "value": "land",
+                "type": "query",
+                "description": "Product code"
+              },
+              {
+                "name": "limit",
+                "value": "422",
+                "type": "query",
+                "description": "Limit"
+              }
+            ]
+          },
+          "docs": "Returns a list of text products"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Valid Text Product Issuance Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/locations"
+          },
+          "docs": "Returns a list of valid text product issuance locations"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Valid Text Product Types and Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/types"
+          },
+          "docs": "Returns a list of valid text product types and codes"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a Specific Text Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a specific text product"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Text Products of a Given Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/types/:typeId",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a list of text products of a given type"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given Product Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/types/:typeId/locations",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a list of valid text product issuance locations for a given product type"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Valid Text Product Types for a Given Issuance Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/locations/:locationId/types",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a list of valid text product types for a given issuance location"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of Text Products of a Given Type for a Given Issuance Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/types/:typeId/locations/:locationId",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a list of text products of a given type for a given issuance location"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance Location with Product Text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/products/types/:typeId/locations/:locationId/latest",
+            "params": [
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              },
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns latest text products of a given type for a given issuance location with product text"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

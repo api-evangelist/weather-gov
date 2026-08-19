@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weather.gov Alerts Offices API",
+    "version": "3.8.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "User-Agent",
+      "value": "{{User-Agent}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Offices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Weather.gov Returns Metadata About a NWS Forecast Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              }
+            ]
+          },
+          "docs": "Returns metadata about a NWS forecast office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns Active Briefing for an NWS Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/briefing",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              }
+            ]
+          },
+          "docs": "Returns active briefing for an NWS office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns the Latest Briefing for an Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/briefing/download/latest",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              }
+            ]
+          },
+          "docs": "Returns the latest briefing for an office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a Briefing for an Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/briefing/download/:briefingId",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              },
+              {
+                "name": "briefingId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns a briefing for an office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a Specific News Headline for a Given NWS Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/headlines/:headlineId",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              },
+              {
+                "name": "headlineId",
+                "value": "",
+                "type": "path",
+                "description": "Headline record ID"
+              }
+            ]
+          },
+          "docs": "Returns a specific news headline for a given NWS office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns a List of News Headlines for a Given NWS Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/headlines",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of news headlines for a given NWS office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns Active Weather Stories for an NWS Office",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/weatherstories",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              }
+            ]
+          },
+          "docs": "Returns active weather stories for an NWS office"
+        },
+        {
+          "info": {
+            "name": "Weather.gov Returns the Image for a Weather Story",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weather.gov/offices/:officeId/weatherstories/download/:imageId",
+            "params": [
+              {
+                "name": "officeId",
+                "value": "",
+                "type": "path",
+                "description": "NWS office ID"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "."
+              }
+            ]
+          },
+          "docs": "Returns the image for a weather story"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
