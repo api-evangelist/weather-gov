@@ -105,6 +105,8 @@ apis:
   humanURL: https://www.weather.gov/documentation/services-web-api
   baseURL: https://api.weather.gov
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
