@@ -221,6 +221,8 @@ accessModel:
   method: derived
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
+  - type: Website
+    url: https://www.weather.gov/
   - type: AgenticAccess
     url: agentic-access/weather-gov-agentic-access.yml
   - type: DomainSecurity
