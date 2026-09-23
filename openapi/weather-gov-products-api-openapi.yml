@@ -1,6 +1,6 @@
-openapi: 3.1.2
+openapi: 3.2.0
 info:
-  title: weather.gov Alerts Products API
+  title: weather.gov Products API
   description: weather.gov API
   version: 3.8.1
   x-last-validated: '2026-05-03'
@@ -259,7 +259,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       parameters: []
-      summary: Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given Product Type
+      summary: Weather.gov Returns a List of Valid Text Product Issuance Locations for a Given…
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -293,7 +293,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       parameters: []
-      summary: Weather.gov Returns a List of Valid Text Product Types for a Given Issuance Location
+      summary: Weather.gov Returns a List of Valid Text Product Types for a Given Issuance…
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -333,7 +333,7 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       parameters: []
-      summary: Weather.gov Returns a List of Text Products of a Given Type for a Given Issuance Location
+      summary: Weather.gov Returns a List of Text Products of a Given Type for a Given…
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -373,45 +373,19 @@ paths:
         default:
           $ref: '#/components/responses/Error'
       parameters: []
-      summary: Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance Location with Product Text
+      summary: Weather.gov Returns Latest Text Products of a Given Type for a Given Issuance…
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
       tags:
       - Products
 components:
-  headers:
-    ServerId:
-      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    CorrelationId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    RequestId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
   schemas:
-    TextProductLocationCollection:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        locations:
-          type: object
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-      additionalProperties: false
+    JsonLdContext:
+      anyOf:
+      - type: array
+        items: {}
+      - type: object
     TextProduct:
       type: object
       properties:
@@ -435,6 +409,47 @@ components:
           type: string
         productText:
           type: string
+      additionalProperties: false
+    TextProductTypeCollection:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
+            required:
+            - productCode
+            - productName
+            type: object
+            properties:
+              productCode:
+                type: string
+              productName:
+                type: string
+            additionalProperties: false
+      additionalProperties: false
+    TextProductCollection:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
+            $ref: '#/components/schemas/TextProduct'
+      additionalProperties: false
+    TextProductLocationCollection:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        locations:
+          type: object
+          additionalProperties:
+            type:
+            - string
+            - 'null'
       additionalProperties: false
     ProblemDetail:
       required:
@@ -491,40 +506,25 @@ components:
           - 493c3a1d-f87e-407f-ae2c-24483f5aab63
       description: Detail about an error. This document conforms to RFC 7807 (Problem Details for HTTP APIs).
       additionalProperties: true
-    TextProductCollection:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
-          type: array
-          items:
-            $ref: '#/components/schemas/TextProduct'
-      additionalProperties: false
-    TextProductTypeCollection:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
-          type: array
-          items:
-            required:
-            - productCode
-            - productName
-            type: object
-            properties:
-              productCode:
-                type: string
-              productName:
-                type: string
-            additionalProperties: false
-      additionalProperties: false
-    JsonLdContext:
-      anyOf:
-      - type: array
-        items: {}
-      - type: object
+  headers:
+    CorrelationId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    RequestId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    ServerId:
+      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
   responses:
     Error:
       description: An error response.

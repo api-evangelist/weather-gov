@@ -1,6 +1,6 @@
-openapi: 3.1.2
+openapi: 3.2.0
 info:
-  title: weather.gov Alerts Zones API
+  title: weather.gov Zones API
   description: weather.gov API
   version: 3.8.1
   x-last-validated: '2026-05-03'
@@ -377,30 +377,7 @@ paths:
       - Zones
 components:
   schemas:
-    ZoneCollectionGeoJson:
-      allOf:
-      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
-      - type: object
-        properties:
-          features:
-            type: array
-            items:
-              type: object
-              properties:
-                properties:
-                  $ref: '#/components/schemas/Zone'
-    NWSZoneType:
-      enum:
-      - land
-      - marine
-      - forecast
-      - public
-      - coastal
-      - offshore
-      - fire
-      - county
-      type: string
-    Observation:
+    ObservationStation:
       type: object
       properties:
         '@context':
@@ -416,80 +393,36 @@ components:
           type: string
         elevation:
           $ref: '#/components/schemas/QuantitativeValue'
-        station:
+        stationIdentifier:
           type: string
+        name:
+          type: string
+        timeZone:
+          type: string
+          format: iana-time-zone-identifier
+        provider:
+          type: string
+          description: The data provider for this station. E.g., "ASOS," "MesoWest," etc.
+        subProvider:
+          type: string
+          description: The sub-provider of for this station. E.g., "FAA," "DOT," etc.
+        forecast:
+          type: string
+          description: A link to the NWS public forecast zone containing this station.
           format: uri
-        stationId:
+        county:
           type: string
-        stationName:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        rawMessage:
-          type: string
-        textDescription:
-          type: string
-        icon:
-          type:
-          - string
-          - 'null'
+          description: A link to the NWS county zone containing this station.
           format: uri
-          deprecated: true
-        presentWeather:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetarPhenomenon'
-        temperature:
+        fireWeatherZone:
+          type: string
+          description: A link to the NWS fire weather forecast zone containing this station.
+          format: uri
+        distance:
           $ref: '#/components/schemas/QuantitativeValue'
-        dewpoint:
+        bearing:
           $ref: '#/components/schemas/QuantitativeValue'
-        windDirection:
-          $ref: '#/components/schemas/QuantitativeValue'
-        windSpeed:
-          $ref: '#/components/schemas/QuantitativeValue'
-        windGust:
-          $ref: '#/components/schemas/QuantitativeValue'
-        barometricPressure:
-          $ref: '#/components/schemas/QuantitativeValue'
-        seaLevelPressure:
-          $ref: '#/components/schemas/QuantitativeValue'
-        visibility:
-          $ref: '#/components/schemas/QuantitativeValue'
-        maxTemperatureLast24Hours:
-          $ref: '#/components/schemas/QuantitativeValue'
-        minTemperatureLast24Hours:
-          $ref: '#/components/schemas/QuantitativeValue'
-        precipitationLastHour:
-          $ref: '#/components/schemas/QuantitativeValue'
-        precipitationLast3Hours:
-          $ref: '#/components/schemas/QuantitativeValue'
-        precipitationLast6Hours:
-          $ref: '#/components/schemas/QuantitativeValue'
-        relativeHumidity:
-          $ref: '#/components/schemas/QuantitativeValue'
-        windChill:
-          $ref: '#/components/schemas/QuantitativeValue'
-        heatIndex:
-          $ref: '#/components/schemas/QuantitativeValue'
-        cloudLayers:
-          type:
-          - array
-          - 'null'
-          items:
-            required:
-            - base
-            - amount
-            type: object
-            properties:
-              base:
-                $ref: '#/components/schemas/QuantitativeValue'
-              amount:
-                $ref: '#/components/schemas/MetarSkyCoverage'
-            additionalProperties: false
       additionalProperties: false
-    ZoneForecastJsonLd:
-      $ref: '#/components/schemas/ZoneForecast'
     QuantitativeValue:
       type: object
       properties:
@@ -547,61 +480,122 @@ components:
           type: object
       description: A GeoJSON feature. Please refer to IETF RFC 7946 for information on the GeoJSON format.
       additionalProperties: false
-    ProblemDetail:
+    ObservationCollectionGeoJson:
+      allOf:
+      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
+      - type: object
+        properties:
+          features:
+            type: array
+            items:
+              type: object
+              properties:
+                properties:
+                  $ref: '#/components/schemas/Observation'
+          pagination:
+            $ref: '#/components/schemas/PaginationInfo'
+    AreaCode:
+      oneOf:
+      - $ref: '#/components/schemas/StateTerritoryCode'
+      - $ref: '#/components/schemas/MarineAreaCode'
+      description: State/territory codes and marine area codes
+    MetarPhenomenon:
       required:
-      - type
-      - title
-      - status
-      - detail
-      - instance
-      - correlationId
+      - intensity
+      - modifier
+      - weather
+      - rawString
       type: object
       properties:
+        intensity:
+          enum:
+          - light
+          - heavy
+          type:
+          - string
+          - 'null'
+        modifier:
+          enum:
+          - patches
+          - blowing
+          - low_drifting
+          - freezing
+          - shallow
+          - partial
+          - showers
+          type:
+          - string
+          - 'null'
+        weather:
+          enum:
+          - fog_mist
+          - dust_storm
+          - dust
+          - drizzle
+          - funnel_cloud
+          - fog
+          - smoke
+          - hail
+          - snow_pellets
+          - haze
+          - ice_crystals
+          - ice_pellets
+          - dust_whirls
+          - spray
+          - rain
+          - sand
+          - snow_grains
+          - snow
+          - squalls
+          - sand_storm
+          - thunderstorms
+          - unknown
+          - volcanic_ash
+          type: string
+        rawString:
+          type: string
+        inVicinity:
+          type: boolean
+      description: An object representing a decoded METAR phenomenon string.
+      additionalProperties: false
+    ObservationStationCollectionGeoJson:
+      allOf:
+      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
+      - type: object
+        properties:
+          features:
+            type: array
+            items:
+              type: object
+              properties:
+                properties:
+                  $ref: '#/components/schemas/ObservationStation'
+          observationStations:
+            type: array
+            items:
+              type: string
+              format: uri
+          pagination:
+            $ref: '#/components/schemas/PaginationInfo'
+    GeoJsonFeatureCollection:
+      required:
+      - type
+      - features
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
         type:
+          enum:
+          - FeatureCollection
           type: string
-          description: 'A URI reference (RFC 3986) that identifies the problem type. This is only an identifier and is not necessarily a resolvable URL.
-
-            '
-          format: uri
-          default: about:blank
-          examples:
-          - urn:noaa:nws:api:UnexpectedProblem
-        title:
-          type: string
-          description: A short, human-readable summary of the problem type.
-          examples:
-          - Unexpected Problem
-        status:
-          maximum: 999
-          minimum: 100
-          type: number
-          description: 'The HTTP status code (RFC 7231, Section 6) generated by the origin server for this occurrence of the problem.
-
-            '
-          examples:
-          - 500
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - An unexpected problem has occurred.
-        instance:
-          type: string
-          description: 'A URI reference (RFC 3986) that identifies the specific occurrence of the problem. This is only an identifier and is not necessarily a resolvable URL.
-
-            '
-          format: uri
-          examples:
-          - urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63
-        correlationId:
-          type: string
-          description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-            '
-          examples:
-          - 493c3a1d-f87e-407f-ae2c-24483f5aab63
-      description: Detail about an error. This document conforms to RFC 7807 (Problem Details for HTTP APIs).
-      additionalProperties: true
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoJsonFeature'
+      description: A GeoJSON feature collection. Please refer to IETF RFC 7946 for information on the GeoJSON format.
+    ZoneJsonLd:
+      $ref: '#/components/schemas/Zone'
     GeoJsonGeometry:
       oneOf:
       - title: GeoJSON Point
@@ -696,43 +690,6 @@ components:
             $ref: '#/components/schemas/GeoJsonBoundingBox'
       - type: 'null'
       description: A GeoJSON geometry object. Please refer to IETF RFC 7946 for information on the GeoJSON format.
-    ZoneCollectionJsonLd:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
-          type: array
-          items:
-            $ref: '#/components/schemas/Zone'
-      additionalProperties: false
-    NWSZoneID:
-      pattern: ^(A[KLMNRSZ]|C[AOT]|D[CE]|F[LM]|G[AMU]|I[ADLN]|K[SY]|L[ACEHMOS]|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[AHKMRSWZ]|S[CDL]|T[NX]|UT|V[AIT]|W[AIVY]|[HR]I)[CZ]\d{3}$
-      type: string
-      description: 'UGC identifier for a NWS forecast zone or county.
-
-        The first two letters will correspond to either a state code or marine area code (see #/components/schemas/StateTerritoryCode and #/components/schemas/MarineAreaCode for lists of valid letter combinations).
-
-        The third letter will be Z for public/fire zone or C for county.
-
-        '
-    GeoJsonFeatureCollection:
-      required:
-      - type
-      - features
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        type:
-          enum:
-          - FeatureCollection
-          type: string
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeoJsonFeature'
-      description: A GeoJSON feature collection. Please refer to IETF RFC 7946 for information on the GeoJSON format.
     StateTerritoryCode:
       enum:
       - AL
@@ -834,96 +791,58 @@ components:
           description: An array of forecast periods.
       description: An object representing a zone area forecast.
       additionalProperties: false
-    PointString:
-      pattern: ^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$
+    ZoneGeoJson:
+      allOf:
+      - $ref: '#/components/schemas/GeoJsonFeature'
+      - type: object
+        properties:
+          properties:
+            $ref: '#/components/schemas/Zone'
+    NWSZoneID:
+      pattern: ^(A[KLMNRSZ]|C[AOT]|D[CE]|F[LM]|G[AMU]|I[ADLN]|K[SY]|L[ACEHMOS]|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[AHKMRSWZ]|S[CDL]|T[NX]|UT|V[AIT]|W[AIVY]|[HR]I)[CZ]\d{3}$
       type: string
-    GeoJsonCoordinate:
-      minItems: 2
-      type: array
-      items:
-        type: number
-      description: A GeoJSON coordinate. Please refer to IETF RFC 7946 for information on the GeoJSON format.
-    GeoJsonBoundingBox:
-      minItems: 4
-      type: array
-      items:
-        type: number
-      description: A GeoJSON bounding box. Please refer to IETF RFC 7946 for information on the GeoJSON format.
-    RegionCode:
-      oneOf:
-      - $ref: '#/components/schemas/LandRegionCode'
-      - $ref: '#/components/schemas/MarineRegionCode'
-    Zone:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        geometry:
-          $ref: '#/components/schemas/GeometryString'
-        '@id':
-          type: string
-          format: uri
-        '@type':
-          enum:
-          - wx:Zone
-          type: string
-        id:
-          $ref: '#/components/schemas/NWSZoneID'
-        type:
-          $ref: '#/components/schemas/NWSZoneType'
-        name:
-          type: string
-        effectiveDate:
-          type: string
-          format: date-time
-        expirationDate:
-          type: string
-          format: date-time
-        state:
-          oneOf:
-          - $ref: '#/components/schemas/StateTerritoryCode'
-          - enum:
-            - ''
-            type: string
-          - type: 'null'
-        forecastOffice:
-          type: string
-          format: uri
-        gridIdentifier:
-          type: string
-        awipsLocationIdentifier:
-          type: string
-        cwa:
-          type: array
-          items:
-            $ref: '#/components/schemas/NWSForecastOfficeId'
-          deprecated: true
-        forecastOffices:
-          type: array
-          items:
-            type: string
-            format: uri
-          deprecated: true
-        timeZone:
-          type: array
-          items:
-            type: string
-            format: iana-time-zone-identifier
-        observationStations:
-          type: array
-          items:
-            type: string
-            format: uri
-        radarStation:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
-    AreaCode:
-      oneOf:
-      - $ref: '#/components/schemas/StateTerritoryCode'
-      - $ref: '#/components/schemas/MarineAreaCode'
-      description: State/territory codes and marine area codes
+      description: 'UGC identifier for a NWS forecast zone or county.
+
+        The first two letters will correspond to either a state code or marine area code (see #/components/schemas/StateTerritoryCode and #/components/schemas/MarineAreaCode for lists of valid letter combinations).
+
+        The third letter will be Z for public/fire zone or C for county.
+
+        '
+    NWSZoneType:
+      enum:
+      - land
+      - marine
+      - forecast
+      - public
+      - coastal
+      - offshore
+      - fire
+      - county
+      type: string
+    MarineRegionCode:
+      enum:
+      - AL
+      - AT
+      - GL
+      - GM
+      - PA
+      - PI
+      type: string
+      description: 'Marine region code. These are groups of marine areas combined.
+
+        * AL: Alaska waters (PK)
+
+        * AT: Atlantic Ocean (AM, AN)
+
+        * GL: Great Lakes (LC, LE, LH, LM, LO, LS, SL)
+
+        * GM: Gulf of Mexico (GM)
+
+        * PA: Eastern Pacific Ocean and U.S. West Coast (PZ)
+
+        * PI: Central and Western Pacific (PH, PM, PS)
+
+        '
     MarineAreaCode:
       enum:
       - AM
@@ -975,73 +894,13 @@ components:
         * SL: St. Lawrence River above St. Regis
 
         '
-    MetarPhenomenon:
-      required:
-      - intensity
-      - modifier
-      - weather
-      - rawString
-      type: object
-      properties:
-        intensity:
-          enum:
-          - light
-          - heavy
-          type:
-          - string
-          - 'null'
-        modifier:
-          enum:
-          - patches
-          - blowing
-          - low_drifting
-          - freezing
-          - shallow
-          - partial
-          - showers
-          type:
-          - string
-          - 'null'
-        weather:
-          enum:
-          - fog_mist
-          - dust_storm
-          - dust
-          - drizzle
-          - funnel_cloud
-          - fog
-          - smoke
-          - hail
-          - snow_pellets
-          - haze
-          - ice_crystals
-          - ice_pellets
-          - dust_whirls
-          - spray
-          - rain
-          - sand
-          - snow_grains
-          - snow
-          - squalls
-          - sand_storm
-          - thunderstorms
-          - unknown
-          - volcanic_ash
-          type: string
-        rawString:
-          type: string
-        inVicinity:
-          type: boolean
-      description: An object representing a decoded METAR phenomenon string.
-      additionalProperties: false
-    ZoneForecastGeoJson:
-      allOf:
-      - $ref: '#/components/schemas/GeoJsonFeature'
-      - type: object
-        properties:
-          properties:
-            $ref: '#/components/schemas/ZoneForecast'
-    ObservationCollectionJsonLd:
+    GeometryString:
+      type:
+      - string
+      - 'null'
+      description: A geometry represented in Well-Known Text (WKT) format.
+      format: wkt
+    ObservationStationCollectionJsonLd:
       type: object
       properties:
         '@context':
@@ -1049,7 +908,12 @@ components:
         '@graph':
           type: array
           items:
-            $ref: '#/components/schemas/Observation'
+            $ref: '#/components/schemas/ObservationStation'
+        observationStations:
+          type: array
+          items:
+            type: string
+            format: uri
         pagination:
           $ref: '#/components/schemas/PaginationInfo'
       additionalProperties: false
@@ -1067,87 +931,106 @@ components:
         Namespaced units are considered deprecated. We will be aligning API to use the same standards as GML/IWXXM in the future.
 
         '
-    GeometryString:
-      type:
-      - string
-      - 'null'
-      description: A geometry represented in Well-Known Text (WKT) format.
-      format: wkt
-    MetarSkyCoverage:
-      enum:
-      - OVC
-      - BKN
-      - SCT
-      - FEW
-      - SKC
-      - CLR
-      - VV
-      type: string
-    MarineRegionCode:
-      enum:
-      - AL
-      - AT
-      - GL
-      - GM
-      - PA
-      - PI
-      type: string
-      description: 'Marine region code. These are groups of marine areas combined.
-
-        * AL: Alaska waters (PK)
-
-        * AT: Atlantic Ocean (AM, AN)
-
-        * GL: Great Lakes (LC, LE, LH, LM, LO, LS, SL)
-
-        * GM: Gulf of Mexico (GM)
-
-        * PA: Eastern Pacific Ocean and U.S. West Coast (PZ)
-
-        * PI: Central and Western Pacific (PH, PM, PS)
-
-        '
-    LandRegionCode:
-      enum:
-      - AR
-      - CR
-      - ER
-      - PR
-      - SR
-      - WR
-      type: string
-      description: 'Land region code. These correspond to the six NWS regional headquarters:
-
-        * AR: Alaska Region
-
-        * CR: Central Region
-
-        * ER: Eastern Region
-
-        * PR: Pacific Region
-
-        * SR: Southern Region
-
-        * WR: Western Region
-
-        '
-    PaginationInfo:
-      required:
-      - next
+    Observation:
       type: object
       properties:
-        next:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        geometry:
+          $ref: '#/components/schemas/GeometryString'
+        '@id':
           type: string
-          description: A link to the next page of records
           format: uri
-      description: Links for retrieving more data from paged data sets
+        '@type':
+          enum:
+          - wx:ObservationStation
+          type: string
+        elevation:
+          $ref: '#/components/schemas/QuantitativeValue'
+        station:
+          type: string
+          format: uri
+        stationId:
+          type: string
+        stationName:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        rawMessage:
+          type: string
+        textDescription:
+          type: string
+        icon:
+          type:
+          - string
+          - 'null'
+          format: uri
+          deprecated: true
+        presentWeather:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetarPhenomenon'
+        temperature:
+          $ref: '#/components/schemas/QuantitativeValue'
+        dewpoint:
+          $ref: '#/components/schemas/QuantitativeValue'
+        windDirection:
+          $ref: '#/components/schemas/QuantitativeValue'
+        windSpeed:
+          $ref: '#/components/schemas/QuantitativeValue'
+        windGust:
+          $ref: '#/components/schemas/QuantitativeValue'
+        barometricPressure:
+          $ref: '#/components/schemas/QuantitativeValue'
+        seaLevelPressure:
+          $ref: '#/components/schemas/QuantitativeValue'
+        visibility:
+          $ref: '#/components/schemas/QuantitativeValue'
+        maxTemperatureLast24Hours:
+          $ref: '#/components/schemas/QuantitativeValue'
+        minTemperatureLast24Hours:
+          $ref: '#/components/schemas/QuantitativeValue'
+        precipitationLastHour:
+          $ref: '#/components/schemas/QuantitativeValue'
+        precipitationLast3Hours:
+          $ref: '#/components/schemas/QuantitativeValue'
+        precipitationLast6Hours:
+          $ref: '#/components/schemas/QuantitativeValue'
+        relativeHumidity:
+          $ref: '#/components/schemas/QuantitativeValue'
+        windChill:
+          $ref: '#/components/schemas/QuantitativeValue'
+        heatIndex:
+          $ref: '#/components/schemas/QuantitativeValue'
+        cloudLayers:
+          type:
+          - array
+          - 'null'
+          items:
+            required:
+            - base
+            - amount
+            type: object
+            properties:
+              base:
+                $ref: '#/components/schemas/QuantitativeValue'
+              amount:
+                $ref: '#/components/schemas/MetarSkyCoverage'
+            additionalProperties: false
       additionalProperties: false
-    GeoJsonLineString:
-      minItems: 2
-      type: array
-      items:
-        $ref: '#/components/schemas/GeoJsonCoordinate'
-      description: A GeoJSON line string. Please refer to IETF RFC 7946 for information on the GeoJSON format.
+    ObservationCollectionJsonLd:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
+            $ref: '#/components/schemas/Observation'
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+      additionalProperties: false
     NWSForecastOfficeId:
       enum:
       - AKQ
@@ -1285,7 +1168,23 @@ components:
       - ONP
       type: string
       description: Three-letter identifier for a NWS office.
-    ObservationStation:
+    PointString:
+      pattern: ^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$
+      type: string
+    RegionCode:
+      oneOf:
+      - $ref: '#/components/schemas/LandRegionCode'
+      - $ref: '#/components/schemas/MarineRegionCode'
+    ZoneForecastJsonLd:
+      $ref: '#/components/schemas/ZoneForecast'
+    ZoneForecastGeoJson:
+      allOf:
+      - $ref: '#/components/schemas/GeoJsonFeature'
+      - type: object
+        properties:
+          properties:
+            $ref: '#/components/schemas/ZoneForecast'
+    Zone:
       type: object
       properties:
         '@context':
@@ -1297,57 +1196,65 @@ components:
           format: uri
         '@type':
           enum:
-          - wx:ObservationStation
+          - wx:Zone
           type: string
-        elevation:
-          $ref: '#/components/schemas/QuantitativeValue'
-        stationIdentifier:
-          type: string
+        id:
+          $ref: '#/components/schemas/NWSZoneID'
+        type:
+          $ref: '#/components/schemas/NWSZoneType'
         name:
           type: string
-        timeZone:
+        effectiveDate:
           type: string
-          format: iana-time-zone-identifier
-        provider:
+          format: date-time
+        expirationDate:
           type: string
-          description: The data provider for this station. E.g., "ASOS," "MesoWest," etc.
-        subProvider:
+          format: date-time
+        state:
+          oneOf:
+          - $ref: '#/components/schemas/StateTerritoryCode'
+          - enum:
+            - ''
+            type: string
+          - type: 'null'
+        forecastOffice:
           type: string
-          description: The sub-provider of for this station. E.g., "FAA," "DOT," etc.
-        forecast:
-          type: string
-          description: A link to the NWS public forecast zone containing this station.
           format: uri
-        county:
+        gridIdentifier:
           type: string
-          description: A link to the NWS county zone containing this station.
-          format: uri
-        fireWeatherZone:
+        awipsLocationIdentifier:
           type: string
-          description: A link to the NWS fire weather forecast zone containing this station.
-          format: uri
-        distance:
-          $ref: '#/components/schemas/QuantitativeValue'
-        bearing:
-          $ref: '#/components/schemas/QuantitativeValue'
-      additionalProperties: false
-    ObservationStationCollectionJsonLd:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
+        cwa:
           type: array
           items:
-            $ref: '#/components/schemas/ObservationStation'
+            $ref: '#/components/schemas/NWSForecastOfficeId'
+          deprecated: true
+        forecastOffices:
+          type: array
+          items:
+            type: string
+            format: uri
+          deprecated: true
+        timeZone:
+          type: array
+          items:
+            type: string
+            format: iana-time-zone-identifier
         observationStations:
           type: array
           items:
             type: string
             format: uri
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
+        radarStation:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    JsonLdContext:
+      anyOf:
+      - type: array
+        items: {}
+      - type: object
     GeoJsonPolygon:
       type: array
       items:
@@ -1356,84 +1263,153 @@ components:
         items:
           $ref: '#/components/schemas/GeoJsonCoordinate'
       description: A GeoJSON polygon. Please refer to IETF RFC 7946 for information on the GeoJSON format.
-    ZoneJsonLd:
-      $ref: '#/components/schemas/Zone'
-    ObservationCollectionGeoJson:
-      allOf:
-      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
-      - type: object
-        properties:
-          features:
-            type: array
-            items:
-              type: object
-              properties:
-                properties:
-                  $ref: '#/components/schemas/Observation'
-          pagination:
-            $ref: '#/components/schemas/PaginationInfo'
-    ObservationStationCollectionGeoJson:
-      allOf:
-      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
-      - type: object
-        properties:
-          features:
-            type: array
-            items:
-              type: object
-              properties:
-                properties:
-                  $ref: '#/components/schemas/ObservationStation'
-          observationStations:
-            type: array
-            items:
-              type: string
-              format: uri
-          pagination:
-            $ref: '#/components/schemas/PaginationInfo'
-    JsonLdContext:
-      anyOf:
-      - type: array
-        items: {}
-      - type: object
-    ZoneGeoJson:
-      allOf:
-      - $ref: '#/components/schemas/GeoJsonFeature'
-      - type: object
-        properties:
-          properties:
+    PaginationInfo:
+      required:
+      - next
+      type: object
+      properties:
+        next:
+          type: string
+          description: A link to the next page of records
+          format: uri
+      description: Links for retrieving more data from paged data sets
+      additionalProperties: false
+    GeoJsonLineString:
+      minItems: 2
+      type: array
+      items:
+        $ref: '#/components/schemas/GeoJsonCoordinate'
+      description: A GeoJSON line string. Please refer to IETF RFC 7946 for information on the GeoJSON format.
+    ZoneCollectionJsonLd:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
             $ref: '#/components/schemas/Zone'
-  responses:
-    Error:
-      description: An error response.
-      headers:
-        X-Correlation-Id:
-          $ref: '#/components/headers/CorrelationId'
-        X-Request-Id:
-          $ref: '#/components/headers/RequestId'
-        X-Server-Id:
-          $ref: '#/components/headers/ServerId'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetail'
-    ObservationStationCollection:
-      description: A collection of observation stations.
-      headers:
-        X-Correlation-Id:
-          $ref: '#/components/headers/CorrelationId'
-        X-Request-Id:
-          $ref: '#/components/headers/RequestId'
-        X-Server-Id:
-          $ref: '#/components/headers/ServerId'
-      content:
-        application/geo+json:
-          schema:
-            $ref: '#/components/schemas/ObservationStationCollectionGeoJson'
-        application/ld+json:
-          schema:
-            $ref: '#/components/schemas/ObservationStationCollectionJsonLd'
+      additionalProperties: false
+    LandRegionCode:
+      enum:
+      - AR
+      - CR
+      - ER
+      - PR
+      - SR
+      - WR
+      type: string
+      description: 'Land region code. These correspond to the six NWS regional headquarters:
+
+        * AR: Alaska Region
+
+        * CR: Central Region
+
+        * ER: Eastern Region
+
+        * PR: Pacific Region
+
+        * SR: Southern Region
+
+        * WR: Western Region
+
+        '
+    GeoJsonCoordinate:
+      minItems: 2
+      type: array
+      items:
+        type: number
+      description: A GeoJSON coordinate. Please refer to IETF RFC 7946 for information on the GeoJSON format.
+    MetarSkyCoverage:
+      enum:
+      - OVC
+      - BKN
+      - SCT
+      - FEW
+      - SKC
+      - CLR
+      - VV
+      type: string
+    GeoJsonBoundingBox:
+      minItems: 4
+      type: array
+      items:
+        type: number
+      description: A GeoJSON bounding box. Please refer to IETF RFC 7946 for information on the GeoJSON format.
+    ZoneCollectionGeoJson:
+      allOf:
+      - $ref: '#/components/schemas/GeoJsonFeatureCollection'
+      - type: object
+        properties:
+          features:
+            type: array
+            items:
+              type: object
+              properties:
+                properties:
+                  $ref: '#/components/schemas/Zone'
+    ProblemDetail:
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - instance
+      - correlationId
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'A URI reference (RFC 3986) that identifies the problem type. This is only an identifier and is not necessarily a resolvable URL.
+
+            '
+          format: uri
+          default: about:blank
+          examples:
+          - urn:noaa:nws:api:UnexpectedProblem
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+          examples:
+          - Unexpected Problem
+        status:
+          maximum: 999
+          minimum: 100
+          type: number
+          description: 'The HTTP status code (RFC 7231, Section 6) generated by the origin server for this occurrence of the problem.
+
+            '
+          examples:
+          - 500
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - An unexpected problem has occurred.
+        instance:
+          type: string
+          description: 'A URI reference (RFC 3986) that identifies the specific occurrence of the problem. This is only an identifier and is not necessarily a resolvable URL.
+
+            '
+          format: uri
+          examples:
+          - urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63
+        correlationId:
+          type: string
+          description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+            '
+          examples:
+          - 493c3a1d-f87e-407f-ae2c-24483f5aab63
+      description: Detail about an error. This document conforms to RFC 7807 (Problem Details for HTTP APIs).
+      additionalProperties: true
   headers:
+    RequestId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
     CorrelationId:
       description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
@@ -1442,12 +1418,6 @@ components:
         type: string
     ServerId:
       description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    RequestId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
@@ -1475,6 +1445,36 @@ components:
         minimum: 1
         type: integer
         default: 500
+  responses:
+    ObservationStationCollection:
+      description: A collection of observation stations.
+      headers:
+        X-Correlation-Id:
+          $ref: '#/components/headers/CorrelationId'
+        X-Request-Id:
+          $ref: '#/components/headers/RequestId'
+        X-Server-Id:
+          $ref: '#/components/headers/ServerId'
+      content:
+        application/geo+json:
+          schema:
+            $ref: '#/components/schemas/ObservationStationCollectionGeoJson'
+        application/ld+json:
+          schema:
+            $ref: '#/components/schemas/ObservationStationCollectionJsonLd'
+    Error:
+      description: An error response.
+      headers:
+        X-Correlation-Id:
+          $ref: '#/components/headers/CorrelationId'
+        X-Request-Id:
+          $ref: '#/components/headers/RequestId'
+        X-Server-Id:
+          $ref: '#/components/headers/ServerId'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
   securitySchemes:
     userAgent:
       type: apiKey

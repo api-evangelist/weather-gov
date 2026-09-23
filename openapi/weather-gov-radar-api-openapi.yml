@@ -1,6 +1,6 @@
-openapi: 3.1.2
+openapi: 3.2.0
 info:
-  title: weather.gov Alerts Radar API
+  title: weather.gov Radar API
   description: weather.gov API
   version: 3.8.1
   x-last-validated: '2026-05-03'
@@ -347,12 +347,6 @@ paths:
       - Radar
 components:
   headers:
-    ServerId:
-      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
     CorrelationId:
       description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
@@ -367,6 +361,12 @@ components:
         type: string
     RequestId:
       description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    ServerId:
+      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
@@ -387,6 +387,12 @@ components:
         examples:
         - P1Y2M10DT2H30M/2008-05-11T15:30:00Z
       description: "A time interval in ISO 8601 format. This can be one of:\n\n    1. Start and end time\n    2. Start time and duration\n    3. Duration and end time\nThe string \"NOW\" can also be used in place of a start/end time.\n"
+    ISO8601Duration:
+      pattern: ^P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$
+      type: string
+      description: A time duration in ISO 8601 format.
+      examples:
+      - P2DT12H
     ProblemDetail:
       required:
       - type
@@ -442,12 +448,6 @@ components:
           - 493c3a1d-f87e-407f-ae2c-24483f5aab63
       description: Detail about an error. This document conforms to RFC 7807 (Problem Details for HTTP APIs).
       additionalProperties: true
-    ISO8601Duration:
-      pattern: ^P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$
-      type: string
-      description: A time duration in ISO 8601 format.
-      examples:
-      - P2DT12H
   responses:
     Error:
       description: An error response.
