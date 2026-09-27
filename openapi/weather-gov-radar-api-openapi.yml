@@ -347,19 +347,13 @@ paths:
       - Radar
 components:
   headers:
-    CorrelationId:
+    RequestId:
       description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
         type: string
-    X-Api-Key:
-      description: 'A token that a client provides when making API calls.  Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    RequestId:
+    CorrelationId:
       description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
@@ -367,6 +361,12 @@ components:
         type: string
     ServerId:
       description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    X-Api-Key:
+      description: 'A token that a client provides when making API calls.  Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
