@@ -198,12 +198,40 @@ paths:
       tags:
       - Icons
 components:
+  responses:
+    Error:
+      description: An error response.
+      headers:
+        X-Correlation-Id:
+          $ref: '#/components/headers/CorrelationId'
+        X-Request-Id:
+          $ref: '#/components/headers/RequestId'
+        X-Server-Id:
+          $ref: '#/components/headers/ServerId'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+  headers:
+    CorrelationId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    RequestId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    ServerId:
+      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
   schemas:
-    JsonLdContext:
-      anyOf:
-      - type: array
-        items: {}
-      - type: object
     ProblemDetail:
       required:
       - type
@@ -262,39 +290,11 @@ components:
     BinaryFile:
       type: string
       format: binary
-  headers:
-    ServerId:
-      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    RequestId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    CorrelationId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-  responses:
-    Error:
-      description: An error response.
-      headers:
-        X-Correlation-Id:
-          $ref: '#/components/headers/CorrelationId'
-        X-Request-Id:
-          $ref: '#/components/headers/RequestId'
-        X-Server-Id:
-          $ref: '#/components/headers/ServerId'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetail'
+    JsonLdContext:
+      anyOf:
+      - type: array
+        items: {}
+      - type: object
   securitySchemes:
     userAgent:
       type: apiKey

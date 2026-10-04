@@ -44,9 +44,23 @@ paths:
       tags:
       - Radio
 components:
+  responses:
+    Error:
+      description: An error response.
+      headers:
+        X-Correlation-Id:
+          $ref: '#/components/headers/CorrelationId'
+        X-Request-Id:
+          $ref: '#/components/headers/RequestId'
+        X-Server-Id:
+          $ref: '#/components/headers/ServerId'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
   headers:
-    ServerId:
-      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+    CorrelationId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
@@ -57,8 +71,8 @@ components:
         '
       schema:
         type: string
-    CorrelationId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+    ServerId:
+      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
 
         '
       schema:
@@ -127,20 +141,6 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    Error:
-      description: An error response.
-      headers:
-        X-Correlation-Id:
-          $ref: '#/components/headers/CorrelationId'
-        X-Request-Id:
-          $ref: '#/components/headers/RequestId'
-        X-Server-Id:
-          $ref: '#/components/headers/ServerId'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetail'
   securitySchemes:
     userAgent:
       type: apiKey
