@@ -193,6 +193,8 @@ tags:
   - Forecasting
   - Alerts
   - Open Data
+  - Federal Government
+  - Public APIs
 deliveryModel:
   model: unknown
   license_evidence:
@@ -280,6 +282,8 @@ common:
     url: rules/weather-gov-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/weather-gov-vocabulary.yml
+  - type: GitHubOrganization
+    url: https://github.com/weather-gov
 created: '2024-07-02T00:00:00.000Z'
 modified: '2026-05-19'
 description: >-
@@ -294,3 +298,5 @@ specificationVersion: '0.23'
 type: Index
 position: Consuming
 access: 3rd-Party
+x-parent: noaa-gov
+x-relationship: division
