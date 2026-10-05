@@ -1,0 +1,12 @@
+{
+ "url": "https://api.weather.gov/openapi.json",
+ "requested_url": "https://api.weather.gov/openapi.json",
+ "status": 200,
+ "content_type": "application/vnd.oai.openapi+json;version=3.1",
+ "bytes": 121410,
+ "sha256": "04543cdd93e6a8c7f745a822f50834db6094ee09888171718c560ca8bb3328b4",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.942), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
