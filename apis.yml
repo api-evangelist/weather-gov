@@ -226,6 +226,8 @@ accessModel:
   method: derived
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
+  - url: https://www.weather.gov/news
+    type: Blog
   - type: Website
     url: https://www.weather.gov/
   - type: AgenticAccess
@@ -285,7 +287,7 @@ common:
   - type: GitHubOrganization
     url: https://github.com/weather-gov
 created: '2024-07-02T00:00:00.000Z'
-modified: '2026-05-19'
+modified: '2026-10-06'
 description: >-
   Weather.gov is the official website of the National Weather Service (NWS), operated by NOAA within the US Department
   of Commerce. The NWS provides weather, hydrologic, and climate forecasts and warnings for the United States, its
