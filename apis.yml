@@ -226,6 +226,12 @@ accessModel:
   method: derived
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/api-web-service.png
 common:
+  - type: Plans
+    url: plans/weather-gov-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/weather-gov-rate-limits.yml
+  - type: FinOps
+    url: finops/weather-gov-finops.yml
   - url: https://www.weather.gov/news
     type: Blog
   - type: Website
