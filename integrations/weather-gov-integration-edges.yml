@@ -1,0 +1,54 @@
+edges:
+- partner_name: World Meteorological Organization (WIS 2.0)
+  partner: wmo
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://wis2-gdc.weather.gc.ca/collections/wis2-discovery-metadata/items?f=json&centre-id=us-noaa-nws
+  match:
+    method: domain+verified
+    domain: noaa.gov
+    seen_as:
+    - contact email
+    - record link (canonical)
+    - record link (collection)
+    verified: 'GDC us-noaa-nws: contact emails @noaa.gov and node wis2node.globaldata.nws.noaa.gov; noaa.gov is
+      shared by noaa-gov, ndbc, noaa-co-ops, noaa-erddap -- the NWS centre is weather-gov'
+  wis2:
+    centre_id: us-noaa-nws
+    organization: National Weather Service
+    datasets: 13
+    data_policy:
+    - core
+    disciplines:
+    - ocean
+    - weather
+    access:
+    - https
+    - mqtt-notification
+    - ogc-api
+    catalogues:
+    - gdc.wis2dev.io
+    - wis2-gdc.weather.gc.ca
+    sample_record: urn:wmo:md:us-noaa-nws:surface-based-observations-temp-ship
+  contract_reference:
+    register: WMO WIS2 Global Discovery Catalogue (wis2-gdc.weather.gc.ca, gdc.wis2dev.io)
+    spec_file: null
+    role: wis2-centre
+    registered_name: National Weather Service
+    register_id: us-noaa-nws
+    matched_domain: noaa.gov
+    detected_by: sweep-weather.py
+    detected: '2026-10-15'
+  detected_by: sweep-weather.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://gdc.wis2dev.io/collections/wis2-discovery-metadata/items?f=json&limit=3000
+- https://wis2-gdc.weather.gc.ca/collections/wis2-discovery-metadata/items?f=json&limit=3000
+source:
+- https://wis2-gdc.weather.gc.ca/collections/wis2-discovery-metadata/items?f=json&limit=3000
+- https://gdc.wis2dev.io/collections/wis2-discovery-metadata/items?f=json&limit=3000
