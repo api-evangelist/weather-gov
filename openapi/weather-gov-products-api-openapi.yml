@@ -380,59 +380,12 @@ paths:
       tags:
       - Products
 components:
-  responses:
-    Error:
-      description: An error response.
-      headers:
-        X-Correlation-Id:
-          $ref: '#/components/headers/CorrelationId'
-        X-Request-Id:
-          $ref: '#/components/headers/RequestId'
-        X-Server-Id:
-          $ref: '#/components/headers/ServerId'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/ProblemDetail'
-  headers:
-    CorrelationId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    RequestId:
-      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
-    ServerId:
-      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-
-        '
-      schema:
-        type: string
   schemas:
-    TextProductTypeCollection:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
-          type: array
-          items:
-            required:
-            - productCode
-            - productName
-            type: object
-            properties:
-              productCode:
-                type: string
-              productName:
-                type: string
-            additionalProperties: false
-      additionalProperties: false
+    JsonLdContext:
+      anyOf:
+      - type: array
+        items: {}
+      - type: object
     ProblemDetail:
       required:
       - type
@@ -512,21 +465,6 @@ components:
         productText:
           type: string
       additionalProperties: false
-    TextProductCollection:
-      type: object
-      properties:
-        '@context':
-          $ref: '#/components/schemas/JsonLdContext'
-        '@graph':
-          type: array
-          items:
-            $ref: '#/components/schemas/TextProduct'
-      additionalProperties: false
-    JsonLdContext:
-      anyOf:
-      - type: array
-        items: {}
-      - type: object
     TextProductLocationCollection:
       type: object
       properties:
@@ -539,6 +477,68 @@ components:
             - string
             - 'null'
       additionalProperties: false
+    TextProductCollection:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
+            $ref: '#/components/schemas/TextProduct'
+      additionalProperties: false
+    TextProductTypeCollection:
+      type: object
+      properties:
+        '@context':
+          $ref: '#/components/schemas/JsonLdContext'
+        '@graph':
+          type: array
+          items:
+            required:
+            - productCode
+            - productName
+            type: object
+            properties:
+              productCode:
+                type: string
+              productName:
+                type: string
+            additionalProperties: false
+      additionalProperties: false
+  headers:
+    CorrelationId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    ServerId:
+      description: 'The identifier of the server that generated the response, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+    RequestId:
+      description: 'A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
+
+        '
+      schema:
+        type: string
+  responses:
+    Error:
+      description: An error response.
+      headers:
+        X-Correlation-Id:
+          $ref: '#/components/headers/CorrelationId'
+        X-Request-Id:
+          $ref: '#/components/headers/RequestId'
+        X-Server-Id:
+          $ref: '#/components/headers/ServerId'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
   securitySchemes:
     userAgent:
       type: apiKey
