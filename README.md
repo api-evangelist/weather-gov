@@ -1,4 +1,4 @@
-# Weather.gov (weather-gov)
+# Weather.gov
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,70 +66,253 @@
 
 Weather.gov is the official website of the National Weather Service (NWS), operated by NOAA within the US Department of Commerce. The NWS provides weather, hydrologic, and climate forecasts and warnings for the United States, its territories, adjacent waters, and ocean areas. The Weather.gov API provides free, open access to forecasts, alerts, observations, radar data, aviation weather, and geographic zone information across all 50 states and territories.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/weather-gov/refs/heads/main/apis.yml)
+**Areas:** Weather · Government · United States · Forecasting · Alerts · Open Data · Federal Government · Public APIs
 
-## Scope
+## Weather.gov on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Weather.gov is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/weather-gov/](https://apis.io/providers/weather-gov/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (13)
 
-- Weather
-- Government
-- United States
-- Forecasting
-- Alerts
-- Open Data
+- [Weather.gov Alerts API](https://apis.io/apis/weather-gov/weather-gov-alerts-api/) — The Alerts API from Weather.gov — 8 operation(s) for alerts.
+- [Weather.gov Aviation API](https://apis.io/apis/weather-gov/weather-gov-aviation-api/) — The Aviation API from Weather.gov — 7 operation(s) for aviation.
+- [Weather.gov Glossary API](https://apis.io/apis/weather-gov/weather-gov-glossary-api/) — The Glossary API from Weather.gov — 1 operation(s) for glossary.
+- [Weather.gov Gridpoints API](https://apis.io/apis/weather-gov/weather-gov-gridpoints-api/) — The Gridpoints API from Weather.gov — 4 operation(s) for gridpoints.
+- [Weather.gov Icons API](https://apis.io/apis/weather-gov/weather-gov-icons-api/) — The Icons API from Weather.gov — 3 operation(s) for icons.
+- [Weather.gov Offices API](https://apis.io/apis/weather-gov/weather-gov-offices-api/) — The Offices API from Weather.gov — 8 operation(s) for offices.
+- [Weather.gov Points API](https://apis.io/apis/weather-gov/weather-gov-points-api/) — The Points API from Weather.gov — 3 operation(s) for points.
+- [Weather.gov Products API](https://apis.io/apis/weather-gov/weather-gov-products-api/) — The Products API from Weather.gov — 9 operation(s) for products.
+- [Weather.gov Radar API](https://apis.io/apis/weather-gov/weather-gov-radar-api/) — The Radar API from Weather.gov — 7 operation(s) for radar.
+- [Weather.gov Radio API](https://apis.io/apis/weather-gov/weather-gov-radio-api/) — The Radio API from Weather.gov — 1 operation(s) for radio.
+- [Weather.gov Stations API](https://apis.io/apis/weather-gov/weather-gov-stations-api/) — The Stations API from Weather.gov — 7 operation(s) for stations.
+- [Weather.gov Thumbnails API](https://apis.io/apis/weather-gov/weather-gov-thumbnails-api/) — The Thumbnails API from Weather.gov — 1 operation(s) for thumbnails.
+- [Weather.gov Zones API](https://apis.io/apis/weather-gov/weather-gov-zones-api/) — The Zones API from Weather.gov — 6 operation(s) for zones.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-07-02T00:00:00.000Z
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Weather.gov API Web Service
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The National Weather Service API provides access to real-time weather data including forecasts, alerts, observations, radar, aviation weather, and zone information for the United States. The API is free, open, and requires only a User-Agent header for identification.
+- [Weather Gov Agentic Access](https://apis.io/agentic-access/weather-gov/weather-gov-agentic-access/)
 
-- **Human URL:** [https://www.weather.gov/documentation/services-web-api](https://www.weather.gov/documentation/services-web-api)
-- **Base URL:** `https://api.weather.gov`
+#### JSON Schema (107)
 
-#### Tags
+The data models the API reads and writes.
 
-- Weather
-- Forecasting
-- Alerts
-- Observations
-- Radar
-- United States
-- Government
+- [Alert](https://apis.io/schemas/weather-gov/weather-gov-alert/)
+- [AlertAtomEntry](https://apis.io/schemas/weather-gov/weather-gov-alert-atom-entry/)
+- [AlertAtomFeed](https://apis.io/schemas/weather-gov/weather-gov-alert-atom-feed/)
+- [AlertCap](https://apis.io/schemas/weather-gov/weather-gov-alert-cap/)
+- [AlertCertainty](https://apis.io/schemas/weather-gov/weather-gov-alert-certainty/)
+- [AlertCollection](https://apis.io/schemas/weather-gov/weather-gov-alert-collection/)
+- [AlertCollectionGeoJson](https://apis.io/schemas/weather-gov/weather-gov-alert-collection-geo-json/)
+- [AlertCollectionJsonLd](https://apis.io/schemas/weather-gov/weather-gov-alert-collection-json-ld/)
+- [AlertGeoJson](https://apis.io/schemas/weather-gov/weather-gov-alert-geo-json/)
+- [AlertId](https://apis.io/schemas/weather-gov/weather-gov-alert-id/)
+- [AlertJsonLd](https://apis.io/schemas/weather-gov/weather-gov-alert-json-ld/)
+- [AlertMessageType](https://apis.io/schemas/weather-gov/weather-gov-alert-message-type/)
+- [AlertSeverity](https://apis.io/schemas/weather-gov/weather-gov-alert-severity/)
+- [AlertStatus](https://apis.io/schemas/weather-gov/weather-gov-alert-status/)
+- [AlertUrgency](https://apis.io/schemas/weather-gov/weather-gov-alert-urgency/)
+- [AlertXMLParameter](https://apis.io/schemas/weather-gov/weather-gov-alert-xml-parameter/)
+- [AreaCode](https://apis.io/schemas/weather-gov/weather-gov-area-code/)
+- [AstronomicalData](https://apis.io/schemas/weather-gov/weather-gov-astronomical-data/)
+- [ATSUIdentifier](https://apis.io/schemas/weather-gov/weather-gov-atsu-identifier/)
+- [BinaryFile](https://apis.io/schemas/weather-gov/weather-gov-binary-file/)
+- [CenterWeatherAdvisory](https://apis.io/schemas/weather-gov/weather-gov-center-weather-advisory/)
+- [CenterWeatherAdvisoryCollectionGeoJson](https://apis.io/schemas/weather-gov/weather-gov-center-weather-advisory-collection-geo-json/)
+- [CenterWeatherAdvisoryGeoJson](https://apis.io/schemas/weather-gov/weather-gov-center-weather-advisory-geo-json/)
+- [CenterWeatherServiceUnitJsonLd](https://apis.io/schemas/weather-gov/weather-gov-center-weather-service-unit-json-ld/)
+- [Date](https://apis.io/schemas/weather-gov/weather-gov-date/)
+- …and 82 more published on APIs.io
 
-#### Properties
+#### JSON Structure (107)
 
-- [OpenAPI](openapi/openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/openapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/openapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
+
+- [Weather Gov Alert Atom Entry Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-atom-entry-structure/)
+- [Weather Gov Alert Atom Feed Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-atom-feed-structure/)
+- [Weather Gov Alert Cap Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-cap-structure/)
+- [Weather Gov Alert Certainty Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-certainty-structure/)
+- [Weather Gov Alert Collection Geo Json Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-collection-geo-json-structure/)
+- [Weather Gov Alert Collection Json Ld Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-collection-json-ld-structure/)
+- [Weather Gov Alert Collection Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-collection-structure/)
+- [Weather Gov Alert Geo Json Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-geo-json-structure/)
+- [Weather Gov Alert Id Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-id-structure/)
+- [Weather Gov Alert Json Ld Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-json-ld-structure/)
+- [Weather Gov Alert Message Type Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-message-type-structure/)
+- [Weather Gov Alert Severity Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-severity-structure/)
+- [Weather Gov Alert Status Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-status-structure/)
+- [Weather Gov Alert Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-structure/)
+- [Weather Gov Alert Urgency Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-urgency-structure/)
+- [Weather Gov Alert Xml Parameter Structure](https://apis.io/json-structure/weather-gov/weather-gov-alert-xml-parameter-structure/)
+- [Weather Gov Area Code Structure](https://apis.io/json-structure/weather-gov/weather-gov-area-code-structure/)
+- [Weather Gov Astronomical Data Structure](https://apis.io/json-structure/weather-gov/weather-gov-astronomical-data-structure/)
+- [Weather Gov Atsu Identifier Structure](https://apis.io/json-structure/weather-gov/weather-gov-atsu-identifier-structure/)
+- [Weather Gov Binary File Structure](https://apis.io/json-structure/weather-gov/weather-gov-binary-file-structure/)
+- [Weather Gov Center Weather Advisory Collection Geo Json Structure](https://apis.io/json-structure/weather-gov/weather-gov-center-weather-advisory-collection-geo-json-structure/)
+- [Weather Gov Center Weather Advisory Geo Json Structure](https://apis.io/json-structure/weather-gov/weather-gov-center-weather-advisory-geo-json-structure/)
+- [Weather Gov Center Weather Advisory Structure](https://apis.io/json-structure/weather-gov/weather-gov-center-weather-advisory-structure/)
+- [Weather Gov Center Weather Service Unit Json Ld Structure](https://apis.io/json-structure/weather-gov/weather-gov-center-weather-service-unit-json-ld-structure/)
+- [Weather Gov Date Structure](https://apis.io/json-structure/weather-gov/weather-gov-date-structure/)
+- …and 82 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Weather Gov Context](https://apis.io/jsonld/weather-gov/weather-gov-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Weather Gov Vocabulary](https://apis.io/vocabularies/weather-gov/weather-gov-vocabulary/)
+
+#### Examples (107)
+
+Example requests and responses.
+
+- [Weather Gov Alert Atom Entry Example](https://apis.io/examples/weather-gov/weather-gov-alert-atom-entry-example/)
+- [Weather Gov Alert Atom Feed Example](https://apis.io/examples/weather-gov/weather-gov-alert-atom-feed-example/)
+- [Weather Gov Alert Cap Example](https://apis.io/examples/weather-gov/weather-gov-alert-cap-example/)
+- [Weather Gov Alert Certainty Example](https://apis.io/examples/weather-gov/weather-gov-alert-certainty-example/)
+- [Weather Gov Alert Collection Example](https://apis.io/examples/weather-gov/weather-gov-alert-collection-example/)
+- [Weather Gov Alert Collection Geo Json Example](https://apis.io/examples/weather-gov/weather-gov-alert-collection-geo-json-example/)
+- [Weather Gov Alert Collection Json Ld Example](https://apis.io/examples/weather-gov/weather-gov-alert-collection-json-ld-example/)
+- [Weather Gov Alert Example](https://apis.io/examples/weather-gov/weather-gov-alert-example/)
+- [Weather Gov Alert Geo Json Example](https://apis.io/examples/weather-gov/weather-gov-alert-geo-json-example/)
+- [Weather Gov Alert Id Example](https://apis.io/examples/weather-gov/weather-gov-alert-id-example/)
+- [Weather Gov Alert Json Ld Example](https://apis.io/examples/weather-gov/weather-gov-alert-json-ld-example/)
+- [Weather Gov Alert Message Type Example](https://apis.io/examples/weather-gov/weather-gov-alert-message-type-example/)
+- [Weather Gov Alert Severity Example](https://apis.io/examples/weather-gov/weather-gov-alert-severity-example/)
+- [Weather Gov Alert Status Example](https://apis.io/examples/weather-gov/weather-gov-alert-status-example/)
+- [Weather Gov Alert Urgency Example](https://apis.io/examples/weather-gov/weather-gov-alert-urgency-example/)
+- [Weather Gov Alert Xml Parameter Example](https://apis.io/examples/weather-gov/weather-gov-alert-xml-parameter-example/)
+- [Weather Gov Area Code Example](https://apis.io/examples/weather-gov/weather-gov-area-code-example/)
+- [Weather Gov Astronomical Data Example](https://apis.io/examples/weather-gov/weather-gov-astronomical-data-example/)
+- [Weather Gov Atsu Identifier Example](https://apis.io/examples/weather-gov/weather-gov-atsu-identifier-example/)
+- [Weather Gov Binary File Example](https://apis.io/examples/weather-gov/weather-gov-binary-file-example/)
+- [Weather Gov Center Weather Advisory Collection Geo Json Example](https://apis.io/examples/weather-gov/weather-gov-center-weather-advisory-collection-geo-json-example/)
+- [Weather Gov Center Weather Advisory Example](https://apis.io/examples/weather-gov/weather-gov-center-weather-advisory-example/)
+- [Weather Gov Center Weather Advisory Geo Json Example](https://apis.io/examples/weather-gov/weather-gov-center-weather-advisory-geo-json-example/)
+- [Weather Gov Center Weather Service Unit Json Ld Example](https://apis.io/examples/weather-gov/weather-gov-center-weather-service-unit-json-ld-example/)
+- [Weather Gov Date Example](https://apis.io/examples/weather-gov/weather-gov-date-example/)
+- …and 82 more published on APIs.io
+
+#### Collections (14)
+
+Postman and Open Collection request collections.
+
+- [weather.gov API](https://apis.io/collections/weather-gov/open-openapi/)
+- [weather.gov Alerts API](https://apis.io/collections/weather-gov/open-weather-gov-alerts-api/)
+- [weather.gov Alerts Aviation API](https://apis.io/collections/weather-gov/open-weather-gov-aviation-api/)
+- [weather.gov Alerts Glossary API](https://apis.io/collections/weather-gov/open-weather-gov-glossary-api/)
+- [weather.gov Alerts Gridpoints API](https://apis.io/collections/weather-gov/open-weather-gov-gridpoints-api/)
+- [weather.gov Alerts Icons API](https://apis.io/collections/weather-gov/open-weather-gov-icons-api/)
+- [weather.gov Alerts Offices API](https://apis.io/collections/weather-gov/open-weather-gov-offices-api/)
+- [weather.gov Alerts Points API](https://apis.io/collections/weather-gov/open-weather-gov-points-api/)
+- [weather.gov Alerts Products API](https://apis.io/collections/weather-gov/open-weather-gov-products-api/)
+- [weather.gov Alerts Radar API](https://apis.io/collections/weather-gov/open-weather-gov-radar-api/)
+- [weather.gov Alerts Radio API](https://apis.io/collections/weather-gov/open-weather-gov-radio-api/)
+- [weather.gov Alerts Stations API](https://apis.io/collections/weather-gov/open-weather-gov-stations-api/)
+- [weather.gov Alerts Thumbnails API](https://apis.io/collections/weather-gov/open-weather-gov-thumbnails-api/)
+- [weather.gov Alerts Zones API](https://apis.io/collections/weather-gov/open-weather-gov-zones-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Weather.gov — jsonschema rules](https://apis.io/rules/weather-gov/weather-gov-jsonschema-spectral-rules/)
+- [Weather.gov API Rules](https://apis.io/rules/weather-gov/weather-gov-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Weather Gov Authentication](https://apis.io/security/weather-gov/weather-gov-authentication/)
+- [Weather Gov Domain Security](https://apis.io/security/weather-gov/weather-gov-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Weather Gov Plans Pricing](https://apis.io/plans/weather-gov/weather-gov-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Weather Gov Rate Limits](https://apis.io/rate-limits/weather-gov/weather-gov-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Weather Gov Finops](https://apis.io/finops/weather-gov/weather-gov-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.weather.gov/)
 - [Documentation](https://www.weather.gov/documentation/services-web-api)
-- [API Reference](https://api.weather.gov/openapi.json)
+- [API reference](https://api.weather.gov/openapi.json)
+- [Blog](https://www.weather.gov/news)
+- [GitHub](https://github.com/weather-gov)
 
-## Common Properties
+## API Evangelist rating
 
-- [LinkedIn](https://www.linkedin.com/company/noaa-nws)
-- [Documentation](https://www.weather.gov/documentation/services-web-api)
-- [GitHub Repository](https://github.com/weather-gov/api)
-- [API Reference](https://api.weather.gov/openapi.json)
-- [Portal](https://www.weather.gov)
-- [Contact](https://www.weather.gov/contact)
-- [Glossary](https://api.weather.gov/glossary)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Spectral Rules](rules/weather-gov-spectral-rules.yml)
-- [Vocabulary](vocabulary/weather-gov-vocabulary.yml)
+**Kin Score 35.6** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 55.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 7.9 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 23.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/weather-gov/](https://apis.io/providers/weather-gov/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Weather.gov: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/weather-gov/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
